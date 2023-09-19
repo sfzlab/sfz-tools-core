@@ -1,8 +1,26 @@
-import { log } from 'console';
-import { ConvertFormats } from './types/convert';
+import { js2xml } from 'xml-js';
+import { parseSfz } from './parse';
 
-function convertSfz(sfzFile: string, format: ConvertFormats) {
-  log('convertSfz', sfzFile, format);
+async function convertSfzToJson(sfzFile: string) {
+  const elements: any = await parseSfz('', sfzFile);
+  return { elements };
 }
 
-export { convertSfz };
+async function convertSfzToXml(sfzFile: string) {
+  const elements: any = await parseSfz('', sfzFile);
+  const xml: string = js2xml(
+    {
+      declaration: {
+        attributes: {
+          version: '1.0',
+        },
+      },
+      elements,
+    },
+    { spaces: '\t' }
+  );
+  // TODO do better
+  return xml.replace(/\/>/g, ' />') + '\n';
+}
+
+export { convertSfzToJson, convertSfzToXml };

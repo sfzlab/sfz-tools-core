@@ -10,10 +10,16 @@ async function run() {
   // Enable logging to see what is going on
   utils.logEnable();
 
-  // Test a method
-  // const sfzFile = file.fileText('./test/example.sfz');
-  // const sfzXml = convert.convertSfz(sfzFile, 'xml');
-  // console.log('convertSfz', sfzFile, sfzXml);
+  // File for testing
+  const FILE_DIR = './test/';
+  const FILE_NAME = 'example';
+  const sfzText = file.fileText(`${FILE_DIR}${FILE_NAME}.sfz`);
+
+  const convertSfzToJson = await convert.convertSfzToJson(sfzText);
+  console.log('convertSfzToJson', convertSfzToJson);
+
+  const convertSfzToXml = await convert.convertSfzToXml(sfzText);
+  console.log('convertSfzToXml', convertSfzToXml);
 }
 
 run();

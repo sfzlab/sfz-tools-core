@@ -36,7 +36,8 @@
   "homepage": "https://github.com/kmturley/sfz-tools-core#readme",
   "dependencies": {
     "glob": "^7.1.6",
-    "node-fetch": "^2.6.1"
+    "node-fetch": "^2.6.1",
+    "xml-js": "^1.6.11"
   },
   "devDependencies": {
     "@types/glob": "^7.1.3",
