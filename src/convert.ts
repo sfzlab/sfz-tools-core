@@ -1,13 +1,13 @@
 import { js2xml } from 'xml-js';
 import { parseSfz } from './parse';
 
-async function convertSfzToJson(sfzFile: string) {
-  const elements: any = await parseSfz('', sfzFile);
+async function convertSfzToJson(sfzFile: string, prefix = '') {
+  const elements: any = await parseSfz(sfzFile, prefix);
   return { elements };
 }
 
-async function convertSfzToXml(sfzFile: string) {
-  const elements: any = await parseSfz('', sfzFile);
+async function convertSfzToXml(sfzFile: string, prefix = '') {
+  const elements: any = await parseSfz(sfzFile, prefix);
   const xml: string = js2xml(
     {
       declaration: {

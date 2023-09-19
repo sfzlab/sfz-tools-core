@@ -1,6 +1,6 @@
 import { apiText } from './api';
 import { fileText } from './file';
-import { ParseAttribute, ParseVariables } from './types/parse';
+import { ParseAttribute, ParseHeader, ParseHeaders, ParseOpcode, ParseOpcodeObj, ParseVariables } from './types/parse';
 import { pathJoin } from './utils';
 
 const DEBUG: boolean = false;
@@ -27,6 +27,14 @@ function parseHeader(input: string) {
   return input.match(/[^< >]+/g) || [];
 }
 
+async function parseLoad(includePath: string, prefix: string) {
+  const pathJoined: string = pathJoin(prefix, includePath);
+  let file: string = '';
+  if (pathJoined.startsWith('http')) file = await apiText(pathJoined);
+  else file = fileText(pathJoined);
+  return await parseSfz(file, prefix);
+}
+
 function parseOpcode(input: string) {
   const output: ParseAttribute[] = [];
   const labels: string[] = input.match(/\w+(?==)/g) || [];
@@ -41,15 +49,46 @@ function parseOpcode(input: string) {
   return output;
 }
 
-async function parseLoad(prefix: string, includePath: string) {
-  const pathJoined: string = pathJoin(prefix, includePath);
-  let file: string = '';
-  if (pathJoined.startsWith('http')) file = await apiText(pathJoined);
-  else file = fileText(pathJoined);
-  return await parseSfz(prefix, file);
+function parseOpcodeObject(opcodes: ParseOpcode[]) {
+  const properties: ParseOpcodeObj = {};
+  opcodes.forEach((opcode: ParseOpcode) => {
+    if (!isNaN(opcode.attributes.value as any)) {
+      properties[opcode.attributes.name] = Number(opcode.attributes.value);
+    } else {
+      properties[opcode.attributes.name] = opcode.attributes.value;
+    }
+  });
+  return properties;
 }
 
-async function parseSfz(prefix: string, contents: string) {
+function parseRegions(headers: ParseHeader[]) {
+  const regions: any = [];
+  let globalObj: ParseOpcodeObj = {};
+  let masterObj: ParseOpcodeObj = {};
+  let controlObj: ParseOpcodeObj = {};
+  let groupObj: ParseOpcodeObj = {};
+  headers.forEach((header: ParseHeader) => {
+    if (header.name === ParseHeaders.global) {
+      globalObj = parseOpcodeObject(header.elements);
+    }
+    if (header.name === ParseHeaders.master) {
+      masterObj = parseOpcodeObject(header.elements);
+    }
+    if (header.name === ParseHeaders.control) {
+      controlObj = parseOpcodeObject(header.elements);
+    }
+    if (header.name === ParseHeaders.group) {
+      groupObj = parseOpcodeObject(header.elements);
+    } else if (header.name === ParseHeaders.region) {
+      const regionObj: ParseOpcodeObj = parseOpcodeObject(header.elements);
+      const mergedObj: ParseOpcodeObj = Object.assign({}, globalObj, masterObj, controlObj, groupObj, regionObj);
+      regions.push(mergedObj);
+    }
+  });
+  return regions;
+}
+
+async function parseSfz(contents: string, prefix = '') {
   let elements: any[] = [];
   let element: any = {};
   for (let i: number = 0; i < contents.length; i++) {
@@ -64,7 +103,7 @@ async function parseSfz(prefix: string, contents: string) {
       if (matches[0] === 'include') {
         let includePath: string = matches[1];
         if (includePath.includes('$')) includePath = parseVariables(includePath, variables);
-        const includeVal: any = await parseLoad(prefix, includePath);
+        const includeVal: any = await parseLoad(includePath, prefix);
         if (element.elements && includeVal.elements) {
           element.elements = element.elements.concat(includeVal.elements);
         } else {
@@ -115,4 +154,14 @@ function parseVariables(input: string, vars: ParseVariables) {
   });
 }
 
-export { parseDirective, parseEnd, parseHeader, parseLoad, parseOpcode, parseSfz, parseVariables };
+export {
+  parseDirective,
+  parseEnd,
+  parseHeader,
+  parseLoad,
+  parseOpcode,
+  parseOpcodeObject,
+  parseRegions,
+  parseSfz,
+  parseVariables,
+};

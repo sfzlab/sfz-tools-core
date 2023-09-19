@@ -4,6 +4,7 @@
 
 const convert = require('./dist/convert.js');
 const file = require('./dist/file.js');
+const parse = require('./dist/parse.js');
 const utils = require('./dist/utils.js');
 
 async function run() {
@@ -14,6 +15,12 @@ async function run() {
   const FILE_DIR = './test/';
   const FILE_NAME = 'example';
   const sfzText = file.fileText(`${FILE_DIR}${FILE_NAME}.sfz`);
+
+  const parseSfz = await parse.parseSfz(sfzText);
+  console.log('parseSfz', parseSfz);
+  
+  const parseRegions = await parse.parseRegions(parseSfz);
+  console.log('parseRegions', parseRegions);
 
   const convertSfzToJson = await convert.convertSfzToJson(sfzText);
   console.log('convertSfzToJson', convertSfzToJson);
