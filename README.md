@@ -18,7 +18,7 @@ To install the common package, run the command:
 
 Import the package using:
 
-    import { getRegions } from '@sfz-tools/core';
+    import { convertSfzToJson, convertSfzToXml } from '@sfz-tools/core';
 
 Then use the available methods as normal.
 
