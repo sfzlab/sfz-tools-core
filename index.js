@@ -12,9 +12,8 @@ async function run() {
   utils.logEnable();
 
   // File for testing
-  const FILE_DIR = './test/';
-  const FILE_NAME = 'example';
-  const sfzText = file.fileText(`${FILE_DIR}${FILE_NAME}.sfz`);
+  const sfzDir = './test/syntax/';
+  const sfzText = file.fileText(`${sfzDir}basic.sfz`);
 
   const parseSfz = await parse.parseSfz(sfzText);
   console.log('parseSfz', parseSfz);
