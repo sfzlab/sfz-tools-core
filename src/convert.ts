@@ -1,5 +1,6 @@
-import { js2xml } from 'xml-js';
+import { js2xml, json2xml, xml2js, xml2json } from 'xml-js';
 import { parseSfz } from './parse';
+import { ParseDefinition, ParseHeader, ParseOpcode } from './types/parse';
 
 const declaration: any = {
   attributes: {
@@ -7,7 +8,31 @@ const declaration: any = {
   },
 };
 
-async function convertSfzToJson(sfzFile: string, prefix = '') {
+const OPTIONS_JSON: any = {
+  spaces: 2,
+};
+
+const OPTIONS_XML: any = {
+  spaces: '\t',
+};
+
+async function convertJsToSfz(jsObj: ParseDefinition) {
+  let sfzText: string = '';
+  jsObj.elements.forEach((header: ParseHeader) => {
+    sfzText += `<${header.name}>\n`;
+    header.elements.forEach((opcode: ParseOpcode) => {
+      sfzText += `${opcode.attributes.name}=${opcode.attributes.value}\n`;
+    });
+  });
+  return sfzText;
+}
+
+async function convertJsToXml(jsObj: ParseDefinition) {
+  const xml: string = js2xml(jsObj, OPTIONS_XML);
+  return xml.replace(/\/>/g, ' />') + '\n';
+}
+
+async function convertSfzToJs(sfzFile: string, prefix = '') {
   const elements: any = await parseSfz(sfzFile, prefix);
   return {
     declaration,
@@ -22,10 +47,18 @@ async function convertSfzToXml(sfzFile: string, prefix = '') {
       declaration,
       elements,
     },
-    { spaces: '\t' }
+    OPTIONS_XML
   );
-  // TODO do better
   return xml.replace(/\/>/g, ' />') + '\n';
 }
 
-export { convertSfzToJson, convertSfzToXml };
+function convertXmlToJs(xmlFile: string) {
+  return xml2js(xmlFile, OPTIONS_JSON);
+}
+
+function convertXmlToSfz(xmlFile: string) {
+  const jsObj: ParseDefinition = xml2js(xmlFile, OPTIONS_JSON) as ParseDefinition;
+  return convertJsToSfz(jsObj);
+}
+
+export { convertJsToSfz, convertJsToXml, convertSfzToJs, convertSfzToXml, convertXmlToJs, convertXmlToSfz };

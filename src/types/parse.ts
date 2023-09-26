@@ -3,13 +3,22 @@ interface ParseAttribute {
   value: string;
 }
 
+interface ParseDefinition {
+  declaration?: {
+    attributes: {
+      version: string;
+    };
+  };
+  elements: ParseHeader[];
+}
+
 interface ParseHeader {
   elements: ParseOpcode[];
-  name: ParseHeaders;
+  name: ParseHeaderNames;
   type: 'element';
 }
 
-enum ParseHeaders {
+enum ParseHeaderNames {
   region = 'region',
   group = 'group',
   control = 'control',
@@ -35,4 +44,4 @@ interface ParseVariables {
   [name: string]: string;
 }
 
-export { ParseAttribute, ParseHeader, ParseHeaders, ParseOpcode, ParseOpcodeObj, ParseVariables };
+export { ParseAttribute, ParseDefinition, ParseHeader, ParseHeaderNames, ParseOpcode, ParseOpcodeObj, ParseVariables };

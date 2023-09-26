@@ -6,7 +6,7 @@ function fileBuffer(filePath: string): Buffer {
   return fs.readFileSync(filePath);
 }
 
-function fileJson(filePath: string): string {
+function fileJson(filePath: string): any {
   log('⎋', filePath);
   return JSON.parse(fs.readFileSync(filePath).toString());
 }

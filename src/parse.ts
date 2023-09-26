@@ -1,6 +1,13 @@
 import { apiText } from './api';
 import { fileText } from './file';
-import { ParseAttribute, ParseHeader, ParseHeaders, ParseOpcode, ParseOpcodeObj, ParseVariables } from './types/parse';
+import {
+  ParseAttribute,
+  ParseHeader,
+  ParseHeaderNames,
+  ParseOpcode,
+  ParseOpcodeObj,
+  ParseVariables,
+} from './types/parse';
 import { pathJoin } from './utils';
 
 const DEBUG: boolean = false;
@@ -68,18 +75,18 @@ function parseRegions(headers: ParseHeader[]) {
   let controlObj: ParseOpcodeObj = {};
   let groupObj: ParseOpcodeObj = {};
   headers.forEach((header: ParseHeader) => {
-    if (header.name === ParseHeaders.global) {
+    if (header.name === ParseHeaderNames.global) {
       globalObj = parseOpcodeObject(header.elements);
     }
-    if (header.name === ParseHeaders.master) {
+    if (header.name === ParseHeaderNames.master) {
       masterObj = parseOpcodeObject(header.elements);
     }
-    if (header.name === ParseHeaders.control) {
+    if (header.name === ParseHeaderNames.control) {
       controlObj = parseOpcodeObject(header.elements);
     }
-    if (header.name === ParseHeaders.group) {
+    if (header.name === ParseHeaderNames.group) {
       groupObj = parseOpcodeObject(header.elements);
-    } else if (header.name === ParseHeaders.region) {
+    } else if (header.name === ParseHeaderNames.region) {
       const regionObj: ParseOpcodeObj = parseOpcodeObject(header.elements);
       const mergedObj: ParseOpcodeObj = Object.assign({}, globalObj, masterObj, controlObj, groupObj, regionObj);
       regions.push(mergedObj);
