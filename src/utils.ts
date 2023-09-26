@@ -14,6 +14,22 @@ function logDisable(...args: any) {
   LOGGING_ENABLED = false;
 }
 
+function pathGetDirectory(pathItem: string, separator: string = '/'): string {
+  return pathItem.substring(0, pathItem.lastIndexOf(separator));
+}
+
+function pathGetExt(pathItem: string): string {
+  return pathItem.substring(pathItem.lastIndexOf('.') + 1);
+}
+
+function pathGetFilename(str: string, separator: string = '/'): string {
+  let base: string = str.substring(str.lastIndexOf(separator) + 1);
+  if (base.lastIndexOf('.') !== -1) {
+    base = base.substring(0, base.lastIndexOf('.'));
+  }
+  return base;
+}
+
 function pathJoin(...segments: any) {
   const parts = segments.reduce((partItems: any, segment: any) => {
     // Replace backslashes with forward slashes
@@ -45,4 +61,4 @@ function pathJoin(...segments: any) {
   return resultParts.join('/');
 }
 
-export { log, logEnable, logDisable, pathJoin };
+export { log, logEnable, logDisable, pathGetDirectory, pathGetExt, pathGetFilename, pathJoin };
