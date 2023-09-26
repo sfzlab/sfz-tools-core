@@ -16,7 +16,7 @@ const OPTIONS_XML: any = {
   spaces: '\t',
 };
 
-async function convertJsToSfz(jsObj: ParseDefinition) {
+function convertJsToSfz(jsObj: ParseDefinition) {
   let sfzText: string = '';
   jsObj.elements.forEach((header: ParseHeader) => {
     sfzText += `<${header.name}>\n`;
@@ -27,7 +27,7 @@ async function convertJsToSfz(jsObj: ParseDefinition) {
   return sfzText;
 }
 
-async function convertJsToXml(jsObj: ParseDefinition) {
+function convertJsToXml(jsObj: ParseDefinition) {
   const xml: string = js2xml(jsObj, OPTIONS_XML);
   return xml.replace(/\/>/g, ' />') + '\n';
 }
