@@ -1,5 +1,5 @@
 import { apiText } from './api';
-import { fileText } from './file';
+import { fileReadString } from './file';
 import {
   ParseAttribute,
   ParseHeader,
@@ -38,7 +38,7 @@ async function parseLoad(includePath: string, prefix: string) {
   const pathJoined: string = pathJoin(prefix, includePath);
   let file: string = '';
   if (pathJoined.startsWith('http')) file = await apiText(pathJoined);
-  else file = fileText(pathJoined);
+  else file = fileReadString(pathJoined);
   return await parseSfz(file, prefix);
 }
 

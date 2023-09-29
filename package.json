@@ -35,8 +35,11 @@
   },
   "homepage": "https://github.com/kmturley/sfz-tools-core#readme",
   "dependencies": {
+    "@types/fs-extra": "^11.0.2",
+    "fs-extra": "^11.1.1",
     "glob": "^10.3.6",
     "node-fetch": "^2.6.1",
+    "nodejs-fs-utils": "^1.2.6",
     "xml-js": "^1.6.11"
   },
   "devDependencies": {

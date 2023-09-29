@@ -1,4 +1,4 @@
-import { js2xml, json2xml, xml2js, xml2json } from 'xml-js';
+import { js2xml, xml2js } from 'xml-js';
 import { parseSfz } from './parse';
 import { ParseDefinition, ParseHeader, ParseOpcode } from './types/parse';
 

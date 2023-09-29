@@ -9,10 +9,9 @@ import {
   parseSfz,
   parseVariables,
 } from '../src/parse';
-import { globSync } from 'glob';
 import { apiText } from '../src/api';
 import { js2xml } from 'xml-js';
-import { fileText } from '../src/file';
+import { dirRead, fileReadString } from '../src/file';
 
 function convertToXml(elements: any) {
   const xml: string = js2xml(
@@ -32,19 +31,19 @@ function convertToXml(elements: any) {
 
 // Test specific syntax edge-cases
 const syntaxDir: string = './test/syntax/';
-const syntaxTests: string[] = globSync(`${syntaxDir}/**/*.sfz`);
+const syntaxTests: string[] = dirRead(`${syntaxDir}/**/*.sfz`);
 test.each(syntaxTests)('parseSfz %p', async (sfzFile: string) => {
-  const sfzText: string = fileText(sfzFile);
-  const sfzXml: string = fileText(sfzFile.replace('.sfz', '.xml'));
+  const sfzText: string = fileReadString(sfzFile);
+  const sfzXml: string = fileReadString(sfzFile.replace('.sfz', '.xml'));
   expect(convertToXml(await parseSfz(sfzText, syntaxDir))).toEqual(sfzXml);
 });
 
 // Test entire sfz test suite
 const sfzDir: string = './sfz-tests/';
-const sfzTests: string[] = globSync(`${sfzDir}/**/*.sfz`);
+const sfzTests: string[] = dirRead(`${sfzDir}/**/*.sfz`);
 test.each(sfzTests)('parseSfz %p', async (sfzFile: string) => {
-  const sfzText: string = fileText(sfzFile);
-  const sfzXml: string = fileText(sfzFile.replace('.sfz', '.xml'));
+  const sfzText: string = fileReadString(sfzFile);
+  const sfzXml: string = fileReadString(sfzFile.replace('.sfz', '.xml'));
   expect(convertToXml(await parseSfz(sfzText, sfzDir))).toEqual(sfzXml);
 });
 
