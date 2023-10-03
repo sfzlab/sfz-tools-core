@@ -12,6 +12,7 @@ import {
 import { apiText } from '../src/api';
 import { js2xml } from 'xml-js';
 import { dirRead, fileReadString } from '../src/file';
+import path from 'path';
 
 function convertToXml(elements: any) {
   const xml: string = js2xml(
@@ -30,7 +31,7 @@ function convertToXml(elements: any) {
 }
 
 // Test specific syntax edge-cases
-const syntaxDir: string = './test/syntax/';
+const syntaxDir: string = path.join('test', 'syntax');
 const syntaxTests: string[] = dirRead(`${syntaxDir}/**/*.sfz`);
 test.each(syntaxTests)('parseSfz %p', async (sfzFile: string) => {
   const sfzText: string = fileReadString(sfzFile);
@@ -39,7 +40,7 @@ test.each(syntaxTests)('parseSfz %p', async (sfzFile: string) => {
 });
 
 // Test entire sfz test suite
-const sfzDir: string = './sfz-tests/';
+const sfzDir: string = path.join('sfz-tests');
 const sfzTests: string[] = dirRead(`${sfzDir}/**/*.sfz`);
 test.each(sfzTests)('parseSfz %p', async (sfzFile: string) => {
   const sfzText: string = fileReadString(sfzFile);
@@ -49,10 +50,10 @@ test.each(sfzTests)('parseSfz %p', async (sfzFile: string) => {
 
 // Test complex hand-coded instrument
 test('parseSfz 01-green_keyswitch.sfz', async () => {
-  const path: string = 'https://raw.githubusercontent.com/kmturley/karoryfer.black-and-green-guitars/main/Programs/';
-  const sfzText: string = await apiText(`${path}01-green_keyswitch.sfz`);
-  const sfzXml: string = await apiText(`${path}01-green_keyswitch.xml`);
-  expect(convertToXml(await parseSfz(sfzText, path))).toEqual(sfzXml);
+  const sfzPath: string = 'https://raw.githubusercontent.com/kmturley/karoryfer.black-and-green-guitars/main/Programs/';
+  const sfzText: string = await apiText(`${sfzPath}01-green_keyswitch.sfz`);
+  const sfzXml: string = await apiText(`${sfzPath}01-green_keyswitch.xml`);
+  expect(convertToXml(await parseSfz(sfzText, sfzPath))).toEqual(sfzXml);
 });
 
 test('parseDirective', () => {
