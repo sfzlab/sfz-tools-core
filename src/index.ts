@@ -1,3 +1,4 @@
+export * from './analyze';
 export * from './api';
 export * from './convert';
 export * from './file';
