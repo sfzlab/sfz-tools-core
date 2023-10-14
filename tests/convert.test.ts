@@ -1,3 +1,4 @@
+import path from 'path';
 import {
   convertJsToSfz,
   convertJsToXml,
@@ -9,10 +10,10 @@ import {
 import { fileReadJson, fileReadString } from '../dist/file';
 import { ParseDefinition } from '../dist/types/parse';
 
-const syntaxDir: string = 'test/syntax';
-const sfzJs: ParseDefinition = fileReadJson(`${syntaxDir}/basic.json`);
-const sfzText: string = fileReadString(`${syntaxDir}/basic.sfz`);
-const sfzXml: string = fileReadString(`${syntaxDir}/basic.xml`);
+const syntaxDir: string = path.join('test', 'syntax');
+const sfzJs: ParseDefinition = fileReadJson(path.join(syntaxDir, 'basic.json'));
+const sfzText: string = fileReadString(path.join(syntaxDir, 'basic.sfz'));
+const sfzXml: string = fileReadString(path.join(syntaxDir, 'basic.xml'));
 
 test('Convert Js to Sfz', async () => {
   expect(await convertJsToSfz(sfzJs)).toEqual(sfzText);

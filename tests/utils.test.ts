@@ -4,10 +4,10 @@ import { pathGetDirectory, pathGetExt, pathGetFilename, pathJoin } from '../src/
 const FILE_EXT: string = 'txt';
 const FILE_NAME: string = 'filename';
 const FILE_NAME_EXT: string = `${FILE_NAME}.${FILE_EXT}`;
-const FILE_PATH = `foldera/folderb/${FILE_NAME_EXT}`;
+const FILE_PATH = path.join('foldera', 'folderb', FILE_NAME_EXT);
 
 test('Path get directory', () => {
-  expect(pathGetDirectory(FILE_PATH, path.sep)).toEqual('foldera/folderb');
+  expect(pathGetDirectory(FILE_PATH, path.sep)).toEqual(path.join('foldera', 'folderb'));
 });
 
 test('Path get extension', () => {

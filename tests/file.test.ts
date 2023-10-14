@@ -18,12 +18,14 @@ import {
   fileOpen,
   fileSize,
 } from '../src/file';
+import os from 'os';
+import path from 'path';
 
-const DIR_PATH: string = 'test/new-directory';
-const DIR_PATH_GLOB: string = `${DIR_PATH}/**/*.txt`;
-const DIR_RENAME: string = 'test/new-directory-renamed';
+const DIR_PATH: string = path.join('test', 'new-directory');
+const DIR_PATH_GLOB: string = path.join('test', 'new-directory', '**', '*.txt');
+const DIR_RENAME: string = path.join('test', 'new-directory-renamed');
 
-const FILE_PATH: string = `${DIR_PATH}/file.txt`;
+const FILE_PATH: string = path.join('test', 'new-directory', 'file.txt');
 
 test('Directory contains', () => {
   expect(dirContains('test', DIR_PATH)).toEqual(true);
