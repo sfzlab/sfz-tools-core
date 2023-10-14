@@ -13,7 +13,7 @@ import { apiText } from '../src/api';
 import { js2xml } from 'xml-js';
 import { dirRead, fileReadString } from '../src/file';
 import path from 'path';
-import { normalizeXml } from '../src/utils';
+import { normalizeLineEnds, normalizeXml } from '../src/utils';
 
 function convertToXml(elements: any) {
   const xml: string = js2xml(
@@ -53,7 +53,7 @@ test('parseSfz 01-green_keyswitch.sfz', async () => {
   const sfzPath: string = 'https://raw.githubusercontent.com/kmturley/karoryfer.black-and-green-guitars/main/Programs/';
   const sfzText: string = await apiText(`${sfzPath}01-green_keyswitch.sfz`);
   const sfzXml: string = await apiText(`${sfzPath}01-green_keyswitch.xml`);
-  expect(convertToXml(await parseSfz(sfzText, sfzPath))).toEqual(sfzXml);
+  expect(convertToXml(await parseSfz(sfzText, sfzPath))).toEqual(normalizeLineEnds(sfzXml));
 });
 
 test('parseDirective', () => {

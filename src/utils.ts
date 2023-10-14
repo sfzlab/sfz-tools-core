@@ -16,8 +16,13 @@ function logDisable(...args: any) {
   LOGGING_ENABLED = false;
 }
 
+function normalizeLineEnds(input: string) {
+  if (IS_WIN) return input.replace(/\n/g, LINE_END);
+  return input;
+}
+
 function normalizeXml(input: string) {
-  input = input.replace(/\n/g, LINE_END);
+  input = normalizeLineEnds(input);
   return input.replace(/\/>/g, ' />') + LINE_END;
 }
 
@@ -74,6 +79,7 @@ export {
   log,
   logEnable,
   logDisable,
+  normalizeLineEnds,
   normalizeXml,
   pathGetDirectory,
   pathGetExt,
