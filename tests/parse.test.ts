@@ -31,8 +31,8 @@ function convertToXml(elements: any) {
 }
 
 // Test specific syntax edge-cases
-const syntaxDir: string = path.join('test', 'syntax');
-const syntaxTests: string[] = dirRead(path.join(syntaxDir, '**', '*.sfz'));
+const syntaxDir: string = 'test/syntax';
+const syntaxTests: string[] = dirRead(`${syntaxDir}/**/*.sfz`);
 test.each(syntaxTests)('parseSfz %p', async (sfzFile: string) => {
   const sfzText: string = fileReadString(sfzFile);
   const sfzXml: string = fileReadString(sfzFile.replace('.sfz', '.xml'));
@@ -40,8 +40,8 @@ test.each(syntaxTests)('parseSfz %p', async (sfzFile: string) => {
 });
 
 // Test entire sfz test suite
-const sfzDir: string = path.join('sfz-tests');
-const sfzTests: string[] = dirRead(path.join(sfzDir, '**', '*.sfz'));
+const sfzDir: string = 'sfz-tests';
+const sfzTests: string[] = dirRead(`${sfzDir}/**/*.sfz`);
 test.each(sfzTests)('parseSfz %p', async (sfzFile: string) => {
   const sfzText: string = fileReadString(sfzFile);
   const sfzXml: string = fileReadString(sfzFile.replace('.sfz', '.xml'));
