@@ -21,9 +21,13 @@ function dirContains(dirParent: string, dirChild: string): boolean {
   return relative && !relative.startsWith('..') && !path.isAbsolute(relative) ? true : false;
 }
 
-function dirCreate(dirPath: string): string | undefined {
-  log('+', dirPath);
-  return mkdirSync(dirPath, { recursive: true });
+function dirCreate(dirPath: string): string | boolean {
+  if (!dirExists(dirPath)) {
+    log('+', dirPath);
+    mkdirSync(dirPath, { recursive: true });
+    return dirPath;
+  }
+  return false;
 }
 
 function dirDelete(dirPath: string): void {
@@ -70,6 +74,11 @@ function dirOpen(dirPath: string): Buffer {
 
 function dirRead(dirPath: string, options?: any): string[] {
   log('⌕', dirPath);
+  // Glob now expects forward slashes on Windows
+  // Convert backslashes from path.join() to forwardslashes
+  if (process.platform === 'win32') {
+    dirPath = dirPath.replace(/\\/g, '/');
+  }
   return globSync(dirPath, options);
 }
 

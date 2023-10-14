@@ -1,6 +1,7 @@
 import { js2xml, xml2js } from 'xml-js';
 import { parseSfz } from './parse';
 import { ParseDefinition, ParseHeader, ParseOpcode } from './types/parse';
+import { LINE_END, normalizeXml } from './utils';
 
 const declaration: any = {
   attributes: {
@@ -19,9 +20,9 @@ const OPTIONS_XML: any = {
 function convertJsToSfz(jsObj: ParseDefinition) {
   let sfzText: string = '';
   jsObj.elements.forEach((header: ParseHeader) => {
-    sfzText += `<${header.name}>\n`;
+    sfzText += `<${header.name}>${LINE_END}`;
     header.elements.forEach((opcode: ParseOpcode) => {
-      sfzText += `${opcode.attributes.name}=${opcode.attributes.value}\n`;
+      sfzText += `${opcode.attributes.name}=${opcode.attributes.value}${LINE_END}`;
     });
   });
   return sfzText;
@@ -29,7 +30,7 @@ function convertJsToSfz(jsObj: ParseDefinition) {
 
 function convertJsToXml(jsObj: ParseDefinition) {
   const xml: string = js2xml(jsObj, OPTIONS_XML);
-  return xml.replace(/\/>/g, ' />') + '\n';
+  return normalizeXml(xml);
 }
 
 async function convertSfzToJs(sfzFile: string, prefix = '') {
@@ -49,7 +50,7 @@ async function convertSfzToXml(sfzFile: string, prefix = '') {
     },
     OPTIONS_XML
   );
-  return xml.replace(/\/>/g, ' />') + '\n';
+  return normalizeXml(xml);
 }
 
 function convertXmlToJs(xmlFile: string) {

@@ -6,9 +6,9 @@ import {
   convertSfzToXml,
   convertXmlToJs,
   convertXmlToSfz,
-} from '../dist/convert';
-import { fileReadJson, fileReadString } from '../dist/file';
-import { ParseDefinition } from '../dist/types/parse';
+} from '../src/convert';
+import { fileReadJson, fileReadString } from '../src/file';
+import { ParseDefinition } from '../src/types/parse';
 
 const syntaxDir: string = path.join('test', 'syntax');
 const sfzJs: ParseDefinition = fileReadJson(path.join(syntaxDir, 'basic.json'));

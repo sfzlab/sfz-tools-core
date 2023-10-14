@@ -37,7 +37,7 @@ test('Create new directory', () => {
 });
 
 test('Create existing directory', () => {
-  expect(dirCreate(DIR_PATH)).toEqual(undefined);
+  expect(dirCreate(DIR_PATH)).toEqual(false);
 });
 
 test('Directory is empty', () => {

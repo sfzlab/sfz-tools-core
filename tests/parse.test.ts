@@ -13,6 +13,7 @@ import { apiText } from '../src/api';
 import { js2xml } from 'xml-js';
 import { dirRead, fileReadString } from '../src/file';
 import path from 'path';
+import { normalizeXml } from '../src/utils';
 
 function convertToXml(elements: any) {
   const xml: string = js2xml(
@@ -26,8 +27,7 @@ function convertToXml(elements: any) {
     },
     { spaces: '\t' }
   );
-  // TODO do better
-  return xml.replace(/\/>/g, ' />') + '\n';
+  return normalizeXml(xml);
 }
 
 // Test specific syntax edge-cases

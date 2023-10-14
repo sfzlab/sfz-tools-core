@@ -1,3 +1,5 @@
+const IS_WIN: boolean = typeof process !== 'undefined' && process.platform === 'win32';
+const LINE_END: string = IS_WIN ? '\r\n' : '\n';
 let LOGGING_ENABLED: boolean = false;
 
 function log(...args: any) {
@@ -12,6 +14,11 @@ function logEnable(...args: any) {
 
 function logDisable(...args: any) {
   LOGGING_ENABLED = false;
+}
+
+function normalizeXml(input: string) {
+  input = input.replace(/\n/g, LINE_END);
+  return input.replace(/\/>/g, ' />') + LINE_END;
 }
 
 function pathGetDirectory(pathItem: string, separator: string = '/'): string {
@@ -61,4 +68,15 @@ function pathJoin(...segments: any) {
   return resultParts.join('/');
 }
 
-export { log, logEnable, logDisable, pathGetDirectory, pathGetExt, pathGetFilename, pathJoin };
+export {
+  IS_WIN,
+  LINE_END,
+  log,
+  logEnable,
+  logDisable,
+  normalizeXml,
+  pathGetDirectory,
+  pathGetExt,
+  pathGetFilename,
+  pathJoin,
+};
