@@ -1,5 +1,5 @@
 # sfz-tools-core
-![Test](https://github.com/kmturley/sfz-tools-core/workflows/Test/badge.svg)
+![Test](https://github.com/kmturley/sfz-tools-core/actions/workflows/test.yml/badge.svg)
 
 Common methods package shared across SFZ command line tool, website and web player. Handles parsing and converting SFZ files using:
 
