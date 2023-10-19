@@ -43,7 +43,7 @@ async function run() {
   // console.log('convertXmlToSfz', convertXmlToSfz);
 
   const audioFile = file.fileRead(`./test/flute.wav`);
-  const analyzePitch = analyze.analyzePitch(audioFile, 'values');
+  const analyzePitch = analyze.analyzePitch(audioFile, 'name');
   console.log('analyzePitch', analyzePitch);
 }
 
