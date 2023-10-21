@@ -2,28 +2,34 @@ import ffmpeg from 'ffmpeg-static';
 import { log } from './utils';
 import { execSync } from 'child_process';
 
-function encodeFlacToOgg(filepath: string) {
-  return encodeRun(`-i ${filepath} ${filepath.replace('.flac', '.ogg')}`);
+function encodeFlacToOgg(input: string, output?: string) {
+  if (!output) output = input.replace('.flac', '.ogg');
+  return encodeRun(`-i ${input} ${output}`);
 }
 
-function encodeFlacToWav(filepath: string) {
-  return encodeRun(`-i ${filepath} ${filepath.replace('.flac', '.wav')}`);
+function encodeFlacToWav(input: string, output?: string) {
+  if (!output) output = input.replace('.flac', '.wav');
+  return encodeRun(`-i ${input} ${output}`);
 }
 
-function encodeOggToFlac(filepath: string) {
-  return encodeRun(`-i ${filepath} ${filepath.replace('.ogg', '.flac')}`);
+function encodeOggToFlac(input: string, output?: string) {
+  if (!output) output = input.replace('.ogg', '.flac');
+  return encodeRun(`-i ${input} ${output}`);
 }
 
-function encodeOggToWav(filepath: string) {
-  return encodeRun(`-i ${filepath} ${filepath.replace('.ogg', '.wav')}`);
+function encodeOggToWav(input: string, output?: string) {
+  if (!output) output = input.replace('.ogg', '.wav');
+  return encodeRun(`-i ${input} ${output}`);
 }
 
-function encodeWavToFlac(filepath: string) {
-  return encodeRun(`-i ${filepath} ${filepath.replace('.wav', '.flac')}`);
+function encodeWavToFlac(input: string, output?: string) {
+  if (!output) output = input.replace('.wav', '.flac');
+  return encodeRun(`-i ${input} ${output}`);
 }
 
-function encodeWavToOgg(filepath: string) {
-  return encodeRun(`-i ${filepath} ${filepath.replace('.wav', '.ogg')}`);
+function encodeWavToOgg(input: string, output?: string) {
+  if (!output) output = input.replace('.wav', '.ogg');
+  return encodeRun(`-i ${input} ${output}`);
 }
 
 function encodeRun(command: string): string {
