@@ -42,9 +42,15 @@ async function run() {
   // const convertXmlToSfz = await convert.convertXmlToSfz(sfzXml);
   // console.log('convertXmlToSfz', convertXmlToSfz);
 
-  const audioFile = file.fileRead(`./test/flute.wav`);
-  const analyzePitch = analyze.analyzePitch(audioFile, 'name');
-  console.log('analyzePitch', analyzePitch);
+  const vector = analyze.analyzeLoad('./test/scale.wav');
+  console.log('analyzeDanceability', analyze.analyzeDanceability(vector));
+  console.log('analyzeDuration', analyze.analyzeDuration(vector));
+  console.log('analyzeEnergy', analyze.analyzeEnergy(vector));
+  console.log('analyzeKey', analyze.analyzeKey(vector));
+  console.log('analyzeLoudness', analyze.analyzeLoudness(vector));
+  console.log('analyzeNotes', analyze.analyzeNotes(vector));
+  console.log('analyzeScale', analyze.analyzeScale(vector));
+  console.log('analyzeSpeed', analyze.analyzeSpeed(vector));
 }
 
 run();

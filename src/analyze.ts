@@ -1,46 +1,73 @@
-import * as wav from 'node-wav';
 // @ts-ignore
 import { Essentia, EssentiaWASM } from 'essentia.js';
+import * as wav from 'node-wav';
+import { readFileSync } from 'fs';
+import { AnalyzeBuffer, AnalyzeContour, AnalyzeMelodia, AnalyzeVector } from './types/analyze';
+
 const essentia: Essentia = new Essentia(EssentiaWASM);
 
-const SEMITONE_RATIO = Math.pow(2, 1 / 12);
-const C2 = 440 * Math.pow(SEMITONE_RATIO, -33);
-const pitches = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
-
-function getChroma(fileBuffer: Buffer) {
-  const audioBuffer = wav.decode(fileBuffer);
-  const channelData: Float32Array = audioBuffer.channelData[0];
-  const results: any[] = [];
-  const frames = essentia.FrameGenerator(channelData);
-  for (var i = 0; i < frames.size(); i++) {
-    const frameWindowed = essentia.Windowing(frames.get(i), true, 2048).frame;
-    const spectrum = essentia.Spectrum(frameWindowed).spectrum;
-    results.push(essentia.PitchYinFFT(spectrum).pitch);
-    frameWindowed.delete();
-    spectrum.delete();
-  }
-  frames.delete();
-  return results;
+function analyzeDanceability(vector: AnalyzeVector): number {
+  return essentia.Danceability(vector).danceability;
 }
 
-function getNoteIndex(chroma: number) {
-  return Math.round(chroma * 10);
+function analyzeDuration(vector: AnalyzeVector): number {
+  return essentia.Duration(vector).duration;
 }
 
-function getNoteName(chroma: number) {
-  const semitonesAboveC2 = Math.round(12 * Math.log2(chroma / C2));
-  return pitches[semitonesAboveC2 % 12];
+function analyzeEnergy(vector: AnalyzeVector): number {
+  return essentia.Energy(vector).energy;
 }
 
-function analyzePitch(fileBuffer: Buffer, type = 'values') {
-  const results: any[] = [];
-  const chromaResults: any[] = getChroma(fileBuffer);
-  chromaResults.forEach((chroma: number) => {
-    if (type === 'index') results.push(getNoteIndex(chroma));
-    else if (type === 'name') results.push(getNoteName(chroma));
-    else results.push(chroma);
+function analyzeKey(vector: AnalyzeVector): string {
+  return essentia.KeyExtractor(vector).key;
+}
+
+function analyzeLoad(filepath: string): AnalyzeVector {
+  const fileBuffer: Buffer = readFileSync(filepath);
+  const audioBuffer: AnalyzeBuffer = wav.decode(fileBuffer);
+  return essentia.arrayToVector(audioBuffer.channelData[0]);
+}
+
+function analyzeLoudness(vector: AnalyzeVector): number {
+  return essentia.DynamicComplexity(vector).loudness;
+}
+
+function analyzeNotes(vector: AnalyzeVector): any[] {
+  const names: string[] = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
+  const melodia: AnalyzeMelodia = essentia.PitchMelodia(vector).pitch;
+  const segments: AnalyzeContour = essentia.PitchContourSegmentation(melodia, vector);
+  const onsets: Float32Array = essentia.vectorToArray(segments.onset);
+  const durations: Float32Array = essentia.vectorToArray(segments.duration);
+  const pitches: Float32Array = essentia.vectorToArray(segments.MIDIpitch);
+  const notes: any = [];
+  onsets.forEach((value: number, i: number) => {
+    notes.push({
+      start: onsets[i],
+      duration: durations[i],
+      midi: pitches[i],
+      octave: Math.floor(pitches[i] / 12),
+      name: names[pitches[i] % 12],
+    });
   });
-  return results;
+  return notes;
 }
 
-export { analyzePitch };
+function analyzeScale(vector: AnalyzeVector): string {
+  return essentia.KeyExtractor(vector).scale;
+}
+
+function analyzeSpeed(vector: AnalyzeVector): number {
+  return essentia.PercivalBpmEstimator(vector).bpm;
+}
+
+export {
+  analyzeDanceability,
+  analyzeDuration,
+  analyzeEnergy,
+  analyzeKey,
+  analyzeLoad,
+  analyzeLoudness,
+  analyzeNotes,
+  analyzeScale,
+  analyzeSpeed,
+};
