@@ -53,8 +53,8 @@ async function run() {
   // console.log('analyzeScale', analyze.analyzeScale(vector));
   // console.log('analyzeSpeed', analyze.analyzeSpeed(vector));
 
-  const encodeWavToFlac = await encode.encodeWavToFlac('./test/scale.wav');
-  console.log('encodeWavToFlac', encodeWavToFlac);
+  const encodeWavToFlac = await encode.encodeWavToFlac('./test/metadata.wav');
+  // console.log('encodeWavToFlac', encodeWavToFlac);
 }
 
 run();
