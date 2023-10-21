@@ -4,6 +4,7 @@
 
 const analyze = require('./dist/analyze.js');
 const convert = require('./dist/convert.js');
+const encode = require('./dist/encode.js');
 const file = require('./dist/file.js');
 const parse = require('./dist/parse.js');
 const utils = require('./dist/utils.js');
@@ -42,15 +43,18 @@ async function run() {
   // const convertXmlToSfz = await convert.convertXmlToSfz(sfzXml);
   // console.log('convertXmlToSfz', convertXmlToSfz);
 
-  const vector = analyze.analyzeLoad('./test/scale.wav');
-  console.log('analyzeDanceability', analyze.analyzeDanceability(vector));
-  console.log('analyzeDuration', analyze.analyzeDuration(vector));
-  console.log('analyzeEnergy', analyze.analyzeEnergy(vector));
-  console.log('analyzeKey', analyze.analyzeKey(vector));
-  console.log('analyzeLoudness', analyze.analyzeLoudness(vector));
-  console.log('analyzeNotes', analyze.analyzeNotes(vector));
-  console.log('analyzeScale', analyze.analyzeScale(vector));
-  console.log('analyzeSpeed', analyze.analyzeSpeed(vector));
+  // const vector = analyze.analyzeLoad('./test/scale.wav');
+  // console.log('analyzeDanceability', analyze.analyzeDanceability(vector));
+  // console.log('analyzeDuration', analyze.analyzeDuration(vector));
+  // console.log('analyzeEnergy', analyze.analyzeEnergy(vector));
+  // console.log('analyzeKey', analyze.analyzeKey(vector));
+  // console.log('analyzeLoudness', analyze.analyzeLoudness(vector));
+  // console.log('analyzeNotes', analyze.analyzeNotes(vector));
+  // console.log('analyzeScale', analyze.analyzeScale(vector));
+  // console.log('analyzeSpeed', analyze.analyzeSpeed(vector));
+
+  const encodeWavToFlac = await encode.encodeWavToFlac('./test/scale.wav');
+  console.log('encodeWavToFlac', encodeWavToFlac);
 }
 
 run();
