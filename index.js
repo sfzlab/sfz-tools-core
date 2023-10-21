@@ -2,6 +2,7 @@
 // Use the `npm run dev` command to build and run the file
 // Debug particular methods quickly without having to run all tests `npm test`
 
+const analyze = require('./dist/analyze.js');
 const convert = require('./dist/convert.js');
 const file = require('./dist/file.js');
 const parse = require('./dist/parse.js');
@@ -12,34 +13,44 @@ async function run() {
   utils.logEnable();
 
   // File for testing
-  const sfzDir = './test/syntax/';
-  const sfzJs = file.fileJson(`${sfzDir}basic.json`);
-  const sfzText = file.fileText(`${sfzDir}basic.sfz`);
-  const sfzXml = file.fileText(`${sfzDir}basic.xml`);
+  // const sfzDir = './test/syntax/';
+  // const sfzJs = file.fileJson(`${sfzDir}basic.json`);
+  // const sfzText = file.fileText(`${sfzDir}basic.sfz`);
+  // const sfzXml = file.fileText(`${sfzDir}basic.xml`);
 
-  const parseSfz = await parse.parseSfz(sfzText);
-  console.log('parseSfz', parseSfz);
+  // const parseSfz = await parse.parseSfz(sfzText);
+  // console.log('parseSfz', parseSfz);
   
-  const parseRegions = await parse.parseRegions(parseSfz);
-  console.log('parseRegions', parseRegions);
+  // const parseRegions = await parse.parseRegions(parseSfz);
+  // console.log('parseRegions', parseRegions);
 
-  const convertJsToSfz = await convert.convertJsToSfz(sfzJs);
-  console.log('convertJsToSfz', convertJsToSfz);
+  // const convertJsToSfz = await convert.convertJsToSfz(sfzJs);
+  // console.log('convertJsToSfz', convertJsToSfz);
 
-  const convertJsToXml = await convert.convertJsToXml(sfzJs);
-  console.log('convertJsToXml', convertJsToXml);
+  // const convertJsToXml = await convert.convertJsToXml(sfzJs);
+  // console.log('convertJsToXml', convertJsToXml);
 
-  const convertSfzToJs = await convert.convertSfzToJs(sfzText);
-  console.log('convertSfzToJs', convertSfzToJs);
+  // const convertSfzToJs = await convert.convertSfzToJs(sfzText);
+  // console.log('convertSfzToJs', convertSfzToJs);
 
-  const convertSfzToXml = await convert.convertSfzToXml(sfzText);
-  console.log('convertSfzToXml', convertSfzToXml);
+  // const convertSfzToXml = await convert.convertSfzToXml(sfzText);
+  // console.log('convertSfzToXml', convertSfzToXml);
 
-  const convertXmlToJs = await convert.convertXmlToJs(sfzXml);
-  console.log('convertXmlToJs', convertXmlToJs);
+  // const convertXmlToJs = await convert.convertXmlToJs(sfzXml);
+  // console.log('convertXmlToJs', convertXmlToJs);
 
-  const convertXmlToSfz = await convert.convertXmlToSfz(sfzXml);
-  console.log('convertXmlToSfz', convertXmlToSfz);
+  // const convertXmlToSfz = await convert.convertXmlToSfz(sfzXml);
+  // console.log('convertXmlToSfz', convertXmlToSfz);
+
+  const vector = analyze.analyzeLoad('./test/scale.wav');
+  console.log('analyzeDanceability', analyze.analyzeDanceability(vector));
+  console.log('analyzeDuration', analyze.analyzeDuration(vector));
+  console.log('analyzeEnergy', analyze.analyzeEnergy(vector));
+  console.log('analyzeKey', analyze.analyzeKey(vector));
+  console.log('analyzeLoudness', analyze.analyzeLoudness(vector));
+  console.log('analyzeNotes', analyze.analyzeNotes(vector));
+  console.log('analyzeScale', analyze.analyzeScale(vector));
+  console.log('analyzeSpeed', analyze.analyzeSpeed(vector));
 }
 
 run();
