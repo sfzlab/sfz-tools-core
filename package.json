@@ -44,7 +44,10 @@
     "node-fetch": "^2.6.1",
     "node-wav": "^0.0.2",
     "nodejs-fs-utils": "^1.2.6",
+    "riff-chunks": "^9.0.0",
+    "riff-wave-reader": "^0.3.7",
     "wav": "^1.0.2",
+    "wavefile": "^11.0.0",
     "xml-js": "^1.6.11"
   },
   "devDependencies": {
