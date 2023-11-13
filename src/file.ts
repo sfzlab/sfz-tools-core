@@ -12,8 +12,9 @@ import {
   writeFileSync,
 } from 'fs-extra';
 import { globSync } from 'glob';
-import { log } from './utils';
+import { findCaseInsentive, findNumber, log, pathGetFilename } from './utils';
 import path from 'path';
+import { midiDynamics, midiNoteNames, midiVelocity } from './values/midi';
 const fsUtils: any = require('nodejs-fs-utils');
 
 function dirContains(dirParent: string, dirChild: string): boolean {
@@ -114,6 +115,25 @@ function fileMove(dirPath: string, newPath: string): void {
   return moveSync(dirPath, newPath, { overwrite: true });
 }
 
+function filenameParse(filename: string, separator = '_') {
+  const matches: string[] = pathGetFilename(filename).split(separator);
+  const result: any = {
+    other: [],
+  };
+  matches.forEach((match: string) => {
+    if (match === '') return;
+    const indexNote: number = findCaseInsentive(midiNoteNames, match);
+    const indexDynamics: number = findCaseInsentive(midiDynamics, match);
+    const indexVelocity: number = findCaseInsentive(midiVelocity, match);
+    if (indexNote !== -1) result.note = midiNoteNames[indexNote];
+    else if (indexDynamics !== -1) result.dynamics = midiDynamics[indexDynamics];
+    else if (indexVelocity !== -1) result.velocity = findNumber(match);
+    else if (match.toLowerCase().startsWith('rr')) result.round = findNumber(match);
+    else result.other.push(match);
+  });
+  return result;
+}
+
 function fileOpen(filePath: string): Buffer {
   let command: string = '';
   switch (process.platform) {
@@ -166,6 +186,7 @@ export {
   fileDelete,
   fileExec,
   fileExists,
+  filenameParse,
   fileMove,
   fileOpen,
   fileRead,

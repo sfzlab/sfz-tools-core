@@ -2,6 +2,17 @@ const IS_WIN: boolean = typeof process !== 'undefined' && process.platform === '
 const LINE_END: string = IS_WIN ? '\r\n' : '\n';
 let LOGGING_ENABLED: boolean = false;
 
+function findCaseInsentive(items: string[], match: string) {
+  return items.findIndex((item) => {
+    return item.toLowerCase() === match.toLowerCase();
+  });
+}
+
+function findNumber(input: string) {
+  const matches: any = input.match(/\d+/g);
+  return Number(matches[0]);
+}
+
 function log(...args: any) {
   if (LOGGING_ENABLED) {
     console.log(...args);
@@ -76,6 +87,8 @@ function pathJoin(...segments: any) {
 export {
   IS_WIN,
   LINE_END,
+  findCaseInsentive,
+  findNumber,
   log,
   logEnable,
   logDisable,
