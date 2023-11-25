@@ -1,0 +1,1686 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Analyze Danceability "test/audio/scale-piano.wav" 1`] = `1.1009137630462646`;
+
+exports[`Analyze Danceability "test/audio/scale-saw.wav" 1`] = `1.4916077852249146`;
+
+exports[`Analyze Danceability "test/audio/scale-sin.wav" 1`] = `1.4916197061538696`;
+
+exports[`Analyze Danceability "test/audio/scale-square.wav" 1`] = `1.491768717765808`;
+
+exports[`Analyze Danceability "test/audio/scale-triangle.wav" 1`] = `1.4916062355041504`;
+
+exports[`Analyze Danceability "test/audio/scale2-piano.wav" 1`] = `1.0301882028579712`;
+
+exports[`Analyze Danceability "test/audio/scale2-saw.wav" 1`] = `1.2293025255203247`;
+
+exports[`Analyze Danceability "test/audio/scale2-sin.wav" 1`] = `1.2316737174987793`;
+
+exports[`Analyze Danceability "test/audio/scale2-square.wav" 1`] = `1.2305712699890137`;
+
+exports[`Analyze Danceability "test/audio/scale2-triangle.wav" 1`] = `1.2317447662353516`;
+
+exports[`Analyze Danceability "test/audio/velocity-piano.wav" 1`] = `0.8397646546363831`;
+
+exports[`Analyze Danceability "test/audio/velocity-saw.wav" 1`] = `0.8700812458992004`;
+
+exports[`Analyze Danceability "test/audio/velocity-sin.wav" 1`] = `0.869825541973114`;
+
+exports[`Analyze Danceability "test/audio/velocity-square.wav" 1`] = `0.8699465990066528`;
+
+exports[`Analyze Danceability "test/audio/velocity-triangle.wav" 1`] = `0.8698005676269531`;
+
+exports[`Analyze Duration "test/audio/scale-piano.wav" 1`] = `8`;
+
+exports[`Analyze Duration "test/audio/scale-saw.wav" 1`] = `8`;
+
+exports[`Analyze Duration "test/audio/scale-sin.wav" 1`] = `8`;
+
+exports[`Analyze Duration "test/audio/scale-square.wav" 1`] = `8`;
+
+exports[`Analyze Duration "test/audio/scale-triangle.wav" 1`] = `8`;
+
+exports[`Analyze Duration "test/audio/scale2-piano.wav" 1`] = `8`;
+
+exports[`Analyze Duration "test/audio/scale2-saw.wav" 1`] = `8`;
+
+exports[`Analyze Duration "test/audio/scale2-sin.wav" 1`] = `8`;
+
+exports[`Analyze Duration "test/audio/scale2-square.wav" 1`] = `8`;
+
+exports[`Analyze Duration "test/audio/scale2-triangle.wav" 1`] = `8`;
+
+exports[`Analyze Duration "test/audio/velocity-piano.wav" 1`] = `8`;
+
+exports[`Analyze Duration "test/audio/velocity-saw.wav" 1`] = `8`;
+
+exports[`Analyze Duration "test/audio/velocity-sin.wav" 1`] = `8`;
+
+exports[`Analyze Duration "test/audio/velocity-square.wav" 1`] = `8`;
+
+exports[`Analyze Duration "test/audio/velocity-triangle.wav" 1`] = `8`;
+
+exports[`Analyze Energy "test/audio/scale-piano.wav" 1`] = `1567.6304931640625`;
+
+exports[`Analyze Energy "test/audio/scale-saw.wav" 1`] = `55246.71484375`;
+
+exports[`Analyze Energy "test/audio/scale-sin.wav" 1`] = `84008.9765625`;
+
+exports[`Analyze Energy "test/audio/scale-square.wav" 1`] = `100075.0625`;
+
+exports[`Analyze Energy "test/audio/scale-triangle.wav" 1`] = `56004.390625`;
+
+exports[`Analyze Energy "test/audio/scale2-piano.wav" 1`] = `1959.48193359375`;
+
+exports[`Analyze Energy "test/audio/scale2-saw.wav" 1`] = `45086.625`;
+
+exports[`Analyze Energy "test/audio/scale2-sin.wav" 1`] = `68524.546875`;
+
+exports[`Analyze Energy "test/audio/scale2-square.wav" 1`] = `81642.2578125`;
+
+exports[`Analyze Energy "test/audio/scale2-triangle.wav" 1`] = `45682.25`;
+
+exports[`Analyze Energy "test/audio/velocity-piano.wav" 1`] = `342.1805419921875`;
+
+exports[`Analyze Energy "test/audio/velocity-saw.wav" 1`] = `17524.001953125`;
+
+exports[`Analyze Energy "test/audio/velocity-sin.wav" 1`] = `26328.845703125`;
+
+exports[`Analyze Energy "test/audio/velocity-square.wav" 1`] = `31499.65625`;
+
+exports[`Analyze Energy "test/audio/velocity-triangle.wav" 1`] = `17549.138671875`;
+
+exports[`Analyze Key "test/audio/scale-piano.wav" 1`] = `"C"`;
+
+exports[`Analyze Key "test/audio/scale-saw.wav" 1`] = `"C"`;
+
+exports[`Analyze Key "test/audio/scale-sin.wav" 1`] = `"C"`;
+
+exports[`Analyze Key "test/audio/scale-square.wav" 1`] = `"C"`;
+
+exports[`Analyze Key "test/audio/scale-triangle.wav" 1`] = `"C"`;
+
+exports[`Analyze Key "test/audio/scale2-piano.wav" 1`] = `"F"`;
+
+exports[`Analyze Key "test/audio/scale2-saw.wav" 1`] = `"C"`;
+
+exports[`Analyze Key "test/audio/scale2-sin.wav" 1`] = `"C"`;
+
+exports[`Analyze Key "test/audio/scale2-square.wav" 1`] = `"C"`;
+
+exports[`Analyze Key "test/audio/scale2-triangle.wav" 1`] = `"C"`;
+
+exports[`Analyze Key "test/audio/velocity-piano.wav" 1`] = `"C"`;
+
+exports[`Analyze Key "test/audio/velocity-saw.wav" 1`] = `"C"`;
+
+exports[`Analyze Key "test/audio/velocity-sin.wav" 1`] = `"C"`;
+
+exports[`Analyze Key "test/audio/velocity-square.wav" 1`] = `"C"`;
+
+exports[`Analyze Key "test/audio/velocity-triangle.wav" 1`] = `"C"`;
+
+exports[`Analyze Loudness "test/audio/scale-piano.wav" 1`] = `-25.142505645751953`;
+
+exports[`Analyze Loudness "test/audio/scale-saw.wav" 1`] = `-8.667534828186035`;
+
+exports[`Analyze Loudness "test/audio/scale-sin.wav" 1`] = `-7.181407451629639`;
+
+exports[`Analyze Loudness "test/audio/scale-square.wav" 1`] = `-6.221879959106445`;
+
+exports[`Analyze Loudness "test/audio/scale-triangle.wav" 1`] = `-8.916343688964844`;
+
+exports[`Analyze Loudness "test/audio/scale2-piano.wav" 1`] = `-22.920133590698242`;
+
+exports[`Analyze Loudness "test/audio/scale2-saw.wav" 1`] = `-9.128947257995605`;
+
+exports[`Analyze Loudness "test/audio/scale2-sin.wav" 1`] = `-7.667166233062744`;
+
+exports[`Analyze Loudness "test/audio/scale2-square.wav" 1`] = `-6.700174331665039`;
+
+exports[`Analyze Loudness "test/audio/scale2-triangle.wav" 1`] = `-9.404030799865723`;
+
+exports[`Analyze Loudness "test/audio/velocity-piano.wav" 1`] = `-31.488279342651367`;
+
+exports[`Analyze Loudness "test/audio/velocity-saw.wav" 1`] = `-13.58476734161377`;
+
+exports[`Analyze Loudness "test/audio/velocity-sin.wav" 1`] = `-12.513080596923828`;
+
+exports[`Analyze Loudness "test/audio/velocity-square.wav" 1`] = `-11.325491905212402`;
+
+exports[`Analyze Loudness "test/audio/velocity-triangle.wav" 1`] = `-14.237661361694336`;
+
+exports[`Analyze Notes "test/audio/scale-piano.wav" 1`] = `
+Array [
+  Object {
+    "duration": 0.9868480563163757,
+    "loudness": 34.835975646972656,
+    "midi": 60,
+    "name": "C",
+    "octave": 5,
+    "start": 0,
+  },
+  Object {
+    "duration": 0.9984580278396606,
+    "loudness": 56.38676834106445,
+    "midi": 62,
+    "name": "D",
+    "octave": 5,
+    "start": 0.9926530718803406,
+  },
+  Object {
+    "duration": 0.9897505640983582,
+    "loudness": 50.46154022216797,
+    "midi": 64,
+    "name": "E",
+    "octave": 5,
+    "start": 1.9969160556793213,
+  },
+  Object {
+    "duration": 0.995555579662323,
+    "loudness": 26.25351905822754,
+    "midi": 65,
+    "name": "F",
+    "octave": 5,
+    "start": 2.992471694946289,
+  },
+  Object {
+    "duration": 0.9984580278396606,
+    "loudness": 26.243030548095703,
+    "midi": 67,
+    "name": "G",
+    "octave": 5,
+    "start": 3.9938321113586426,
+  },
+  Object {
+    "duration": 0.7952834367752075,
+    "loudness": 22.798978805541992,
+    "midi": 69,
+    "name": "A",
+    "octave": 5,
+    "start": 4.9980950355529785,
+  },
+  Object {
+    "duration": 0.891065776348114,
+    "loudness": 25.282779693603516,
+    "midi": 71,
+    "name": "B",
+    "octave": 5,
+    "start": 5.9878458976745605,
+  },
+  Object {
+    "duration": 0.7198185920715332,
+    "loudness": 24.211095809936523,
+    "midi": 72,
+    "name": "C",
+    "octave": 6,
+    "start": 6.986303806304932,
+  },
+]
+`;
+
+exports[`Analyze Notes "test/audio/scale-saw.wav" 1`] = `
+Array [
+  Object {
+    "duration": 0.24671201407909393,
+    "loudness": 0.0003687791177071631,
+    "midi": 92,
+    "name": "G#",
+    "octave": 7,
+    "start": 5.584399223327637,
+  },
+  Object {
+    "duration": 0.15383219718933105,
+    "loudness": 0.00013130712613929063,
+    "midi": 89,
+    "name": "F",
+    "octave": 7,
+    "start": 6.675736904144287,
+  },
+  Object {
+    "duration": 0.1160997748374939,
+    "loudness": 0.00011386217374820262,
+    "midi": 93,
+    "name": "A",
+    "octave": 7,
+    "start": 7.523265361785889,
+  },
+  Object {
+    "duration": 0.09287981688976288,
+    "loudness": 0.00009142117050942034,
+    "midi": 91,
+    "name": "G",
+    "octave": 7,
+    "start": 7.645170211791992,
+  },
+  Object {
+    "duration": 0.17124716937541962,
+    "loudness": 0.00014086721057537943,
+    "midi": 92,
+    "name": "G#",
+    "octave": 7,
+    "start": 7.743854999542236,
+  },
+]
+`;
+
+exports[`Analyze Notes "test/audio/scale-sin.wav" 1`] = `
+Array [
+  Object {
+    "duration": 0.5427664518356323,
+    "loudness": 494.5352783203125,
+    "midi": 65,
+    "name": "F",
+    "octave": 5,
+    "start": 2.977959156036377,
+  },
+  Object {
+    "duration": 0.5427664518356323,
+    "loudness": 494.54852294921875,
+    "midi": 67,
+    "name": "G",
+    "octave": 5,
+    "start": 3.982222318649292,
+  },
+  Object {
+    "duration": 0.10158730298280716,
+    "loudness": 0.0000950391695369035,
+    "midi": 89,
+    "name": "F",
+    "octave": 7,
+    "start": 5.7643537521362305,
+  },
+  Object {
+    "duration": 0.10158730298280716,
+    "loudness": 0.00009682308882474899,
+    "midi": 88,
+    "name": "E",
+    "octave": 7,
+    "start": 5.871746063232422,
+  },
+  Object {
+    "duration": 0.10448979586362839,
+    "loudness": 0.00009929333464242518,
+    "midi": 93,
+    "name": "A",
+    "octave": 7,
+    "start": 6.841179370880127,
+  },
+  Object {
+    "duration": 0.14512471854686737,
+    "loudness": 0.00015788998280186206,
+    "midi": 87,
+    "name": "D#",
+    "octave": 7,
+    "start": 7.5290703773498535,
+  },
+  Object {
+    "duration": 0.16544218361377716,
+    "loudness": 0.00013745154137723148,
+    "midi": 87,
+    "name": "D#",
+    "octave": 7,
+    "start": 7.679999828338623,
+  },
+]
+`;
+
+exports[`Analyze Notes "test/audio/scale-square.wav" 1`] = `
+Array [
+  Object {
+    "duration": 0.15383219718933105,
+    "loudness": 0.0003257343778386712,
+    "midi": 89,
+    "name": "F",
+    "octave": 7,
+    "start": 5.604716777801514,
+  },
+  Object {
+    "duration": 0.09868481010198593,
+    "loudness": 0.00009765011782292277,
+    "midi": 91,
+    "name": "G",
+    "octave": 7,
+    "start": 6.65541934967041,
+  },
+  Object {
+    "duration": 0.16544218361377716,
+    "loudness": 0.00013755104737356305,
+    "midi": 92,
+    "name": "G#",
+    "octave": 7,
+    "start": 6.759909152984619,
+  },
+  Object {
+    "duration": 0.09868481010198593,
+    "loudness": 0.00009575480362400413,
+    "midi": 93,
+    "name": "A",
+    "octave": 7,
+    "start": 7.601632595062256,
+  },
+  Object {
+    "duration": 0.09868481010198593,
+    "loudness": 0.00009456073166802526,
+    "midi": 90,
+    "name": "F#",
+    "octave": 7,
+    "start": 7.7380499839782715,
+  },
+  Object {
+    "duration": 0.10739228874444962,
+    "loudness": 0.00010150266462005675,
+    "midi": 91,
+    "name": "G",
+    "octave": 7,
+    "start": 7.8425397872924805,
+  },
+]
+`;
+
+exports[`Analyze Notes "test/audio/scale-triangle.wav" 1`] = `
+Array [
+  Object {
+    "duration": 0.09868481010198593,
+    "loudness": 0.0005321668577380478,
+    "midi": 90,
+    "name": "F#",
+    "octave": 7,
+    "start": 5.578594207763672,
+  },
+  Object {
+    "duration": 0.09287981688976288,
+    "loudness": 0.00009551679249852896,
+    "midi": 87,
+    "name": "D#",
+    "octave": 7,
+    "start": 5.683084011077881,
+  },
+  Object {
+    "duration": 0.09287981688976288,
+    "loudness": 0.00009515862620901316,
+    "midi": 88,
+    "name": "E",
+    "octave": 7,
+    "start": 5.781768798828125,
+  },
+  Object {
+    "duration": 0.09287981688976288,
+    "loudness": 0.00009569508256390691,
+    "midi": 93,
+    "name": "A",
+    "octave": 7,
+    "start": 5.880453586578369,
+  },
+  Object {
+    "duration": 0.18285714089870453,
+    "loudness": 0.00014511692279484123,
+    "midi": 92,
+    "name": "G#",
+    "octave": 7,
+    "start": 6.739591598510742,
+  },
+  Object {
+    "duration": 0.09868481010198593,
+    "loudness": 0.0001294684043386951,
+    "midi": 91,
+    "name": "G",
+    "octave": 7,
+    "start": 7.523265361785889,
+  },
+  Object {
+    "duration": 0.09287981688976288,
+    "loudness": 0.0000919683079700917,
+    "midi": 91,
+    "name": "G",
+    "octave": 7,
+    "start": 7.627755165100098,
+  },
+  Object {
+    "duration": 0.20317460596561432,
+    "loudness": 0.00015522583271376789,
+    "midi": 93,
+    "name": "A",
+    "octave": 7,
+    "start": 7.726439952850342,
+  },
+]
+`;
+
+exports[`Analyze Notes "test/audio/scale2-piano.wav" 1`] = `
+Array [
+  Object {
+    "duration": 0.4963265359401703,
+    "loudness": 29.54073715209961,
+    "midi": 60,
+    "name": "C",
+    "octave": 5,
+    "start": 0,
+  },
+  Object {
+    "duration": 0.49342402815818787,
+    "loudness": 28.821977615356445,
+    "midi": 61,
+    "name": "C#",
+    "octave": 5,
+    "start": 0.5021315217018127,
+  },
+  Object {
+    "duration": 0.49342402815818787,
+    "loudness": 47.05366897583008,
+    "midi": 62,
+    "name": "D",
+    "octave": 5,
+    "start": 1.001360535621643,
+  },
+  Object {
+    "duration": 0.4876190423965454,
+    "loudness": 43.230995178222656,
+    "midi": 63,
+    "name": "D#",
+    "octave": 5,
+    "start": 1.5005896091461182,
+  },
+  Object {
+    "duration": 0.49342402815818787,
+    "loudness": 43.423561096191406,
+    "midi": 64,
+    "name": "E",
+    "octave": 5,
+    "start": 1.9940135478973389,
+  },
+  Object {
+    "duration": 0.49342402815818787,
+    "loudness": 22.859872817993164,
+    "midi": 65,
+    "name": "F",
+    "octave": 5,
+    "start": 2.4932427406311035,
+  },
+  Object {
+    "duration": 0.5050340294837952,
+    "loudness": 22.316862106323242,
+    "midi": 66,
+    "name": "F#",
+    "octave": 5,
+    "start": 2.992471694946289,
+  },
+  Object {
+    "duration": 0.5021315217018127,
+    "loudness": 23.097698211669922,
+    "midi": 67,
+    "name": "G",
+    "octave": 5,
+    "start": 3.5033106803894043,
+  },
+  Object {
+    "duration": 0.49342402815818787,
+    "loudness": 19.981557846069336,
+    "midi": 68,
+    "name": "G#",
+    "octave": 5,
+    "start": 4.011247158050537,
+  },
+  Object {
+    "duration": 0.49052155017852783,
+    "loudness": 19.249963760375977,
+    "midi": 69,
+    "name": "A",
+    "octave": 5,
+    "start": 4.510476112365723,
+  },
+  Object {
+    "duration": 0.48181405663490295,
+    "loudness": 19.321121215820312,
+    "midi": 70,
+    "name": "A#",
+    "octave": 5,
+    "start": 5.006802558898926,
+  },
+  Object {
+    "duration": 0.49342402815818787,
+    "loudness": 22.765151977539062,
+    "midi": 71,
+    "name": "B",
+    "octave": 5,
+    "start": 5.49442195892334,
+  },
+  Object {
+    "duration": 0.5775963664054871,
+    "loudness": 22.124980926513672,
+    "midi": 72,
+    "name": "C",
+    "octave": 6,
+    "start": 5.993650913238525,
+  },
+]
+`;
+
+exports[`Analyze Notes "test/audio/scale2-saw.wav" 1`] = `
+Array [
+  Object {
+    "duration": 0.26993197202682495,
+    "loudness": 237.12408447265625,
+    "midi": 60,
+    "name": "C",
+    "octave": 5,
+    "start": 0,
+  },
+  Object {
+    "duration": 0.27863946557044983,
+    "loudness": 237.17730712890625,
+    "midi": 61,
+    "name": "C#",
+    "octave": 5,
+    "start": 0.49052155017852783,
+  },
+  Object {
+    "duration": 0.28154194355010986,
+    "loudness": 237.13519287109375,
+    "midi": 62,
+    "name": "D",
+    "octave": 5,
+    "start": 0.9868480563163757,
+  },
+  Object {
+    "duration": 0.2844444513320923,
+    "loudness": 237.15322875976562,
+    "midi": 63,
+    "name": "D#",
+    "octave": 5,
+    "start": 1.486077070236206,
+  },
+  Object {
+    "duration": 0.15092970430850983,
+    "loudness": 0.0004145147104281932,
+    "midi": 88,
+    "name": "E",
+    "octave": 7,
+    "start": 1.8256689310073853,
+  },
+  Object {
+    "duration": 0.2844444513320923,
+    "loudness": 237.1531524658203,
+    "midi": 64,
+    "name": "E",
+    "octave": 5,
+    "start": 1.9853061437606812,
+  },
+  Object {
+    "duration": 0.1364172399044037,
+    "loudness": 0.0005145706818439066,
+    "midi": 87,
+    "name": "D#",
+    "octave": 7,
+    "start": 2.3336055278778076,
+  },
+  Object {
+    "duration": 0.2844444513320923,
+    "loudness": 234.8295135498047,
+    "midi": 65,
+    "name": "F",
+    "octave": 5,
+    "start": 2.4845352172851562,
+  },
+  Object {
+    "duration": 0.2873469293117523,
+    "loudness": 234.63687133789062,
+    "midi": 66,
+    "name": "F#",
+    "octave": 5,
+    "start": 2.983764171600342,
+  },
+  Object {
+    "duration": 0.1480272114276886,
+    "loudness": 0.0002526511379983276,
+    "midi": 90,
+    "name": "F#",
+    "octave": 7,
+    "start": 3.320453405380249,
+  },
+  Object {
+    "duration": 0.2873469293117523,
+    "loudness": 234.5379180908203,
+    "midi": 67,
+    "name": "G",
+    "octave": 5,
+    "start": 3.480090618133545,
+  },
+  Object {
+    "duration": 0.1277097463607788,
+    "loudness": 0.0005418912041932344,
+    "midi": 91,
+    "name": "G",
+    "octave": 7,
+    "start": 4.313106536865234,
+  },
+  Object {
+    "duration": 0.1596371829509735,
+    "loudness": 0.00046797856339253485,
+    "midi": 92,
+    "name": "G#",
+    "octave": 7,
+    "start": 4.815237998962402,
+  },
+  Object {
+    "duration": 0.13061223924160004,
+    "loudness": 0.00011598296259762719,
+    "midi": 93,
+    "name": "A",
+    "octave": 7,
+    "start": 5.320271968841553,
+  },
+  Object {
+    "duration": 0.11319728195667267,
+    "loudness": 0.0001081621740013361,
+    "midi": 86,
+    "name": "D",
+    "octave": 7,
+    "start": 5.83401346206665,
+  },
+  Object {
+    "duration": 0.09868481010198593,
+    "loudness": 0.0001566752907820046,
+    "midi": 93,
+    "name": "A",
+    "octave": 7,
+    "start": 6.278095245361328,
+  },
+  Object {
+    "duration": 0.11029478162527084,
+    "loudness": 0.00010414583084639162,
+    "midi": 92,
+    "name": "G#",
+    "octave": 7,
+    "start": 6.3854875564575195,
+  },
+  Object {
+    "duration": 0.09868481010198593,
+    "loudness": 0.00009408110054209828,
+    "midi": 91,
+    "name": "G",
+    "octave": 7,
+    "start": 6.562539577484131,
+  },
+  Object {
+    "duration": 0.11029478162527084,
+    "loudness": 0.00010488686530152336,
+    "midi": 93,
+    "name": "A",
+    "octave": 7,
+    "start": 6.66702938079834,
+  },
+  Object {
+    "duration": 0.10158730298280716,
+    "loudness": 0.00009794434299692512,
+    "midi": 88,
+    "name": "E",
+    "octave": 7,
+    "start": 6.7831292152404785,
+  },
+  Object {
+    "duration": 0.12480725347995758,
+    "loudness": 0.00011304044164717197,
+    "midi": 91,
+    "name": "G",
+    "octave": 7,
+    "start": 6.89052152633667,
+  },
+  Object {
+    "duration": 0.1160997748374939,
+    "loudness": 0.00010731982183642685,
+    "midi": 93,
+    "name": "A",
+    "octave": 7,
+    "start": 7.021133899688721,
+  },
+  Object {
+    "duration": 0.13351473212242126,
+    "loudness": 0.0001189428148791194,
+    "midi": 91,
+    "name": "G",
+    "octave": 7,
+    "start": 7.206893444061279,
+  },
+  Object {
+    "duration": 0.11900226771831512,
+    "loudness": 0.00010838617163244635,
+    "midi": 92,
+    "name": "G#",
+    "octave": 7,
+    "start": 7.39555549621582,
+  },
+  Object {
+    "duration": 0.18575963377952576,
+    "loudness": 0.00014647158968728036,
+    "midi": 88,
+    "name": "E",
+    "octave": 7,
+    "start": 7.520362854003906,
+  },
+  Object {
+    "duration": 0.12190476059913635,
+    "loudness": 0.00010877772001549602,
+    "midi": 88,
+    "name": "E",
+    "octave": 7,
+    "start": 7.729342460632324,
+  },
+]
+`;
+
+exports[`Analyze Notes "test/audio/scale2-sin.wav" 1`] = `
+Array [
+  Object {
+    "duration": 0.2728344798088074,
+    "loudness": 311.6127014160156,
+    "midi": 60,
+    "name": "C",
+    "octave": 5,
+    "start": 0,
+  },
+  Object {
+    "duration": 0.29024943709373474,
+    "loudness": 311.61383056640625,
+    "midi": 61,
+    "name": "C#",
+    "octave": 5,
+    "start": 0.4847165644168854,
+  },
+  Object {
+    "duration": 0.2873469293117523,
+    "loudness": 311.6219482421875,
+    "midi": 62,
+    "name": "D",
+    "octave": 5,
+    "start": 0.9839455485343933,
+  },
+  Object {
+    "duration": 0.29024943709373474,
+    "loudness": 311.6173095703125,
+    "midi": 63,
+    "name": "D#",
+    "octave": 5,
+    "start": 1.4831745624542236,
+  },
+  Object {
+    "duration": 0.2931519150733948,
+    "loudness": 311.63043212890625,
+    "midi": 64,
+    "name": "E",
+    "octave": 5,
+    "start": 1.9795011281967163,
+  },
+  Object {
+    "duration": 0.11029478162527084,
+    "loudness": 0.00010414602002128959,
+    "midi": 93,
+    "name": "A",
+    "octave": 7,
+    "start": 2.3626303672790527,
+  },
+  Object {
+    "duration": 0.29024943709373474,
+    "loudness": 311.62554931640625,
+    "midi": 65,
+    "name": "F",
+    "octave": 5,
+    "start": 2.4787302017211914,
+  },
+  Object {
+    "duration": 0.19736962020397186,
+    "loudness": 0.0003691773454193026,
+    "midi": 93,
+    "name": "A",
+    "octave": 7,
+    "start": 2.774784564971924,
+  },
+  Object {
+    "duration": 0.2931519150733948,
+    "loudness": 311.62432861328125,
+    "midi": 66,
+    "name": "F#",
+    "octave": 5,
+    "start": 2.977959156036377,
+  },
+  Object {
+    "duration": 0.1160997748374939,
+    "loudness": 0.00018444845045451075,
+    "midi": 92,
+    "name": "G#",
+    "octave": 7,
+    "start": 3.355283498764038,
+  },
+  Object {
+    "duration": 0.2931519150733948,
+    "loudness": 311.62921142578125,
+    "midi": 67,
+    "name": "G",
+    "octave": 5,
+    "start": 3.4771881103515625,
+  },
+  Object {
+    "duration": 0.11900226771831512,
+    "loudness": 0.00037339076516218483,
+    "midi": 93,
+    "name": "A",
+    "octave": 7,
+    "start": 4.841360569000244,
+  },
+  Object {
+    "duration": 0.19446712732315063,
+    "loudness": 0.00032380313496105373,
+    "midi": 93,
+    "name": "A",
+    "octave": 7,
+    "start": 5.276734828948975,
+  },
+  Object {
+    "duration": 0.1596371829509735,
+    "loudness": 0.00013814782141707838,
+    "midi": 93,
+    "name": "A",
+    "octave": 7,
+    "start": 5.813695907592773,
+  },
+  Object {
+    "duration": 0.09868481010198593,
+    "loudness": 0.00009759077511262149,
+    "midi": 90,
+    "name": "F#",
+    "octave": 7,
+    "start": 6.423220157623291,
+  },
+  Object {
+    "duration": 0.09287981688976288,
+    "loudness": 0.00009287666762247682,
+    "midi": 90,
+    "name": "F#",
+    "octave": 7,
+    "start": 6.5277099609375,
+  },
+  Object {
+    "duration": 0.19446712732315063,
+    "loudness": 0.00015249330317601562,
+    "midi": 92,
+    "name": "G#",
+    "octave": 7,
+    "start": 6.626394748687744,
+  },
+  Object {
+    "duration": 0.11900226771831512,
+    "loudness": 0.00010465904051670805,
+    "midi": 90,
+    "name": "F#",
+    "octave": 7,
+    "start": 6.968888759613037,
+  },
+  Object {
+    "duration": 0.1160997748374939,
+    "loudness": 0.00010167605796596035,
+    "midi": 91,
+    "name": "G",
+    "octave": 7,
+    "start": 7.093696117401123,
+  },
+  Object {
+    "duration": 0.1160997748374939,
+    "loudness": 0.00010743222082965076,
+    "midi": 93,
+    "name": "A",
+    "octave": 7,
+    "start": 7.215600967407227,
+  },
+  Object {
+    "duration": 0.09287981688976288,
+    "loudness": 0.00009468042844673619,
+    "midi": 92,
+    "name": "G#",
+    "octave": 7,
+    "start": 7.33750581741333,
+  },
+  Object {
+    "duration": 0.24090702831745148,
+    "loudness": 0.00017422600649297237,
+    "midi": 93,
+    "name": "A",
+    "octave": 7,
+    "start": 7.436190605163574,
+  },
+  Object {
+    "duration": 0.1799546480178833,
+    "loudness": 0.0001456014724681154,
+    "midi": 90,
+    "name": "F#",
+    "octave": 7,
+    "start": 7.6829023361206055,
+  },
+  Object {
+    "duration": 0.1160997748374939,
+    "loudness": 0.00010771337838377804,
+    "midi": 93,
+    "name": "A",
+    "octave": 7,
+    "start": 7.874466896057129,
+  },
+]
+`;
+
+exports[`Analyze Notes "test/audio/scale2-square.wav" 1`] = `
+Array [
+  Object {
+    "duration": 0.2728344798088074,
+    "loudness": 351.35662841796875,
+    "midi": 60,
+    "name": "C",
+    "octave": 5,
+    "start": 0,
+  },
+  Object {
+    "duration": 0.2873469293117523,
+    "loudness": 351.36468505859375,
+    "midi": 61,
+    "name": "C#",
+    "octave": 5,
+    "start": 0.4847165644168854,
+  },
+  Object {
+    "duration": 0.2873469293117523,
+    "loudness": 351.3619079589844,
+    "midi": 62,
+    "name": "D",
+    "octave": 5,
+    "start": 0.9839455485343933,
+  },
+  Object {
+    "duration": 0.29024943709373474,
+    "loudness": 351.36810302734375,
+    "midi": 63,
+    "name": "D#",
+    "octave": 5,
+    "start": 1.4831745624542236,
+  },
+  Object {
+    "duration": 0.29024943709373474,
+    "loudness": 351.3893127441406,
+    "midi": 64,
+    "name": "E",
+    "octave": 5,
+    "start": 1.9824036359786987,
+  },
+  Object {
+    "duration": 0.29024943709373474,
+    "loudness": 350.16815185546875,
+    "midi": 65,
+    "name": "F",
+    "octave": 5,
+    "start": 2.481632709503174,
+  },
+  Object {
+    "duration": 0.0957823097705841,
+    "loudness": 0.00026379304472357035,
+    "midi": 91,
+    "name": "G",
+    "octave": 7,
+    "start": 2.7776870727539062,
+  },
+  Object {
+    "duration": 0.09287981688976288,
+    "loudness": 0.0000920896782190539,
+    "midi": 91,
+    "name": "G",
+    "octave": 7,
+    "start": 2.879274368286133,
+  },
+  Object {
+    "duration": 0.2873469293117523,
+    "loudness": 350.0741882324219,
+    "midi": 66,
+    "name": "F#",
+    "octave": 5,
+    "start": 2.9808616638183594,
+  },
+  Object {
+    "duration": 0.29024943709373474,
+    "loudness": 349.96466064453125,
+    "midi": 67,
+    "name": "G",
+    "octave": 5,
+    "start": 3.480090618133545,
+  },
+  Object {
+    "duration": 0.18285714089870453,
+    "loudness": 0.0002901020343415439,
+    "midi": 92,
+    "name": "G#",
+    "octave": 7,
+    "start": 5.276734828948975,
+  },
+  Object {
+    "duration": 0.11029478162527084,
+    "loudness": 0.00010743169696070254,
+    "midi": 92,
+    "name": "G#",
+    "octave": 7,
+    "start": 5.77596378326416,
+  },
+  Object {
+    "duration": 0.18285714089870453,
+    "loudness": 0.0002732059801928699,
+    "midi": 93,
+    "name": "A",
+    "octave": 7,
+    "start": 6.275192737579346,
+  },
+  Object {
+    "duration": 0.1160997748374939,
+    "loudness": 0.00010799394658533856,
+    "midi": 92,
+    "name": "G#",
+    "octave": 7,
+    "start": 6.484172344207764,
+  },
+  Object {
+    "duration": 0.11319728195667267,
+    "loudness": 0.00010692564683267847,
+    "midi": 89,
+    "name": "F",
+    "octave": 7,
+    "start": 6.606077194213867,
+  },
+  Object {
+    "duration": 0.1277097463607788,
+    "loudness": 0.00011484303831821308,
+    "midi": 92,
+    "name": "G#",
+    "octave": 7,
+    "start": 6.742494106292725,
+  },
+  Object {
+    "duration": 0.1160997748374939,
+    "loudness": 0.00010905694944085553,
+    "midi": 93,
+    "name": "A",
+    "octave": 7,
+    "start": 6.876008987426758,
+  },
+  Object {
+    "duration": 0.24090702831745148,
+    "loudness": 0.00017506707808934152,
+    "midi": 93,
+    "name": "A",
+    "octave": 7,
+    "start": 7.000816345214844,
+  },
+  Object {
+    "duration": 0.21768707036972046,
+    "loudness": 0.00016538419004064053,
+    "midi": 90,
+    "name": "F#",
+    "octave": 7,
+    "start": 7.247528553009033,
+  },
+  Object {
+    "duration": 0.11900226771831512,
+    "loudness": 0.00010888938413700089,
+    "midi": 89,
+    "name": "F",
+    "octave": 7,
+    "start": 7.534875392913818,
+  },
+  Object {
+    "duration": 0.14512471854686737,
+    "loudness": 0.00012355206126812845,
+    "midi": 89,
+    "name": "F",
+    "octave": 7,
+    "start": 7.659682750701904,
+  },
+  Object {
+    "duration": 0.16253967583179474,
+    "loudness": 0.00013675338414032012,
+    "midi": 87,
+    "name": "D#",
+    "octave": 7,
+    "start": 7.810612201690674,
+  },
+]
+`;
+
+exports[`Analyze Notes "test/audio/scale2-triangle.wav" 1`] = `
+Array [
+  Object {
+    "duration": 0.2728344798088074,
+    "loudness": 237.4891815185547,
+    "midi": 60,
+    "name": "C",
+    "octave": 5,
+    "start": 0,
+  },
+  Object {
+    "duration": 0.2873469293117523,
+    "loudness": 237.4892578125,
+    "midi": 61,
+    "name": "C#",
+    "octave": 5,
+    "start": 0.4847165644168854,
+  },
+  Object {
+    "duration": 0.29024943709373474,
+    "loudness": 237.49566650390625,
+    "midi": 62,
+    "name": "D",
+    "octave": 5,
+    "start": 0.9839455485343933,
+  },
+  Object {
+    "duration": 0.10448979586362839,
+    "loudness": 0.00034181459341198206,
+    "midi": 89,
+    "name": "F",
+    "octave": 7,
+    "start": 1.3438549041748047,
+  },
+  Object {
+    "duration": 0.29024943709373474,
+    "loudness": 237.48870849609375,
+    "midi": 63,
+    "name": "D#",
+    "octave": 5,
+    "start": 1.4831745624542236,
+  },
+  Object {
+    "duration": 0.29024943709373474,
+    "loudness": 237.502197265625,
+    "midi": 64,
+    "name": "E",
+    "octave": 5,
+    "start": 1.9795011281967163,
+  },
+  Object {
+    "duration": 0.29024943709373474,
+    "loudness": 237.4947509765625,
+    "midi": 65,
+    "name": "F",
+    "octave": 5,
+    "start": 2.4787302017211914,
+  },
+  Object {
+    "duration": 0.1364172399044037,
+    "loudness": 0.00013207118900027126,
+    "midi": 88,
+    "name": "E",
+    "octave": 7,
+    "start": 2.8299319744110107,
+  },
+  Object {
+    "duration": 0.29024943709373474,
+    "loudness": 237.49330139160156,
+    "midi": 66,
+    "name": "F#",
+    "octave": 5,
+    "start": 2.977959156036377,
+  },
+  Object {
+    "duration": 0.29024943709373474,
+    "loudness": 237.4967803955078,
+    "midi": 67,
+    "name": "G",
+    "octave": 5,
+    "start": 3.4771881103515625,
+  },
+  Object {
+    "duration": 0.12480725347995758,
+    "loudness": 0.0003529269015416503,
+    "midi": 92,
+    "name": "G#",
+    "octave": 7,
+    "start": 3.8399999141693115,
+  },
+  Object {
+    "duration": 0.1160997748374939,
+    "loudness": 0.00019250941113568842,
+    "midi": 92,
+    "name": "G#",
+    "octave": 7,
+    "start": 4.359546661376953,
+  },
+  Object {
+    "duration": 0.10739228874444962,
+    "loudness": 0.00016319600399583578,
+    "midi": 91,
+    "name": "G",
+    "octave": 7,
+    "start": 4.867483139038086,
+  },
+  Object {
+    "duration": 0.10448979586362839,
+    "loudness": 0.00009970218525268137,
+    "midi": 92,
+    "name": "G#",
+    "octave": 7,
+    "start": 5.369614601135254,
+  },
+  Object {
+    "duration": 0.1596371829509735,
+    "loudness": 0.00012987657100893557,
+    "midi": 91,
+    "name": "G",
+    "octave": 7,
+    "start": 5.813695907592773,
+  },
+  Object {
+    "duration": 0.1480272114276886,
+    "loudness": 0.00022755973623134196,
+    "midi": 87,
+    "name": "D#",
+    "octave": 7,
+    "start": 6.275192737579346,
+  },
+  Object {
+    "duration": 0.09287981688976288,
+    "loudness": 0.00009215033060172573,
+    "midi": 92,
+    "name": "G#",
+    "octave": 7,
+    "start": 6.429025173187256,
+  },
+  Object {
+    "duration": 0.10739228874444962,
+    "loudness": 0.00009958551527233794,
+    "midi": 92,
+    "name": "G#",
+    "octave": 7,
+    "start": 6.5277099609375,
+  },
+  Object {
+    "duration": 0.1277097463607788,
+    "loudness": 0.00011249116505496204,
+    "midi": 91,
+    "name": "G",
+    "octave": 7,
+    "start": 6.672834396362305,
+  },
+  Object {
+    "duration": 0.1364172399044037,
+    "loudness": 0.00012086055357940495,
+    "midi": 88,
+    "name": "E",
+    "octave": 7,
+    "start": 6.913741588592529,
+  },
+  Object {
+    "duration": 0.13931973278522491,
+    "loudness": 0.00012059498840244487,
+    "midi": 90,
+    "name": "F#",
+    "octave": 7,
+    "start": 7.055963516235352,
+  },
+  Object {
+    "duration": 0.10448979586362839,
+    "loudness": 0.00010225301230093464,
+    "midi": 92,
+    "name": "G#",
+    "octave": 7,
+    "start": 7.203990936279297,
+  },
+  Object {
+    "duration": 0.11319728195667267,
+    "loudness": 0.00010408871457912028,
+    "midi": 92,
+    "name": "G#",
+    "octave": 7,
+    "start": 7.314285755157471,
+  },
+  Object {
+    "duration": 0.13061223924160004,
+    "loudness": 0.0001150605603470467,
+    "midi": 93,
+    "name": "A",
+    "octave": 7,
+    "start": 7.433288097381592,
+  },
+  Object {
+    "duration": 0.1683446764945984,
+    "loudness": 0.00013869386748410761,
+    "midi": 89,
+    "name": "F",
+    "octave": 7,
+    "start": 7.6132426261901855,
+  },
+  Object {
+    "duration": 0.13931973278522491,
+    "loudness": 0.00012234186579007655,
+    "midi": 92,
+    "name": "G#",
+    "octave": 7,
+    "start": 7.836734771728516,
+  },
+]
+`;
+
+exports[`Analyze Notes "test/audio/velocity-piano.wav" 1`] = `
+Array [
+  Object {
+    "duration": 2.983764171600342,
+    "loudness": 47.816978454589844,
+    "midi": 60,
+    "name": "C",
+    "octave": 5,
+    "start": 0,
+  },
+  Object {
+    "duration": 2.002721071243286,
+    "loudness": 6.899135112762451,
+    "midi": 60,
+    "name": "C",
+    "octave": 5,
+    "start": 2.9895691871643066,
+  },
+  Object {
+    "duration": 3.0040817260742188,
+    "loudness": 2.1865217685699463,
+    "midi": 60,
+    "name": "C",
+    "octave": 5,
+    "start": 4.9980950355529785,
+  },
+]
+`;
+
+exports[`Analyze Notes "test/audio/velocity-saw.wav" 1`] = `
+Array [
+  Object {
+    "duration": 0.528253972530365,
+    "loudness": 212.8170928955078,
+    "midi": 60,
+    "name": "C",
+    "octave": 5,
+    "start": 1.9882086515426636,
+  },
+  Object {
+    "duration": 0.11029478162527084,
+    "loudness": 0.00010351678793085739,
+    "midi": 91,
+    "name": "G",
+    "octave": 7,
+    "start": 5.7643537521362305,
+  },
+  Object {
+    "duration": 0.14222222566604614,
+    "loudness": 0.0001255388924619183,
+    "midi": 91,
+    "name": "G",
+    "octave": 7,
+    "start": 6.754104137420654,
+  },
+  Object {
+    "duration": 0.09868481010198593,
+    "loudness": 0.00009491980017628521,
+    "midi": 86,
+    "name": "D",
+    "octave": 7,
+    "start": 7.674194812774658,
+  },
+  Object {
+    "duration": 0.09287981688976288,
+    "loudness": 0.00009196827886626124,
+    "midi": 92,
+    "name": "G#",
+    "octave": 7,
+    "start": 7.778684616088867,
+  },
+  Object {
+    "duration": 0.10158730298280716,
+    "loudness": 0.00009688212594483048,
+    "midi": 93,
+    "name": "A",
+    "octave": 7,
+    "start": 7.877369403839111,
+  },
+]
+`;
+
+exports[`Analyze Notes "test/audio/velocity-sin.wav" 1`] = `
+Array [
+  Object {
+    "duration": 0.16253967583179474,
+    "loudness": 0.00014317153545562178,
+    "midi": 91,
+    "name": "G",
+    "octave": 7,
+    "start": 5.642448902130127,
+  },
+  Object {
+    "duration": 0.1364172399044037,
+    "loudness": 0.00030421416158787906,
+    "midi": 93,
+    "name": "A",
+    "octave": 7,
+    "start": 6.5393195152282715,
+  },
+  Object {
+    "duration": 0.13061223924160004,
+    "loudness": 0.00011760199413402006,
+    "midi": 86,
+    "name": "D",
+    "octave": 7,
+    "start": 6.681541919708252,
+  },
+  Object {
+    "duration": 0.10158730298280716,
+    "loudness": 0.00009717774810269475,
+    "midi": 87,
+    "name": "D#",
+    "octave": 7,
+    "start": 6.855691432952881,
+  },
+  Object {
+    "duration": 0.17124716937541962,
+    "loudness": 0.00014233982074074447,
+    "midi": 92,
+    "name": "G#",
+    "octave": 7,
+    "start": 7.587120056152344,
+  },
+  Object {
+    "duration": 0.09868481010198593,
+    "loudness": 0.00009646757098380476,
+    "midi": 90,
+    "name": "F#",
+    "octave": 7,
+    "start": 7.78158712387085,
+  },
+  Object {
+    "duration": 0.10739228874444962,
+    "loudness": 0.00010121343802893534,
+    "midi": 93,
+    "name": "A",
+    "octave": 7,
+    "start": 7.886076927185059,
+  },
+]
+`;
+
+exports[`Analyze Notes "test/audio/velocity-square.wav" 1`] = `
+Array [
+  Object {
+    "duration": 0.5224489569664001,
+    "loudness": 557.6157836914062,
+    "midi": 60,
+    "name": "C",
+    "octave": 5,
+    "start": 0,
+  },
+  Object {
+    "duration": 0.13061223924160004,
+    "loudness": 0.0001304919715039432,
+    "midi": 93,
+    "name": "A",
+    "octave": 7,
+    "start": 5.625033855438232,
+  },
+  Object {
+    "duration": 0.1364172399044037,
+    "loudness": 0.00012080746819265187,
+    "midi": 93,
+    "name": "A",
+    "octave": 7,
+    "start": 5.836915969848633,
+  },
+  Object {
+    "duration": 0.09868481010198593,
+    "loudness": 0.00011835526674985886,
+    "midi": 93,
+    "name": "A",
+    "octave": 7,
+    "start": 6.582857131958008,
+  },
+  Object {
+    "duration": 0.1683446764945984,
+    "loudness": 0.00014165390166454017,
+    "midi": 93,
+    "name": "A",
+    "octave": 7,
+    "start": 7.523265361785889,
+  },
+  Object {
+    "duration": 0.13931973278522491,
+    "loudness": 0.00012307918223086745,
+    "midi": 92,
+    "name": "G#",
+    "octave": 7,
+    "start": 7.697414875030518,
+  },
+  Object {
+    "duration": 0.11900226771831512,
+    "loudness": 0.00010883358481805772,
+    "midi": 88,
+    "name": "E",
+    "octave": 7,
+    "start": 7.845442295074463,
+  },
+]
+`;
+
+exports[`Analyze Notes "test/audio/velocity-triangle.wav" 1`] = `
+Array [
+  Object {
+    "duration": 0.09868481010198593,
+    "loudness": 0.0002816009218804538,
+    "midi": 92,
+    "name": "G#",
+    "octave": 7,
+    "start": 5.569886684417725,
+  },
+  Object {
+    "duration": 0.10448979586362839,
+    "loudness": 0.00010022657079389319,
+    "midi": 91,
+    "name": "G",
+    "octave": 7,
+    "start": 5.674376487731934,
+  },
+  Object {
+    "duration": 0.18866212666034698,
+    "loudness": 0.00014560144336428493,
+    "midi": 93,
+    "name": "A",
+    "octave": 7,
+    "start": 5.784671306610107,
+  },
+  Object {
+    "duration": 0.09868481010198593,
+    "loudness": 0.0001774482661858201,
+    "midi": 90,
+    "name": "F#",
+    "octave": 7,
+    "start": 6.550929546356201,
+  },
+  Object {
+    "duration": 0.09287981688976288,
+    "loudness": 0.00008976976096164435,
+    "midi": 88,
+    "name": "E",
+    "octave": 7,
+    "start": 6.65541934967041,
+  },
+  Object {
+    "duration": 0.21768707036972046,
+    "loudness": 0.00016218611563090235,
+    "midi": 92,
+    "name": "G#",
+    "octave": 7,
+    "start": 6.754104137420654,
+  },
+  Object {
+    "duration": 0.16253967583179474,
+    "loudness": 0.00013217172818258405,
+    "midi": 93,
+    "name": "A",
+    "octave": 7,
+    "start": 7.7003173828125,
+  },
+]
+`;
+
+exports[`Analyze Scale "test/audio/scale-piano.wav" 1`] = `"major"`;
+
+exports[`Analyze Scale "test/audio/scale-saw.wav" 1`] = `"major"`;
+
+exports[`Analyze Scale "test/audio/scale-sin.wav" 1`] = `"major"`;
+
+exports[`Analyze Scale "test/audio/scale-square.wav" 1`] = `"major"`;
+
+exports[`Analyze Scale "test/audio/scale-triangle.wav" 1`] = `"major"`;
+
+exports[`Analyze Scale "test/audio/scale2-piano.wav" 1`] = `"major"`;
+
+exports[`Analyze Scale "test/audio/scale2-saw.wav" 1`] = `"minor"`;
+
+exports[`Analyze Scale "test/audio/scale2-sin.wav" 1`] = `"minor"`;
+
+exports[`Analyze Scale "test/audio/scale2-square.wav" 1`] = `"minor"`;
+
+exports[`Analyze Scale "test/audio/scale2-triangle.wav" 1`] = `"minor"`;
+
+exports[`Analyze Scale "test/audio/velocity-piano.wav" 1`] = `"minor"`;
+
+exports[`Analyze Scale "test/audio/velocity-saw.wav" 1`] = `"minor"`;
+
+exports[`Analyze Scale "test/audio/velocity-sin.wav" 1`] = `"minor"`;
+
+exports[`Analyze Scale "test/audio/velocity-square.wav" 1`] = `"minor"`;
+
+exports[`Analyze Scale "test/audio/velocity-triangle.wav" 1`] = `"major"`;
+
+exports[`Analyze Speed "test/audio/scale-piano.wav" 1`] = `120.18531799316406`;
+
+exports[`Analyze Speed "test/audio/scale-saw.wav" 1`] = `120.18531799316406`;
+
+exports[`Analyze Speed "test/audio/scale-sin.wav" 1`] = `120.18531799316406`;
+
+exports[`Analyze Speed "test/audio/scale-square.wav" 1`] = `120.18531799316406`;
+
+exports[`Analyze Speed "test/audio/scale-triangle.wav" 1`] = `120.18531799316406`;
+
+exports[`Analyze Speed "test/audio/scale2-piano.wav" 1`] = `120.18531799316406`;
+
+exports[`Analyze Speed "test/audio/scale2-saw.wav" 1`] = `120.18531799316406`;
+
+exports[`Analyze Speed "test/audio/scale2-sin.wav" 1`] = `120.18531799316406`;
+
+exports[`Analyze Speed "test/audio/scale2-square.wav" 1`] = `120.18531799316406`;
+
+exports[`Analyze Speed "test/audio/scale2-triangle.wav" 1`] = `120.18531799316406`;
+
+exports[`Analyze Speed "test/audio/velocity-piano.wav" 1`] = `119.83695983886719`;
+
+exports[`Analyze Speed "test/audio/velocity-saw.wav" 1`] = `119.83695983886719`;
+
+exports[`Analyze Speed "test/audio/velocity-sin.wav" 1`] = `119.83695983886719`;
+
+exports[`Analyze Speed "test/audio/velocity-square.wav" 1`] = `119.83695983886719`;
+
+exports[`Analyze Speed "test/audio/velocity-triangle.wav" 1`] = `119.83695983886719`;
