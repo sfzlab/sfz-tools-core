@@ -43,18 +43,18 @@ async function run() {
   // const convertXmlToSfz = await convert.convertXmlToSfz(sfzXml);
   // console.log('convertXmlToSfz', convertXmlToSfz);
 
-  // const vector = analyze.analyzeLoad('./test/scale.wav');
-  // console.log('analyzeDanceability', analyze.analyzeDanceability(vector));
-  // console.log('analyzeDuration', analyze.analyzeDuration(vector));
-  // console.log('analyzeEnergy', analyze.analyzeEnergy(vector));
-  // console.log('analyzeKey', analyze.analyzeKey(vector));
-  // console.log('analyzeLoudness', analyze.analyzeLoudness(vector));
-  // console.log('analyzeNotes', analyze.analyzeNotes(vector));
-  // console.log('analyzeScale', analyze.analyzeScale(vector));
-  // console.log('analyzeSpeed', analyze.analyzeSpeed(vector));
+  const file = analyze.analyzeLoad('./test/audio/velocity-saw.wav');
+  // console.log('analyzeDanceability', analyze.analyzeDanceability(file));
+  // console.log('analyzeDuration', analyze.analyzeDuration(file));
+  // console.log('analyzeEnergy', analyze.analyzeEnergy(file));
+  // console.log('analyzeKey', analyze.analyzeKey(file));
+  // console.log('analyzeLoudness', analyze.analyzeLoudness(file));
+  console.log('analyzeNotes', analyze.analyzeNotes(file));
+  // console.log('analyzeScale', analyze.analyzeScale(file));
+  // console.log('analyzeSpeed', analyze.analyzeSpeed(file));
 
-  const encodeWavToFlac = await encode.encodeWavToFlac('./test/scale.wav');
-  console.log('encodeWavToFlac', encodeWavToFlac);
+  // const encodeWavToFlac = await encode.encodeWavToFlac('./test/scale.wav');
+  // console.log('encodeWavToFlac', encodeWavToFlac);
 }
 
 run();

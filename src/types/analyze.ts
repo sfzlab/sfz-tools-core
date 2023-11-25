@@ -9,6 +9,11 @@ interface AnalyzeContour {
   MIDIpitch: number;
 }
 
+interface AnalyzeFile {
+  buffer: AnalyzeBuffer;
+  vector: AnalyzeVector;
+}
+
 interface AnalyzeMelodia {
   pitch: number;
   pitchConfidence: number;
@@ -17,4 +22,4 @@ interface AnalyzeMelodia {
 // tslint:disable-next-line
 interface AnalyzeVector {}
 
-export { AnalyzeBuffer, AnalyzeContour, AnalyzeMelodia, AnalyzeVector };
+export { AnalyzeBuffer, AnalyzeContour, AnalyzeFile, AnalyzeMelodia, AnalyzeVector };
