@@ -1,156 +1,156 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Analyze Danceability "test/audio/scale-piano.wav" 1`] = `1.1009137630462646`;
+exports[`Analyze Danceability test/audio/scale-piano.wav 1`] = `1.1009137630462646`;
 
-exports[`Analyze Danceability "test/audio/scale-saw.wav" 1`] = `1.4916077852249146`;
+exports[`Analyze Danceability test/audio/scale-saw.wav 1`] = `1.4916077852249146`;
 
-exports[`Analyze Danceability "test/audio/scale-sin.wav" 1`] = `1.4916197061538696`;
+exports[`Analyze Danceability test/audio/scale-sin.wav 1`] = `1.4916197061538696`;
 
-exports[`Analyze Danceability "test/audio/scale-square.wav" 1`] = `1.491768717765808`;
+exports[`Analyze Danceability test/audio/scale-square.wav 1`] = `1.491768717765808`;
 
-exports[`Analyze Danceability "test/audio/scale-triangle.wav" 1`] = `1.4916062355041504`;
+exports[`Analyze Danceability test/audio/scale-triangle.wav 1`] = `1.4916062355041504`;
 
-exports[`Analyze Danceability "test/audio/scale2-piano.wav" 1`] = `1.0301882028579712`;
+exports[`Analyze Danceability test/audio/scale2-piano.wav 1`] = `1.0301882028579712`;
 
-exports[`Analyze Danceability "test/audio/scale2-saw.wav" 1`] = `1.2293025255203247`;
+exports[`Analyze Danceability test/audio/scale2-saw.wav 1`] = `1.2293025255203247`;
 
-exports[`Analyze Danceability "test/audio/scale2-sin.wav" 1`] = `1.2316737174987793`;
+exports[`Analyze Danceability test/audio/scale2-sin.wav 1`] = `1.2316737174987793`;
 
-exports[`Analyze Danceability "test/audio/scale2-square.wav" 1`] = `1.2305712699890137`;
+exports[`Analyze Danceability test/audio/scale2-square.wav 1`] = `1.2305712699890137`;
 
-exports[`Analyze Danceability "test/audio/scale2-triangle.wav" 1`] = `1.2317447662353516`;
+exports[`Analyze Danceability test/audio/scale2-triangle.wav 1`] = `1.2317447662353516`;
 
-exports[`Analyze Danceability "test/audio/velocity-piano.wav" 1`] = `0.8397646546363831`;
+exports[`Analyze Danceability test/audio/velocity-piano.wav 1`] = `0.8397646546363831`;
 
-exports[`Analyze Danceability "test/audio/velocity-saw.wav" 1`] = `0.8700812458992004`;
+exports[`Analyze Danceability test/audio/velocity-saw.wav 1`] = `0.8700812458992004`;
 
-exports[`Analyze Danceability "test/audio/velocity-sin.wav" 1`] = `0.869825541973114`;
+exports[`Analyze Danceability test/audio/velocity-sin.wav 1`] = `0.869825541973114`;
 
-exports[`Analyze Danceability "test/audio/velocity-square.wav" 1`] = `0.8699465990066528`;
+exports[`Analyze Danceability test/audio/velocity-square.wav 1`] = `0.8699465990066528`;
 
-exports[`Analyze Danceability "test/audio/velocity-triangle.wav" 1`] = `0.8698005676269531`;
+exports[`Analyze Danceability test/audio/velocity-triangle.wav 1`] = `0.8698005676269531`;
 
-exports[`Analyze Duration "test/audio/scale-piano.wav" 1`] = `8`;
+exports[`Analyze Duration test/audio/scale-piano.wav 1`] = `8`;
 
-exports[`Analyze Duration "test/audio/scale-saw.wav" 1`] = `8`;
+exports[`Analyze Duration test/audio/scale-saw.wav 1`] = `8`;
 
-exports[`Analyze Duration "test/audio/scale-sin.wav" 1`] = `8`;
+exports[`Analyze Duration test/audio/scale-sin.wav 1`] = `8`;
 
-exports[`Analyze Duration "test/audio/scale-square.wav" 1`] = `8`;
+exports[`Analyze Duration test/audio/scale-square.wav 1`] = `8`;
 
-exports[`Analyze Duration "test/audio/scale-triangle.wav" 1`] = `8`;
+exports[`Analyze Duration test/audio/scale-triangle.wav 1`] = `8`;
 
-exports[`Analyze Duration "test/audio/scale2-piano.wav" 1`] = `8`;
+exports[`Analyze Duration test/audio/scale2-piano.wav 1`] = `8`;
 
-exports[`Analyze Duration "test/audio/scale2-saw.wav" 1`] = `8`;
+exports[`Analyze Duration test/audio/scale2-saw.wav 1`] = `8`;
 
-exports[`Analyze Duration "test/audio/scale2-sin.wav" 1`] = `8`;
+exports[`Analyze Duration test/audio/scale2-sin.wav 1`] = `8`;
 
-exports[`Analyze Duration "test/audio/scale2-square.wav" 1`] = `8`;
+exports[`Analyze Duration test/audio/scale2-square.wav 1`] = `8`;
 
-exports[`Analyze Duration "test/audio/scale2-triangle.wav" 1`] = `8`;
+exports[`Analyze Duration test/audio/scale2-triangle.wav 1`] = `8`;
 
-exports[`Analyze Duration "test/audio/velocity-piano.wav" 1`] = `8`;
+exports[`Analyze Duration test/audio/velocity-piano.wav 1`] = `8`;
 
-exports[`Analyze Duration "test/audio/velocity-saw.wav" 1`] = `8`;
+exports[`Analyze Duration test/audio/velocity-saw.wav 1`] = `8`;
 
-exports[`Analyze Duration "test/audio/velocity-sin.wav" 1`] = `8`;
+exports[`Analyze Duration test/audio/velocity-sin.wav 1`] = `8`;
 
-exports[`Analyze Duration "test/audio/velocity-square.wav" 1`] = `8`;
+exports[`Analyze Duration test/audio/velocity-square.wav 1`] = `8`;
 
-exports[`Analyze Duration "test/audio/velocity-triangle.wav" 1`] = `8`;
+exports[`Analyze Duration test/audio/velocity-triangle.wav 1`] = `8`;
 
-exports[`Analyze Energy "test/audio/scale-piano.wav" 1`] = `1567.6304931640625`;
+exports[`Analyze Energy test/audio/scale-piano.wav 1`] = `1567.6304931640625`;
 
-exports[`Analyze Energy "test/audio/scale-saw.wav" 1`] = `55246.71484375`;
+exports[`Analyze Energy test/audio/scale-saw.wav 1`] = `55246.71484375`;
 
-exports[`Analyze Energy "test/audio/scale-sin.wav" 1`] = `84008.9765625`;
+exports[`Analyze Energy test/audio/scale-sin.wav 1`] = `84008.9765625`;
 
-exports[`Analyze Energy "test/audio/scale-square.wav" 1`] = `100075.0625`;
+exports[`Analyze Energy test/audio/scale-square.wav 1`] = `100075.0625`;
 
-exports[`Analyze Energy "test/audio/scale-triangle.wav" 1`] = `56004.390625`;
+exports[`Analyze Energy test/audio/scale-triangle.wav 1`] = `56004.390625`;
 
-exports[`Analyze Energy "test/audio/scale2-piano.wav" 1`] = `1959.48193359375`;
+exports[`Analyze Energy test/audio/scale2-piano.wav 1`] = `1959.48193359375`;
 
-exports[`Analyze Energy "test/audio/scale2-saw.wav" 1`] = `45086.625`;
+exports[`Analyze Energy test/audio/scale2-saw.wav 1`] = `45086.625`;
 
-exports[`Analyze Energy "test/audio/scale2-sin.wav" 1`] = `68524.546875`;
+exports[`Analyze Energy test/audio/scale2-sin.wav 1`] = `68524.546875`;
 
-exports[`Analyze Energy "test/audio/scale2-square.wav" 1`] = `81642.2578125`;
+exports[`Analyze Energy test/audio/scale2-square.wav 1`] = `81642.2578125`;
 
-exports[`Analyze Energy "test/audio/scale2-triangle.wav" 1`] = `45682.25`;
+exports[`Analyze Energy test/audio/scale2-triangle.wav 1`] = `45682.25`;
 
-exports[`Analyze Energy "test/audio/velocity-piano.wav" 1`] = `342.1805419921875`;
+exports[`Analyze Energy test/audio/velocity-piano.wav 1`] = `342.1805419921875`;
 
-exports[`Analyze Energy "test/audio/velocity-saw.wav" 1`] = `17524.001953125`;
+exports[`Analyze Energy test/audio/velocity-saw.wav 1`] = `17524.001953125`;
 
-exports[`Analyze Energy "test/audio/velocity-sin.wav" 1`] = `26328.845703125`;
+exports[`Analyze Energy test/audio/velocity-sin.wav 1`] = `26328.845703125`;
 
-exports[`Analyze Energy "test/audio/velocity-square.wav" 1`] = `31499.65625`;
+exports[`Analyze Energy test/audio/velocity-square.wav 1`] = `31499.65625`;
 
-exports[`Analyze Energy "test/audio/velocity-triangle.wav" 1`] = `17549.138671875`;
+exports[`Analyze Energy test/audio/velocity-triangle.wav 1`] = `17549.138671875`;
 
-exports[`Analyze Key "test/audio/scale-piano.wav" 1`] = `"C"`;
+exports[`Analyze Key test/audio/scale-piano.wav 1`] = `"C"`;
 
-exports[`Analyze Key "test/audio/scale-saw.wav" 1`] = `"C"`;
+exports[`Analyze Key test/audio/scale-saw.wav 1`] = `"C"`;
 
-exports[`Analyze Key "test/audio/scale-sin.wav" 1`] = `"C"`;
+exports[`Analyze Key test/audio/scale-sin.wav 1`] = `"C"`;
 
-exports[`Analyze Key "test/audio/scale-square.wav" 1`] = `"C"`;
+exports[`Analyze Key test/audio/scale-square.wav 1`] = `"C"`;
 
-exports[`Analyze Key "test/audio/scale-triangle.wav" 1`] = `"C"`;
+exports[`Analyze Key test/audio/scale-triangle.wav 1`] = `"C"`;
 
-exports[`Analyze Key "test/audio/scale2-piano.wav" 1`] = `"F"`;
+exports[`Analyze Key test/audio/scale2-piano.wav 1`] = `"F"`;
 
-exports[`Analyze Key "test/audio/scale2-saw.wav" 1`] = `"C"`;
+exports[`Analyze Key test/audio/scale2-saw.wav 1`] = `"C"`;
 
-exports[`Analyze Key "test/audio/scale2-sin.wav" 1`] = `"C"`;
+exports[`Analyze Key test/audio/scale2-sin.wav 1`] = `"C"`;
 
-exports[`Analyze Key "test/audio/scale2-square.wav" 1`] = `"C"`;
+exports[`Analyze Key test/audio/scale2-square.wav 1`] = `"C"`;
 
-exports[`Analyze Key "test/audio/scale2-triangle.wav" 1`] = `"C"`;
+exports[`Analyze Key test/audio/scale2-triangle.wav 1`] = `"C"`;
 
-exports[`Analyze Key "test/audio/velocity-piano.wav" 1`] = `"C"`;
+exports[`Analyze Key test/audio/velocity-piano.wav 1`] = `"C"`;
 
-exports[`Analyze Key "test/audio/velocity-saw.wav" 1`] = `"C"`;
+exports[`Analyze Key test/audio/velocity-saw.wav 1`] = `"C"`;
 
-exports[`Analyze Key "test/audio/velocity-sin.wav" 1`] = `"C"`;
+exports[`Analyze Key test/audio/velocity-sin.wav 1`] = `"C"`;
 
-exports[`Analyze Key "test/audio/velocity-square.wav" 1`] = `"C"`;
+exports[`Analyze Key test/audio/velocity-square.wav 1`] = `"C"`;
 
-exports[`Analyze Key "test/audio/velocity-triangle.wav" 1`] = `"C"`;
+exports[`Analyze Key test/audio/velocity-triangle.wav 1`] = `"C"`;
 
-exports[`Analyze Loudness "test/audio/scale-piano.wav" 1`] = `-25.142505645751953`;
+exports[`Analyze Loudness test/audio/scale-piano.wav 1`] = `-25.142505645751953`;
 
-exports[`Analyze Loudness "test/audio/scale-saw.wav" 1`] = `-8.667534828186035`;
+exports[`Analyze Loudness test/audio/scale-saw.wav 1`] = `-8.667534828186035`;
 
-exports[`Analyze Loudness "test/audio/scale-sin.wav" 1`] = `-7.181407451629639`;
+exports[`Analyze Loudness test/audio/scale-sin.wav 1`] = `-7.181407451629639`;
 
-exports[`Analyze Loudness "test/audio/scale-square.wav" 1`] = `-6.221879959106445`;
+exports[`Analyze Loudness test/audio/scale-square.wav 1`] = `-6.221879959106445`;
 
-exports[`Analyze Loudness "test/audio/scale-triangle.wav" 1`] = `-8.916343688964844`;
+exports[`Analyze Loudness test/audio/scale-triangle.wav 1`] = `-8.916343688964844`;
 
-exports[`Analyze Loudness "test/audio/scale2-piano.wav" 1`] = `-22.920133590698242`;
+exports[`Analyze Loudness test/audio/scale2-piano.wav 1`] = `-22.920133590698242`;
 
-exports[`Analyze Loudness "test/audio/scale2-saw.wav" 1`] = `-9.128947257995605`;
+exports[`Analyze Loudness test/audio/scale2-saw.wav 1`] = `-9.128947257995605`;
 
-exports[`Analyze Loudness "test/audio/scale2-sin.wav" 1`] = `-7.667166233062744`;
+exports[`Analyze Loudness test/audio/scale2-sin.wav 1`] = `-7.667166233062744`;
 
-exports[`Analyze Loudness "test/audio/scale2-square.wav" 1`] = `-6.700174331665039`;
+exports[`Analyze Loudness test/audio/scale2-square.wav 1`] = `-6.700174331665039`;
 
-exports[`Analyze Loudness "test/audio/scale2-triangle.wav" 1`] = `-9.404030799865723`;
+exports[`Analyze Loudness test/audio/scale2-triangle.wav 1`] = `-9.404030799865723`;
 
-exports[`Analyze Loudness "test/audio/velocity-piano.wav" 1`] = `-31.488279342651367`;
+exports[`Analyze Loudness test/audio/velocity-piano.wav 1`] = `-31.488279342651367`;
 
-exports[`Analyze Loudness "test/audio/velocity-saw.wav" 1`] = `-13.58476734161377`;
+exports[`Analyze Loudness test/audio/velocity-saw.wav 1`] = `-13.58476734161377`;
 
-exports[`Analyze Loudness "test/audio/velocity-sin.wav" 1`] = `-12.513080596923828`;
+exports[`Analyze Loudness test/audio/velocity-sin.wav 1`] = `-12.513080596923828`;
 
-exports[`Analyze Loudness "test/audio/velocity-square.wav" 1`] = `-11.325491905212402`;
+exports[`Analyze Loudness test/audio/velocity-square.wav 1`] = `-11.325491905212402`;
 
-exports[`Analyze Loudness "test/audio/velocity-triangle.wav" 1`] = `-14.237661361694336`;
+exports[`Analyze Loudness test/audio/velocity-triangle.wav 1`] = `-14.237661361694336`;
 
-exports[`Analyze Notes "test/audio/scale-piano.wav" 1`] = `
+exports[`Analyze Notes test/audio/scale-piano.wav 1`] = `
 Array [
   Object {
     "duration": 0.9868480563163757,
@@ -219,7 +219,7 @@ Array [
 ]
 `;
 
-exports[`Analyze Notes "test/audio/scale-saw.wav" 1`] = `
+exports[`Analyze Notes test/audio/scale-saw.wav 1`] = `
 Array [
   Object {
     "duration": 0.24671201407909393,
@@ -264,7 +264,7 @@ Array [
 ]
 `;
 
-exports[`Analyze Notes "test/audio/scale-sin.wav" 1`] = `
+exports[`Analyze Notes test/audio/scale-sin.wav 1`] = `
 Array [
   Object {
     "duration": 0.5427664518356323,
@@ -325,7 +325,7 @@ Array [
 ]
 `;
 
-exports[`Analyze Notes "test/audio/scale-square.wav" 1`] = `
+exports[`Analyze Notes test/audio/scale-square.wav 1`] = `
 Array [
   Object {
     "duration": 0.15383219718933105,
@@ -378,7 +378,7 @@ Array [
 ]
 `;
 
-exports[`Analyze Notes "test/audio/scale-triangle.wav" 1`] = `
+exports[`Analyze Notes test/audio/scale-triangle.wav 1`] = `
 Array [
   Object {
     "duration": 0.09868481010198593,
@@ -447,7 +447,7 @@ Array [
 ]
 `;
 
-exports[`Analyze Notes "test/audio/scale2-piano.wav" 1`] = `
+exports[`Analyze Notes test/audio/scale2-piano.wav 1`] = `
 Array [
   Object {
     "duration": 0.4963265359401703,
@@ -556,7 +556,7 @@ Array [
 ]
 `;
 
-exports[`Analyze Notes "test/audio/scale2-saw.wav" 1`] = `
+exports[`Analyze Notes test/audio/scale2-saw.wav 1`] = `
 Array [
   Object {
     "duration": 0.26993197202682495,
@@ -769,7 +769,7 @@ Array [
 ]
 `;
 
-exports[`Analyze Notes "test/audio/scale2-sin.wav" 1`] = `
+exports[`Analyze Notes test/audio/scale2-sin.wav 1`] = `
 Array [
   Object {
     "duration": 0.2728344798088074,
@@ -966,7 +966,7 @@ Array [
 ]
 `;
 
-exports[`Analyze Notes "test/audio/scale2-square.wav" 1`] = `
+exports[`Analyze Notes test/audio/scale2-square.wav 1`] = `
 Array [
   Object {
     "duration": 0.2728344798088074,
@@ -1147,7 +1147,7 @@ Array [
 ]
 `;
 
-exports[`Analyze Notes "test/audio/scale2-triangle.wav" 1`] = `
+exports[`Analyze Notes test/audio/scale2-triangle.wav 1`] = `
 Array [
   Object {
     "duration": 0.2728344798088074,
@@ -1360,7 +1360,7 @@ Array [
 ]
 `;
 
-exports[`Analyze Notes "test/audio/velocity-piano.wav" 1`] = `
+exports[`Analyze Notes test/audio/velocity-piano.wav 1`] = `
 Array [
   Object {
     "duration": 2.983764171600342,
@@ -1389,7 +1389,7 @@ Array [
 ]
 `;
 
-exports[`Analyze Notes "test/audio/velocity-saw.wav" 1`] = `
+exports[`Analyze Notes test/audio/velocity-saw.wav 1`] = `
 Array [
   Object {
     "duration": 0.528253972530365,
@@ -1442,7 +1442,7 @@ Array [
 ]
 `;
 
-exports[`Analyze Notes "test/audio/velocity-sin.wav" 1`] = `
+exports[`Analyze Notes test/audio/velocity-sin.wav 1`] = `
 Array [
   Object {
     "duration": 0.16253967583179474,
@@ -1503,7 +1503,7 @@ Array [
 ]
 `;
 
-exports[`Analyze Notes "test/audio/velocity-square.wav" 1`] = `
+exports[`Analyze Notes test/audio/velocity-square.wav 1`] = `
 Array [
   Object {
     "duration": 0.5224489569664001,
@@ -1564,7 +1564,7 @@ Array [
 ]
 `;
 
-exports[`Analyze Notes "test/audio/velocity-triangle.wav" 1`] = `
+exports[`Analyze Notes test/audio/velocity-triangle.wav 1`] = `
 Array [
   Object {
     "duration": 0.09868481010198593,
@@ -1625,62 +1625,62 @@ Array [
 ]
 `;
 
-exports[`Analyze Scale "test/audio/scale-piano.wav" 1`] = `"major"`;
+exports[`Analyze Scale test/audio/scale-piano.wav 1`] = `"major"`;
 
-exports[`Analyze Scale "test/audio/scale-saw.wav" 1`] = `"major"`;
+exports[`Analyze Scale test/audio/scale-saw.wav 1`] = `"major"`;
 
-exports[`Analyze Scale "test/audio/scale-sin.wav" 1`] = `"major"`;
+exports[`Analyze Scale test/audio/scale-sin.wav 1`] = `"major"`;
 
-exports[`Analyze Scale "test/audio/scale-square.wav" 1`] = `"major"`;
+exports[`Analyze Scale test/audio/scale-square.wav 1`] = `"major"`;
 
-exports[`Analyze Scale "test/audio/scale-triangle.wav" 1`] = `"major"`;
+exports[`Analyze Scale test/audio/scale-triangle.wav 1`] = `"major"`;
 
-exports[`Analyze Scale "test/audio/scale2-piano.wav" 1`] = `"major"`;
+exports[`Analyze Scale test/audio/scale2-piano.wav 1`] = `"major"`;
 
-exports[`Analyze Scale "test/audio/scale2-saw.wav" 1`] = `"minor"`;
+exports[`Analyze Scale test/audio/scale2-saw.wav 1`] = `"minor"`;
 
-exports[`Analyze Scale "test/audio/scale2-sin.wav" 1`] = `"minor"`;
+exports[`Analyze Scale test/audio/scale2-sin.wav 1`] = `"minor"`;
 
-exports[`Analyze Scale "test/audio/scale2-square.wav" 1`] = `"minor"`;
+exports[`Analyze Scale test/audio/scale2-square.wav 1`] = `"minor"`;
 
-exports[`Analyze Scale "test/audio/scale2-triangle.wav" 1`] = `"minor"`;
+exports[`Analyze Scale test/audio/scale2-triangle.wav 1`] = `"minor"`;
 
-exports[`Analyze Scale "test/audio/velocity-piano.wav" 1`] = `"minor"`;
+exports[`Analyze Scale test/audio/velocity-piano.wav 1`] = `"minor"`;
 
-exports[`Analyze Scale "test/audio/velocity-saw.wav" 1`] = `"minor"`;
+exports[`Analyze Scale test/audio/velocity-saw.wav 1`] = `"minor"`;
 
-exports[`Analyze Scale "test/audio/velocity-sin.wav" 1`] = `"minor"`;
+exports[`Analyze Scale test/audio/velocity-sin.wav 1`] = `"minor"`;
 
-exports[`Analyze Scale "test/audio/velocity-square.wav" 1`] = `"minor"`;
+exports[`Analyze Scale test/audio/velocity-square.wav 1`] = `"minor"`;
 
-exports[`Analyze Scale "test/audio/velocity-triangle.wav" 1`] = `"major"`;
+exports[`Analyze Scale test/audio/velocity-triangle.wav 1`] = `"major"`;
 
-exports[`Analyze Speed "test/audio/scale-piano.wav" 1`] = `120.18531799316406`;
+exports[`Analyze Speed test/audio/scale-piano.wav 1`] = `120.18531799316406`;
 
-exports[`Analyze Speed "test/audio/scale-saw.wav" 1`] = `120.18531799316406`;
+exports[`Analyze Speed test/audio/scale-saw.wav 1`] = `120.18531799316406`;
 
-exports[`Analyze Speed "test/audio/scale-sin.wav" 1`] = `120.18531799316406`;
+exports[`Analyze Speed test/audio/scale-sin.wav 1`] = `120.18531799316406`;
 
-exports[`Analyze Speed "test/audio/scale-square.wav" 1`] = `120.18531799316406`;
+exports[`Analyze Speed test/audio/scale-square.wav 1`] = `120.18531799316406`;
 
-exports[`Analyze Speed "test/audio/scale-triangle.wav" 1`] = `120.18531799316406`;
+exports[`Analyze Speed test/audio/scale-triangle.wav 1`] = `120.18531799316406`;
 
-exports[`Analyze Speed "test/audio/scale2-piano.wav" 1`] = `120.18531799316406`;
+exports[`Analyze Speed test/audio/scale2-piano.wav 1`] = `120.18531799316406`;
 
-exports[`Analyze Speed "test/audio/scale2-saw.wav" 1`] = `120.18531799316406`;
+exports[`Analyze Speed test/audio/scale2-saw.wav 1`] = `120.18531799316406`;
 
-exports[`Analyze Speed "test/audio/scale2-sin.wav" 1`] = `120.18531799316406`;
+exports[`Analyze Speed test/audio/scale2-sin.wav 1`] = `120.18531799316406`;
 
-exports[`Analyze Speed "test/audio/scale2-square.wav" 1`] = `120.18531799316406`;
+exports[`Analyze Speed test/audio/scale2-square.wav 1`] = `120.18531799316406`;
 
-exports[`Analyze Speed "test/audio/scale2-triangle.wav" 1`] = `120.18531799316406`;
+exports[`Analyze Speed test/audio/scale2-triangle.wav 1`] = `120.18531799316406`;
 
-exports[`Analyze Speed "test/audio/velocity-piano.wav" 1`] = `119.83695983886719`;
+exports[`Analyze Speed test/audio/velocity-piano.wav 1`] = `119.83695983886719`;
 
-exports[`Analyze Speed "test/audio/velocity-saw.wav" 1`] = `119.83695983886719`;
+exports[`Analyze Speed test/audio/velocity-saw.wav 1`] = `119.83695983886719`;
 
-exports[`Analyze Speed "test/audio/velocity-sin.wav" 1`] = `119.83695983886719`;
+exports[`Analyze Speed test/audio/velocity-sin.wav 1`] = `119.83695983886719`;
 
-exports[`Analyze Speed "test/audio/velocity-square.wav" 1`] = `119.83695983886719`;
+exports[`Analyze Speed test/audio/velocity-square.wav 1`] = `119.83695983886719`;
 
-exports[`Analyze Speed "test/audio/velocity-triangle.wav" 1`] = `119.83695983886719`;
+exports[`Analyze Speed test/audio/velocity-triangle.wav 1`] = `119.83695983886719`;
