@@ -15,11 +15,12 @@ import { dirRead } from '../src/file';
 
 const audioDir: string = path.join('test', 'audio');
 const audioPaths: string[] = dirRead(path.join(audioDir, '**', '*.wav'));
-const audioFiles: string[][] = audioPaths.map((audioFile: string) => {
-  return [audioFile.replace('\\\\', '/'), audioFile];
-});
 
-console.log(audioFiles);
+// Windows paths contain backslashes, which result in snapshot names not matching Linux/Mac.
+// Loop through paths and create a 2d array of forward slash paths to use in snpashot names.
+const audioFiles: string[][] = audioPaths.map((audioFile: string) => {
+  return [audioFile.replace(/\\/g, '/'), audioFile];
+});
 
 test.each(audioFiles)('Analyze Danceability %p', async (audioNorm: string, audioFile: string) => {
   const file: AnalyzeFile = analyzeLoad(audioFile);
