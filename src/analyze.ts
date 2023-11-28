@@ -37,7 +37,7 @@ function analyzeLoudness(file: AnalyzeFile): number {
 
 function analyzeNotes(file: AnalyzeFile): any[] {
   const names: string[] = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
-  const melodia: AnalyzeMelodia = essentia.PitchMelodia(file.vector).pitch;
+  const melodia: AnalyzeMelodia = essentia.PredominantPitchMelodia(file.vector).pitch;
   const segments: AnalyzeContour = essentia.PitchContourSegmentation(melodia, file.vector);
   const onsets: Float32Array = essentia.vectorToArray(segments.onset);
   const durations: Float32Array = essentia.vectorToArray(segments.duration);
@@ -49,7 +49,7 @@ function analyzeNotes(file: AnalyzeFile): any[] {
     const endIndex: number = Math.floor((onset + durations[i]) * file.buffer.sampleRate);
     const noteArray: Float32Array = file.buffer.channelData[0].slice(startIndex, endIndex);
     const noteVector: AnalyzeVector = essentia.arrayToVector(noteArray);
-    const noteLoudness: number = essentia.Loudness(noteVector).loudness;
+    const noteLoudness: number = essentia.DynamicComplexity(noteVector).loudness;
     notes.push({
       start: onset,
       duration: durations[i],
