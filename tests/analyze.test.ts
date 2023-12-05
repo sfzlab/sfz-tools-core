@@ -7,6 +7,7 @@ import {
   analyzeLoad,
   analyzeLoudness,
   analyzeNotes,
+  analyzeOnsets,
   analyzeScale,
   analyzeSpeed,
 } from '../src/analyze';
@@ -50,6 +51,11 @@ test.each(audioFiles)('Analyze Loudness %p', async (audioNorm: string, audioFile
 test.each(audioFiles)('Analyze Notes %p', async (audioNorm: string, audioFile: string) => {
   const file: AnalyzeFile = analyzeLoad(audioFile);
   expect(analyzeNotes(file)).toMatchSnapshot();
+});
+
+test.each(audioFiles)('Analyze Onsets %p', async (audioNorm: string, audioFile: string) => {
+  const file: AnalyzeFile = analyzeLoad(audioFile);
+  expect(analyzeOnsets(file)).toMatchSnapshot();
 });
 
 test.each(audioFiles)('Analyze Scale %p', async (audioNorm: string, audioFile: string) => {

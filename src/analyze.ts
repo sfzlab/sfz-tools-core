@@ -3,6 +3,10 @@ import { Essentia, EssentiaWASM } from 'essentia.js';
 import * as wav from 'node-wav';
 import { readFileSync } from 'fs';
 import { AnalyzeBuffer, AnalyzeContour, AnalyzeFile, AnalyzeMelodia, AnalyzeVector } from './types/analyze';
+// @ts-ignore
+import PolarFFTWASM from './lib/polarFFT.module.js';
+// @ts-ignore
+import OnsetsWASM from './lib/onsets.module.js';
 
 const essentia: Essentia = new Essentia(EssentiaWASM);
 
@@ -62,6 +66,50 @@ function analyzeNotes(file: AnalyzeFile): any[] {
   return notes;
 }
 
+function analyzeOnsets(file: AnalyzeFile) {
+  const params = {
+    frameSize: 1024,
+    hopSize: 512,
+    odfs: ['hfc', 'complex'],
+    odfsWeights: [0.5, 0.5],
+    sensitivity: 0.65,
+  };
+  // Calculate polar frames.
+  const polarFrames = [];
+  const PolarFFT = new PolarFFTWASM.PolarFFT(params.frameSize);
+  const frames = essentia.FrameGenerator(file.buffer.channelData[0], params.frameSize, params.hopSize);
+  for (let i = 0; i < frames.size(); i++) {
+    const currentFrame = frames.get(i);
+    const windowed = essentia.Windowing(currentFrame).frame;
+    const polar = PolarFFT.compute(essentia.vectorToArray(windowed));
+    polarFrames.push(polar);
+  }
+  frames.delete();
+  PolarFFT.shutdown();
+  // Calculate onsets.
+  const alpha = 1 - params.sensitivity;
+  const Onsets = new OnsetsWASM.Onsets(alpha, 5, file.buffer.sampleRate / params.hopSize, 0.02);
+  const odfMatrix = [];
+  for (const func of params.odfs) {
+    const odfArray = polarFrames.map((frame) => {
+      return essentia.OnsetDetection(
+        essentia.arrayToVector(essentia.vectorToArray(frame.magnitude)),
+        essentia.arrayToVector(essentia.vectorToArray(frame.phase)),
+        func,
+        file.buffer.sampleRate
+      ).onsetDetection;
+    });
+    odfMatrix.push(Float32Array.from(odfArray));
+  }
+  const onsetPositions = Onsets.compute(odfMatrix, params.odfsWeights).positions;
+  Onsets.shutdown();
+  if (onsetPositions.size() === 0) {
+    return new Float32Array(0);
+  } else {
+    return essentia.vectorToArray(onsetPositions);
+  }
+}
+
 function analyzeScale(file: AnalyzeFile): string {
   return essentia.KeyExtractor(file.vector).scale;
 }
@@ -78,6 +126,7 @@ export {
   analyzeLoad,
   analyzeLoudness,
   analyzeNotes,
+  analyzeOnsets,
   analyzeScale,
   analyzeSpeed,
 };

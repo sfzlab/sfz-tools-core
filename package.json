@@ -9,7 +9,7 @@
   ],
   "scripts": {
     "build": "rimraf ./dist && tsc && npm run copy",
-    "copy": "copyfiles -u 1 ./src/images/* ./dist",
+    "copy": "copyfiles -u 1 ./src/lib/* ./dist",
     "dev": "npm run build && node index.js",
     "format": "prettier --write 'src/**/*.{ts,tsx}' && prettier --write 'tests/**/*.{ts,tsx}'",
     "lint": "tslint --project tsconfig.json && tslint 'tests/**/*.{ts,tsx}'",
