@@ -84,6 +84,17 @@ function pathJoin(...segments: any) {
   return resultParts.join('/');
 }
 
+function pitchToMidi(pitch: number) {
+  // A4 = 440 Hz, 69 MIDI note
+  const A4_HZ = 440;
+  const A4_MIDI = 69;
+  // The number of semitones between the given pitch and A4
+  const semitones = Math.log2(pitch / A4_HZ) * 12;
+  // The MIDI note number
+  const midiNote = A4_MIDI + semitones;
+  return Math.round(midiNote);
+}
+
 export {
   IS_WIN,
   LINE_END,
@@ -98,4 +109,5 @@ export {
   pathGetExt,
   pathGetFilename,
   pathJoin,
+  pitchToMidi,
 };

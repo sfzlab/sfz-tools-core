@@ -7,6 +7,7 @@ import { AnalyzeBuffer, AnalyzeContour, AnalyzeFile, AnalyzeMelodia, AnalyzeVect
 import PolarFFTWASM from './lib/polarFFT.module.js';
 // @ts-ignore
 import OnsetsWASM from './lib/onsets.module.js';
+import { pitchToMidi } from './utils';
 
 const essentia: Essentia = new Essentia(EssentiaWASM);
 
@@ -39,33 +40,35 @@ function analyzeLoudness(file: AnalyzeFile): number {
   return essentia.DynamicComplexity(file.vector).loudness;
 }
 
+// Prototype using custom onsets algorithm and slower PitchYin algorithm
 function analyzeNotes(file: AnalyzeFile): any[] {
   const names: string[] = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
-  const melodia: AnalyzeMelodia = essentia.PredominantPitchMelodia(file.vector).pitch;
-  const segments: AnalyzeContour = essentia.PitchContourSegmentation(melodia, file.vector);
-  const onsets: Float32Array = essentia.vectorToArray(segments.onset);
-  const durations: Float32Array = essentia.vectorToArray(segments.duration);
-  const pitches: Float32Array = essentia.vectorToArray(segments.MIDIpitch);
+  const fileDuration: number = essentia.Duration(file.vector).duration;
+  const onsets: Float32Array = analyzeOnsets(file);
   const notes: any = [];
   onsets.forEach((onset: number, i: number) => {
-    // TODO: Find a better way to obtain loudness per note
+    const noteDuration: number = (onsets[i + 1] || fileDuration) - onsets[i];
+    if (Math.round(noteDuration) === 0) return;
     const startIndex: number = Math.floor(onset * file.buffer.sampleRate);
-    const endIndex: number = Math.floor((onset + durations[i]) * file.buffer.sampleRate);
+    const endIndex: number = Math.floor((onset + noteDuration) * file.buffer.sampleRate);
     const noteArray: Float32Array = file.buffer.channelData[0].slice(startIndex, endIndex);
     const noteVector: AnalyzeVector = essentia.arrayToVector(noteArray);
     const noteLoudness: number = essentia.DynamicComplexity(noteVector).loudness;
+    const notePitch: number = essentia.PitchYin(noteVector).pitch;
+    const noteMidi: number = pitchToMidi(notePitch);
     notes.push({
       start: onset,
-      duration: durations[i],
+      duration: noteDuration,
       loudness: noteLoudness,
-      midi: pitches[i],
-      octave: Math.floor(pitches[i] / 12),
-      name: names[pitches[i] % 12],
+      midi: noteMidi,
+      octave: Math.floor(noteMidi / 12),
+      name: names[noteMidi % 12],
     });
   });
   return notes;
 }
 
+// Prototype custom onsets detection based on onsets demo
 function analyzeOnsets(file: AnalyzeFile) {
   const params = {
     frameSize: 1024,

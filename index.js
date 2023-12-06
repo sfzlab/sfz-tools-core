@@ -49,10 +49,10 @@ async function run() {
   // console.log('analyzeEnergy', analyze.analyzeEnergy(file));
   // console.log('analyzeKey', analyze.analyzeKey(file));
   // console.log('analyzeLoudness', analyze.analyzeLoudness(file));
-  // console.log('analyzeNotes', analyze.analyzeNotes(file));
+  console.log('analyzeNotes', analyze.analyzeNotes(file));
   // console.log('analyzeScale', analyze.analyzeScale(file));
   // console.log('analyzeSpeed', analyze.analyzeSpeed(file));
-  console.log('analyzeOnsets', analyze.analyzeOnsets(file));
+  // console.log('analyzeOnsets', analyze.analyzeOnsets(file));
 
   // const encodeWavToFlac = await encode.encodeWavToFlac('./test/scale.wav');
   // console.log('encodeWavToFlac', encodeWavToFlac);
