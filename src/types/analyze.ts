@@ -19,7 +19,23 @@ interface AnalyzeMelodia {
   pitchConfidence: number;
 }
 
+interface AnalyzeNote {
+  start: number;
+  duration: number;
+  loudness: number;
+  midi: number;
+  octave: number;
+  name: string;
+}
+
+interface AnalyzePitch {
+  frequency: number;
+  midi: number;
+  name: string;
+  octave: number;
+}
+
 // tslint:disable-next-line
 interface AnalyzeVector {}
 
-export { AnalyzeBuffer, AnalyzeContour, AnalyzeFile, AnalyzeMelodia, AnalyzeVector };
+export { AnalyzeBuffer, AnalyzeContour, AnalyzeFile, AnalyzeMelodia, AnalyzeNote, AnalyzePitch, AnalyzeVector };
