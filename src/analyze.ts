@@ -104,7 +104,19 @@ function analyzeNotes(file: AnalyzeFile, includeData = false): AnalyzeNote[] {
       name: notePitch.name,
       octave: notePitch.octave,
     };
-    if (includeData) note.data = noteArray;
+    if (includeData) {
+      // Stereo
+      if (file.buffer.channelData.length > 1) {
+        note.channelData = [
+          file.buffer.channelData[0].slice(startIndex, endIndex),
+          file.buffer.channelData[1].slice(startIndex, endIndex),
+        ];
+      } else {
+        // Mono
+        note.channelData = [noteArray];
+      }
+      note.sampleRate = file.buffer.sampleRate;
+    }
     notes.push(note);
   });
   return notes;

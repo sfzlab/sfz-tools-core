@@ -20,7 +20,8 @@ interface AnalyzeMelodia {
 }
 
 interface AnalyzeNote {
-  data?: Float32Array;
+  channelData?: ArrayBuffer[];
+  sampleRate?: number;
   start: number;
   duration: number;
   loudness: number;
