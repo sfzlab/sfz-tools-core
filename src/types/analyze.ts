@@ -20,6 +20,7 @@ interface AnalyzeMelodia {
 }
 
 interface AnalyzeNote {
+  data?: Float32Array;
   start: number;
   duration: number;
   loudness: number;

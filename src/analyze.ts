@@ -79,7 +79,7 @@ function analyzeLoudness(vector: AnalyzeVector): number {
 }
 
 // Prototype using custom onsets algorithm and slower PitchYin algorithm
-function analyzeNotes(file: AnalyzeFile): AnalyzeNote[] {
+function analyzeNotes(file: AnalyzeFile, includeData = false): AnalyzeNote[] {
   /**
    * This algorithm identifies individual notes within a file, and detects their specific audio features.
    * @param file - An object containing the wav file buffer and vector data from analyzeLoad().
@@ -96,14 +96,16 @@ function analyzeNotes(file: AnalyzeFile): AnalyzeNote[] {
     const noteArray: Float32Array = file.buffer.channelData[0].slice(startIndex, endIndex);
     const noteVector: AnalyzeVector = essentia.arrayToVector(noteArray);
     const notePitch: AnalyzePitch = analyzePitch(noteVector);
-    notes.push({
+    const note: AnalyzeNote = {
       start: onset,
       duration: noteDuration,
       loudness: analyzeLoudness(noteVector),
       midi: notePitch.midi,
       name: notePitch.name,
       octave: notePitch.octave,
-    });
+    };
+    if (includeData) note.data = noteArray;
+    notes.push(note);
   });
   return notes;
 }
