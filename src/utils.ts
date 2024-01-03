@@ -84,6 +84,19 @@ function pathJoin(...segments: any) {
   return resultParts.join('/');
 }
 
+function pathReplaceVariables(str: string, items: any) {
+  if (Array.isArray(items)) {
+    items.forEach((item: string, itemIndex: number) => {
+      str = str.replace(`$item[${itemIndex}]`, item);
+    });
+  } else {
+    Object.keys(items).forEach((key: string) => {
+      str = str.replace(`$${key}`, items[key]);
+    });
+  }
+  return str;
+}
+
 function pitchToMidi(pitch: number) {
   // A4 = 440 Hz, 69 MIDI note
   const A4_HZ = 440;
@@ -109,5 +122,6 @@ export {
   pathGetExt,
   pathGetFilename,
   pathJoin,
+  pathReplaceVariables,
   pitchToMidi,
 };

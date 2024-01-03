@@ -1,7 +1,8 @@
 import { js2xml, xml2js } from 'xml-js';
 import { parseSfz } from './parse';
 import { ParseDefinition, ParseHeader, ParseOpcode } from './types/parse';
-import { LINE_END, normalizeXml } from './utils';
+import { LINE_END, normalizeXml, pathGetDirectory, pathGetExt } from './utils';
+import { ConvertOptions } from './types/convert';
 
 const declaration: any = {
   attributes: {
@@ -33,6 +34,23 @@ function convertJsToXml(jsObj: ParseDefinition) {
   return normalizeXml(xml);
 }
 
+async function convertOptions(filepath: string, file: any, options: ConvertOptions, sep?: string) {
+  const fileDir: string = pathGetDirectory(filepath, sep);
+  const fileExt: string = pathGetExt(filepath);
+  if (fileExt === 'json') {
+    if (options.sfz) return convertJsToSfz(file);
+    if (options.xml) return convertJsToXml(file);
+  } else if (fileExt === 'sfz') {
+    if (options.json) return await convertSfzToJs(file, fileDir);
+    if (options.xml) return await convertSfzToXml(file, fileDir);
+  } else if (fileExt === 'xml') {
+    if (options.json) return convertXmlToJs(file);
+    if (options.sfz) return convertXmlToSfz(file);
+  } else {
+    console.log(`Unsupported file extension ${fileExt}`);
+  }
+}
+
 async function convertSfzToJs(sfzFile: string, prefix = '') {
   const elements: any = await parseSfz(sfzFile, prefix);
   return {
@@ -62,4 +80,12 @@ function convertXmlToSfz(xmlFile: string) {
   return convertJsToSfz(jsObj);
 }
 
-export { convertJsToSfz, convertJsToXml, convertSfzToJs, convertSfzToXml, convertXmlToJs, convertXmlToSfz };
+export {
+  convertJsToSfz,
+  convertJsToXml,
+  convertSfzToJs,
+  convertSfzToXml,
+  convertOptions,
+  convertXmlToJs,
+  convertXmlToSfz,
+};

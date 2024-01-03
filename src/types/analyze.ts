@@ -30,6 +30,19 @@ interface AnalyzeNote {
   name: string;
 }
 
+interface AnalyzeOptions {
+  danceability?: boolean;
+  duration?: boolean;
+  energy?: boolean;
+  key?: boolean;
+  loudness?: boolean;
+  notes?: boolean;
+  onsets?: boolean;
+  pitch?: boolean;
+  scale?: boolean;
+  speed?: boolean;
+}
+
 interface AnalyzePitch {
   frequency: number;
   midi: number;
@@ -40,4 +53,13 @@ interface AnalyzePitch {
 // tslint:disable-next-line
 interface AnalyzeVector {}
 
-export { AnalyzeBuffer, AnalyzeContour, AnalyzeFile, AnalyzeMelodia, AnalyzeNote, AnalyzePitch, AnalyzeVector };
+export {
+  AnalyzeBuffer,
+  AnalyzeContour,
+  AnalyzeFile,
+  AnalyzeMelodia,
+  AnalyzeNote,
+  AnalyzeOptions,
+  AnalyzePitch,
+  AnalyzeVector,
+};

@@ -2,20 +2,12 @@
 import { Essentia, EssentiaWASM } from 'essentia.js';
 import * as wav from 'node-wav';
 import { readFileSync } from 'fs';
-import {
-  AnalyzeBuffer,
-  AnalyzeContour,
-  AnalyzeFile,
-  AnalyzeMelodia,
-  AnalyzeNote,
-  AnalyzePitch,
-  AnalyzeVector,
-} from './types/analyze';
+import { AnalyzeBuffer, AnalyzeFile, AnalyzeNote, AnalyzeOptions, AnalyzePitch, AnalyzeVector } from './types/analyze';
 // @ts-ignore
 import PolarFFTWASM from './lib/polarFFT.module.js';
 // @ts-ignore
 import OnsetsWASM from './lib/onsets.module.js';
-import { pitchToMidi } from './utils';
+import { pathGetExt, pitchToMidi } from './utils';
 
 const essentia: Essentia = new Essentia(EssentiaWASM);
 
@@ -171,6 +163,27 @@ function analyzeOnsets(file: AnalyzeFile) {
   }
 }
 
+function analyzeOptions(filepath: string, options: AnalyzeOptions) {
+  const fileExt: string = pathGetExt(filepath);
+  if (fileExt !== 'wav') {
+    console.log(`Unsupported file extension ${fileExt}`);
+    return;
+  }
+  const file: AnalyzeFile = analyzeLoad(filepath);
+  const features: any = {};
+  if (options.danceability) features.danceability = analyzeDanceability(file.vector);
+  if (options.duration) features.duration = analyzeDuration(file.vector);
+  if (options.energy) features.energy = analyzeEnergy(file.vector);
+  if (options.key) features.key = analyzeKey(file.vector);
+  if (options.loudness) features.loudness = analyzeLoudness(file.vector);
+  if (options.notes) features.notes = analyzeNotes(file);
+  if (options.onsets) features.onsets = analyzeOnsets(file);
+  if (options.pitch) features.pitch = analyzePitch(file.vector);
+  if (options.scale) features.scale = analyzeScale(file.vector);
+  if (options.speed) features.speed = analyzeSpeed(file.vector);
+  return features;
+}
+
 function analyzePitch(vector: AnalyzeVector): AnalyzePitch {
   /**
    * This algorithm computes the dynamic complexity defined as the average absolute deviation from the global loudness level estimate on the dB scale. It is related to the dynamic range and to the amount of fluctuation in loudness present in a recording. Silence at the beginning and at the end of a track are ignored in the computation in order not to deteriorate the results. Check https://essentia.upf.edu/reference/std_DynamicComplexity.html for more details.
@@ -215,6 +228,7 @@ export {
   analyzeLoudness,
   analyzeNotes,
   analyzeOnsets,
+  analyzeOptions,
   analyzePitch,
   analyzeScale,
   analyzeSpeed,
