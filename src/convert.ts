@@ -18,23 +18,7 @@ const OPTIONS_XML: any = {
   spaces: '\t',
 };
 
-function convertJsToSfz(jsObj: ParseDefinition) {
-  let sfzText: string = '';
-  jsObj.elements.forEach((header: ParseHeader) => {
-    sfzText += `<${header.name}>${LINE_END}`;
-    header.elements.forEach((opcode: ParseOpcode) => {
-      sfzText += `${opcode.attributes.name}=${opcode.attributes.value}${LINE_END}`;
-    });
-  });
-  return sfzText;
-}
-
-function convertJsToXml(jsObj: ParseDefinition) {
-  const xml: string = js2xml(jsObj, OPTIONS_XML);
-  return normalizeXml(xml);
-}
-
-async function convertOptions(filepath: string, file: any, options: ConvertOptions, sep?: string) {
+async function convert(filepath: string, file: any, options: ConvertOptions, sep?: string) {
   const fileDir: string = pathGetDirectory(filepath, sep);
   const fileExt: string = pathGetExt(filepath);
   if (fileExt === 'json') {
@@ -49,6 +33,22 @@ async function convertOptions(filepath: string, file: any, options: ConvertOptio
   } else {
     console.log(`Unsupported file extension ${fileExt}`);
   }
+}
+
+function convertJsToSfz(jsObj: ParseDefinition) {
+  let sfzText: string = '';
+  jsObj.elements.forEach((header: ParseHeader) => {
+    sfzText += `<${header.name}>${LINE_END}`;
+    header.elements.forEach((opcode: ParseOpcode) => {
+      sfzText += `${opcode.attributes.name}=${opcode.attributes.value}${LINE_END}`;
+    });
+  });
+  return sfzText;
+}
+
+function convertJsToXml(jsObj: ParseDefinition) {
+  const xml: string = js2xml(jsObj, OPTIONS_XML);
+  return normalizeXml(xml);
 }
 
 async function convertSfzToJs(sfzFile: string, prefix = '') {
@@ -80,12 +80,4 @@ function convertXmlToSfz(xmlFile: string) {
   return convertJsToSfz(jsObj);
 }
 
-export {
-  convertJsToSfz,
-  convertJsToXml,
-  convertSfzToJs,
-  convertSfzToXml,
-  convertOptions,
-  convertXmlToJs,
-  convertXmlToSfz,
-};
+export { convert, convertJsToSfz, convertJsToXml, convertSfzToJs, convertSfzToXml, convertXmlToJs, convertXmlToSfz };
