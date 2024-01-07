@@ -6,6 +6,7 @@ import {
   parseOpcode,
   parseOpcodeObject,
   parseRegions,
+  parseSetLoader,
   parseSfz,
   parseVariables,
 } from '../src/parse';
@@ -29,6 +30,10 @@ function convertToXml(elements: any) {
   );
   return normalizeXml(xml);
 }
+
+beforeAll(() => {
+  parseSetLoader(fileReadString);
+});
 
 // Test specific syntax edge-cases
 const syntaxDir: string = path.join('test', 'syntax');

@@ -1,5 +1,5 @@
 import { js2xml, xml2js } from 'xml-js';
-import { parseSfz } from './parse';
+import { parseSetLoader, parseSfz } from './parse';
 import { ParseDefinition, ParseHeader, ParseOpcode } from './types/parse';
 import { LINE_END, normalizeXml, pathGetDirectory, pathGetExt } from './utils';
 import { ConvertOptions } from './types/convert';
@@ -51,7 +51,8 @@ function convertJsToXml(jsObj: ParseDefinition) {
   return normalizeXml(xml);
 }
 
-async function convertSfzToJs(sfzFile: string, prefix = '') {
+async function convertSfzToJs(sfzFile: string, prefix = '', localFileFunc?: any) {
+  if (localFileFunc) parseSetLoader(localFileFunc);
   const elements: any = await parseSfz(sfzFile, prefix);
   return {
     declaration,

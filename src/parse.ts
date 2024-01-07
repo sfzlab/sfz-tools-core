@@ -1,5 +1,4 @@
 import { apiText } from './api';
-import { fileReadString } from './file';
 import {
   ParseAttribute,
   ParseHeader,
@@ -14,6 +13,7 @@ const DEBUG: boolean = false;
 const skipCharacters: string[] = [' ', '\t', '\r', '\n'];
 const endCharacters: string[] = ['>', '\r', '\n'];
 const variables: any = {};
+let fileReadString: any;
 
 function parseDirective(input: string) {
   return input.match(/(?<=")[^#"]+(?=")|[^# \r\n"]+/g) || [];
@@ -95,6 +95,10 @@ function parseRegions(headers: ParseHeader[]) {
   return regions;
 }
 
+function parseSetLoader(func: any) {
+  fileReadString = func;
+}
+
 async function parseSfz(contents: string, prefix = '') {
   let elements: any[] = [];
   let element: any = {};
@@ -169,6 +173,7 @@ export {
   parseOpcode,
   parseOpcodeObject,
   parseRegions,
+  parseSetLoader,
   parseSfz,
   parseVariables,
 };

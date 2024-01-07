@@ -24,7 +24,7 @@ test('Convert Js to Xml', async () => {
 });
 
 test('Convert Sfz to Js', async () => {
-  expect(await convertSfzToJs(sfzText, syntaxDir)).toEqual(sfzJs);
+  expect(await convertSfzToJs(sfzText, syntaxDir, fileReadString)).toEqual(sfzJs);
 });
 
 test('Convert Sfz to Xml', async () => {
