@@ -1,5 +1,6 @@
 import { js2xml, xml2js } from 'xml-js';
 import { parseSetLoader, parseSfz } from './parse';
+import { load, dump } from 'js-yaml';
 import { ParseDefinition, ParseHeader, ParseOpcode } from './types/parse';
 import { LINE_END, normalizeXml, pathGetDirectory, pathGetExt } from './utils';
 import { ConvertOptions } from './types/convert';
@@ -46,6 +47,10 @@ function convertJsToSfz(jsObj: ParseDefinition) {
   return sfzText;
 }
 
+function convertJsToYaml(jsObj: ParseDefinition) {
+  return dump(jsObj);
+}
+
 function convertJsToXml(jsObj: ParseDefinition) {
   const xml: string = js2xml(jsObj, OPTIONS_XML);
   return normalizeXml(xml);
@@ -60,6 +65,11 @@ async function convertSfzToJs(sfzFile: string, prefix = '', localFileFunc?: any)
   };
 }
 
+async function convertSfzToYaml(sfzFile: string, prefix = '') {
+  const sfzJs: any = await convertSfzToJs(sfzFile, prefix);
+  return convertJsToYaml(sfzJs);
+}
+
 async function convertSfzToXml(sfzFile: string, prefix = '') {
   const elements: any = await parseSfz(sfzFile, prefix);
   const xml: string = js2xml(
@@ -72,6 +82,10 @@ async function convertSfzToXml(sfzFile: string, prefix = '') {
   return normalizeXml(xml);
 }
 
+function convertYamlToJs(yamlFile: string) {
+  return load(yamlFile);
+}
+
 function convertXmlToJs(xmlFile: string) {
   return xml2js(xmlFile, OPTIONS_JSON);
 }
@@ -81,4 +95,9 @@ function convertXmlToSfz(xmlFile: string) {
   return convertJsToSfz(jsObj);
 }
 
-export { convert, convertJsToSfz, convertJsToXml, convertSfzToJs, convertSfzToXml, convertXmlToJs, convertXmlToSfz };
+function convertXmlToYaml(xmlFile: string) {
+  const jsObj: ParseDefinition = xml2js(xmlFile, OPTIONS_JSON) as ParseDefinition;
+  return convertJsToYaml(jsObj);
+}
+
+export { convert, convertJsToSfz, convertJsToYaml, convertJsToXml, convertSfzToJs, convertSfzToYaml, convertSfzToXml, convertYamlToJs, convertXmlToJs, convertXmlToSfz, convertXmlToYaml };
