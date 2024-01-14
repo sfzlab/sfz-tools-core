@@ -15,6 +15,10 @@ const OPTIONS_JSON: any = {
   spaces: 2,
 };
 
+const OPTIONS_YAML: any = {
+  indent: 2,
+};
+
 const OPTIONS_XML: any = {
   spaces: '\t',
 };
@@ -36,68 +40,85 @@ async function convert(filepath: string, file: any, options: ConvertOptions, sep
   }
 }
 
-function convertJsToSfz(jsObj: ParseDefinition) {
-  let sfzText: string = '';
-  jsObj.elements.forEach((header: ParseHeader) => {
-    sfzText += `<${header.name}>${LINE_END}`;
+function convertJsToSfz(fileJs: ParseDefinition) {
+  let fileSfz: string = '';
+  fileJs.elements.forEach((header: ParseHeader) => {
+    fileSfz += `<${header.name}>${LINE_END}`;
     header.elements.forEach((opcode: ParseOpcode) => {
-      sfzText += `${opcode.attributes.name}=${opcode.attributes.value}${LINE_END}`;
+      fileSfz += `${opcode.attributes.name}=${opcode.attributes.value}${LINE_END}`;
     });
   });
-  return sfzText;
+  return fileSfz;
 }
 
-function convertJsToYaml(jsObj: ParseDefinition) {
-  return dump(jsObj);
+function convertJsToYaml(fileJs: ParseDefinition) {
+  return dump(fileJs, OPTIONS_YAML);
 }
 
-function convertJsToXml(jsObj: ParseDefinition) {
-  const xml: string = js2xml(jsObj, OPTIONS_XML);
-  return normalizeXml(xml);
+function convertJsToXml(fileJs: ParseDefinition) {
+  const fileXml: string = js2xml({ declaration, elements: fileJs.elements }, OPTIONS_XML);
+  return normalizeXml(fileXml);
 }
 
-async function convertSfzToJs(sfzFile: string, prefix = '', localFileFunc?: any) {
+async function convertSfzToJs(fileSfz: string, prefix = '', localFileFunc?: any) {
   if (localFileFunc) parseSetLoader(localFileFunc);
-  const elements: any = await parseSfz(sfzFile, prefix);
-  return {
-    declaration,
-    elements,
+  const fileJs: ParseDefinition = {
+    elements: await parseSfz(fileSfz, prefix),
   };
+  return fileJs;
 }
 
-async function convertSfzToYaml(sfzFile: string, prefix = '') {
-  const sfzJs: any = await convertSfzToJs(sfzFile, prefix);
-  return convertJsToYaml(sfzJs);
+async function convertSfzToYaml(fileSfz: string, prefix = '') {
+  const fileJs: ParseDefinition = await convertSfzToJs(fileSfz, prefix);
+  return convertJsToYaml(fileJs);
 }
 
-async function convertSfzToXml(sfzFile: string, prefix = '') {
-  const elements: any = await parseSfz(sfzFile, prefix);
-  const xml: string = js2xml(
-    {
-      declaration,
-      elements,
-    },
-    OPTIONS_XML
-  );
-  return normalizeXml(xml);
+async function convertSfzToXml(fileSfz: string, prefix = '') {
+  const fileJs: ParseDefinition = await convertSfzToJs(fileSfz, prefix);
+  return normalizeXml(js2xml({ declaration, elements: fileJs.elements }, OPTIONS_XML));
 }
 
-function convertYamlToJs(yamlFile: string) {
-  return load(yamlFile);
+function convertYamlToJs(fileYaml: string) {
+  return load(fileYaml) as ParseDefinition;
 }
 
-function convertXmlToJs(xmlFile: string) {
-  return xml2js(xmlFile, OPTIONS_JSON);
+function convertYamlToSfz(fileYaml: string) {
+  const fileJs: ParseDefinition = convertYamlToJs(fileYaml);
+  return convertJsToSfz(fileJs);
 }
 
-function convertXmlToSfz(xmlFile: string) {
-  const jsObj: ParseDefinition = xml2js(xmlFile, OPTIONS_JSON) as ParseDefinition;
-  return convertJsToSfz(jsObj);
+function convertYamlToXml(fileYaml: string) {
+  const fileJs: ParseDefinition = convertYamlToJs(fileYaml);
+  return convertJsToXml(fileJs);
 }
 
-function convertXmlToYaml(xmlFile: string) {
-  const jsObj: ParseDefinition = xml2js(xmlFile, OPTIONS_JSON) as ParseDefinition;
-  return convertJsToYaml(jsObj);
+function convertXmlToJs(fileXml: string) {
+  const fileJs: ParseDefinition = xml2js(fileXml, OPTIONS_JSON) as ParseDefinition;
+  return { elements: fileJs.elements };
 }
 
-export { convert, convertJsToSfz, convertJsToYaml, convertJsToXml, convertSfzToJs, convertSfzToYaml, convertSfzToXml, convertYamlToJs, convertXmlToJs, convertXmlToSfz, convertXmlToYaml };
+function convertXmlToSfz(fileXml: string) {
+  const fileJs: ParseDefinition = convertXmlToJs(fileXml);
+  return convertJsToSfz(fileJs);
+}
+
+function convertXmlToYaml(fileXml: string) {
+  const fileJs: ParseDefinition = convertXmlToJs(fileXml);
+  return convertJsToYaml(fileJs);
+}
+
+export {
+  convert,
+  convertJsToSfz,
+  convertJsToYaml,
+  convertJsToXml,
+  convertSfzToJs,
+  convertSfzToYaml,
+  convertSfzToXml,
+  convertYamlToJs,
+  convertYamlToSfz,
+  convertYamlToXml,
+  convertXmlToJs,
+  convertXmlToSfz,
+  convertXmlToYaml,
+};

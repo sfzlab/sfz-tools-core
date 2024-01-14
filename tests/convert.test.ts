@@ -10,52 +10,62 @@ import {
   convertXmlToSfz,
   convertXmlToYaml,
   convertYamlToJs,
+  convertYamlToSfz,
+  convertYamlToXml,
 } from '../src/convert';
 import { fileReadJson, fileReadString } from '../src/file';
 import { ParseDefinition } from '../src/types/parse';
 
 const syntaxDir: string = path.join('test', 'syntax');
-const sfzJs: ParseDefinition = fileReadJson(path.join(syntaxDir, 'basic.json'));
-const sfzText: string = fileReadString(path.join(syntaxDir, 'basic.sfz'));
-const sfzYaml: string = fileReadString(path.join(syntaxDir, 'basic.yaml'));
-const sfzXml: string = fileReadString(path.join(syntaxDir, 'basic.xml'));
+const fileJs: ParseDefinition = fileReadJson(path.join(syntaxDir, 'basic.json'));
+const fileSfz: string = fileReadString(path.join(syntaxDir, 'basic.sfz'));
+const fileYaml: string = fileReadString(path.join(syntaxDir, 'basic.yaml'));
+const fileXml: string = fileReadString(path.join(syntaxDir, 'basic.xml'));
 
 test('Convert Js to Sfz', async () => {
-  expect(await convertJsToSfz(sfzJs)).toEqual(sfzText);
+  expect(await convertJsToSfz(fileJs)).toEqual(fileSfz);
 });
 
 test('Convert Js to Yaml', async () => {
-  expect(await convertJsToYaml(sfzJs) + '\n').toEqual(sfzYaml);
+  expect((await convertJsToYaml(fileJs)) + '\n').toEqual(fileYaml);
 });
 
 test('Convert Js to Xml', async () => {
-  expect(await convertJsToXml(sfzJs)).toEqual(sfzXml);
+  expect(await convertJsToXml(fileJs)).toEqual(fileXml);
 });
 
 test('Convert Sfz to Js', async () => {
-  expect(await convertSfzToJs(sfzText, syntaxDir, fileReadString)).toEqual(sfzJs);
+  expect(await convertSfzToJs(fileSfz, syntaxDir, fileReadString)).toEqual(fileJs);
 });
 
 test('Convert Sfz to Yaml', async () => {
-  expect(await convertSfzToYaml(sfzText, syntaxDir) + '\n').toEqual(sfzYaml);
+  expect((await convertSfzToYaml(fileSfz, syntaxDir)) + '\n').toEqual(fileYaml);
 });
 
 test('Convert Sfz to Xml', async () => {
-  expect(await convertSfzToXml(sfzText, syntaxDir)).toEqual(sfzXml);
+  expect(await convertSfzToXml(fileSfz, syntaxDir)).toEqual(fileXml);
 });
 
 test('Convert Yaml to Js', async () => {
-  expect(await convertYamlToJs(sfzYaml)).toEqual(sfzJs);
+  expect(await convertYamlToJs(fileYaml)).toEqual(fileJs);
+});
+
+test('Convert Yaml to Sfz', async () => {
+  expect(await convertYamlToSfz(fileYaml)).toEqual(fileSfz);
+});
+
+test('Convert Yaml to Xml', async () => {
+  expect(await convertYamlToXml(fileYaml)).toEqual(fileXml);
 });
 
 test('Convert Xml to Js', async () => {
-  expect(await convertXmlToJs(sfzXml)).toEqual(sfzJs);
+  expect(await convertXmlToJs(fileXml)).toEqual(fileJs);
 });
 
 test('Convert Xml to Yaml', async () => {
-  expect(await convertXmlToYaml(sfzXml) + '\n').toEqual(sfzYaml);
+  expect((await convertXmlToYaml(fileXml)) + '\n').toEqual(fileYaml);
 });
 
 test('Convert Xml to Sfz', async () => {
-  expect(await convertXmlToSfz(sfzXml)).toEqual(sfzText);
+  expect(await convertXmlToSfz(fileXml)).toEqual(fileSfz);
 });
