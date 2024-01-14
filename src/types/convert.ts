@@ -1,6 +1,7 @@
 interface ConvertOptions {
-  json?: boolean;
+  js?: boolean;
   sfz?: boolean;
+  yaml?: boolean;
   xml?: boolean;
 }
 

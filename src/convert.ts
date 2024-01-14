@@ -2,7 +2,7 @@ import { js2xml, xml2js } from 'xml-js';
 import { parseSetLoader, parseSfz } from './parse';
 import { load, dump } from 'js-yaml';
 import { ParseDefinition, ParseHeader, ParseOpcode } from './types/parse';
-import { LINE_END, normalizeXml, pathGetDirectory, pathGetExt } from './utils';
+import { LINE_END, normalizeLineEnds, normalizeXml, pathGetDirectory, pathGetExt } from './utils';
 import { ConvertOptions } from './types/convert';
 
 const declaration: any = {
@@ -11,8 +11,8 @@ const declaration: any = {
   },
 };
 
-const OPTIONS_JSON: any = {
-  spaces: 2,
+const OPTIONS_JS: any = {
+  ignoreDeclaration: true,
 };
 
 const OPTIONS_YAML: any = {
@@ -28,13 +28,20 @@ async function convert(filepath: string, file: any, options: ConvertOptions, sep
   const fileExt: string = pathGetExt(filepath);
   if (fileExt === 'json') {
     if (options.sfz) return convertJsToSfz(file);
+    if (options.yaml) return convertJsToYaml(file);
     if (options.xml) return convertJsToXml(file);
   } else if (fileExt === 'sfz') {
-    if (options.json) return await convertSfzToJs(file, fileDir);
+    if (options.js) return await convertSfzToJs(file, fileDir);
+    if (options.yaml) return convertSfzToYaml(file, fileDir);
     if (options.xml) return await convertSfzToXml(file, fileDir);
+  } else if (fileExt === 'yaml') {
+    if (options.js) return convertYamlToJs(file);
+    if (options.sfz) return convertYamlToSfz(file);
+    if (options.xml) return convertYamlToXml(file);
   } else if (fileExt === 'xml') {
-    if (options.json) return convertXmlToJs(file);
+    if (options.js) return convertXmlToJs(file);
     if (options.sfz) return convertXmlToSfz(file);
+    if (options.yaml) return convertXmlToYaml(file);
   } else {
     console.log(`Unsupported file extension ${fileExt}`);
   }
@@ -52,7 +59,7 @@ function convertJsToSfz(fileJs: ParseDefinition) {
 }
 
 function convertJsToYaml(fileJs: ParseDefinition) {
-  return dump(fileJs, OPTIONS_YAML);
+  return normalizeLineEnds(dump(fileJs, OPTIONS_YAML));
 }
 
 function convertJsToXml(fileJs: ParseDefinition) {
@@ -93,8 +100,7 @@ function convertYamlToXml(fileYaml: string) {
 }
 
 function convertXmlToJs(fileXml: string) {
-  const fileJs: ParseDefinition = xml2js(fileXml, OPTIONS_JSON) as ParseDefinition;
-  return { elements: fileJs.elements };
+  return xml2js(fileXml, OPTIONS_JS) as ParseDefinition;
 }
 
 function convertXmlToSfz(fileXml: string) {
