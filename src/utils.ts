@@ -28,7 +28,7 @@ function logDisable(...args: any) {
 }
 
 function normalizeLineEnds(input: string) {
-  if (IS_WIN) return input.replace(/\n/g, LINE_END);
+  if (IS_WIN) return input.replace(/\r?\n/g, LINE_END);
   return input;
 }
 
