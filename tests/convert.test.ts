@@ -27,7 +27,7 @@ test('Convert Js to Sfz', async () => {
 });
 
 test('Convert Js to Yaml', async () => {
-  expect((await convertJsToYaml(fileJs)) + '\n').toEqual(fileYaml);
+  expect(await convertJsToYaml(fileJs)).toEqual(fileYaml);
 });
 
 test('Convert Js to Xml', async () => {
@@ -39,7 +39,7 @@ test('Convert Sfz to Js', async () => {
 });
 
 test('Convert Sfz to Yaml', async () => {
-  expect((await convertSfzToYaml(fileSfz, syntaxDir)) + '\n').toEqual(fileYaml);
+  expect(await convertSfzToYaml(fileSfz, syntaxDir)).toEqual(fileYaml);
 });
 
 test('Convert Sfz to Xml', async () => {
@@ -63,7 +63,7 @@ test('Convert Xml to Js', async () => {
 });
 
 test('Convert Xml to Yaml', async () => {
-  expect((await convertXmlToYaml(fileXml)) + '\n').toEqual(fileYaml);
+  expect(await convertXmlToYaml(fileXml)).toEqual(fileYaml);
 });
 
 test('Convert Xml to Sfz', async () => {

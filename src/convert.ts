@@ -59,7 +59,7 @@ function convertJsToSfz(fileJs: ParseDefinition) {
 }
 
 function convertJsToYaml(fileJs: ParseDefinition) {
-  return normalizeLineEnds(dump(fileJs, OPTIONS_YAML));
+  return normalizeLineEnds(dump(fileJs, OPTIONS_YAML)) + LINE_END;
 }
 
 function convertJsToXml(fileJs: ParseDefinition) {
