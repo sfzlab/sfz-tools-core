@@ -14,10 +14,10 @@ async function run() {
   utils.logEnable();
 
   // File for testing
-  // const sfzDir = './test/syntax/';
-  // const sfzJs = file.fileJson(`${sfzDir}basic.json`);
-  // const sfzText = file.fileText(`${sfzDir}basic.sfz`);
-  // const sfzXml = file.fileText(`${sfzDir}basic.xml`);
+  const sfzDir = './test/syntax/';
+  const sfzJs = file.fileReadJson(`${sfzDir}basic.json`);
+  const sfzText = file.fileReadString(`${sfzDir}basic.sfz`);
+  const sfzXml = file.fileReadString(`${sfzDir}basic.xml`);
 
   // const parseSfz = await parse.parseSfz(sfzText);
   // console.log('parseSfz', parseSfz);
@@ -25,8 +25,8 @@ async function run() {
   // const parseRegions = await parse.parseRegions(parseSfz);
   // console.log('parseRegions', parseRegions);
 
-  // const convertJsToSfz = await convert.convertJsToSfz(sfzJs);
-  // console.log('convertJsToSfz', convertJsToSfz);
+  const convertJsToSfz = await convert.convertJsToSfz(sfzJs);
+  console.log('convertJsToSfz', convertJsToSfz);
 
   // const convertJsToXml = await convert.convertJsToXml(sfzJs);
   // console.log('convertJsToXml', convertJsToXml);
@@ -43,13 +43,13 @@ async function run() {
   // const convertXmlToSfz = await convert.convertXmlToSfz(sfzXml);
   // console.log('convertXmlToSfz', convertXmlToSfz);
 
-  const file = analyze.analyzeLoad('./test/audio/velocity-saw.wav');
+  // const file = analyze.analyzeLoad('./test/audio/velocity-saw.wav');
   // console.log('analyzeDanceability', analyze.analyzeDanceability(file));
   // console.log('analyzeDuration', analyze.analyzeDuration(file));
   // console.log('analyzeEnergy', analyze.analyzeEnergy(file));
   // console.log('analyzeKey', analyze.analyzeKey(file));
   // console.log('analyzeLoudness', analyze.analyzeLoudness(file));
-  console.log('analyzeNotes', analyze.analyzeNotes(file));
+  // console.log('analyzeNotes', analyze.analyzeNotes(file));
   // console.log('analyzeScale', analyze.analyzeScale(file));
   // console.log('analyzeSpeed', analyze.analyzeSpeed(file));
   // console.log('analyzeOnsets', analyze.analyzeOnsets(file));
