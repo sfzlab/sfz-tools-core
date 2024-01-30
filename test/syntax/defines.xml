@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
-<control />
+<control>
+</control>
 <region>
 	<opcode name="key" value="36" />
 	<opcode name="sample" value="kick.wav" />

@@ -1,19 +1,13 @@
 import { apiText } from './api';
-import {
-  ParseAttribute,
-  ParseHeader,
-  ParseHeaderNames,
-  ParseOpcode,
-  ParseOpcodeObj,
-  ParseVariables,
-} from './types/parse';
+import { fileReadString } from './file';
+import { ParseAttribute, ParseDefinition, ParseHeader, ParseOpcodeObj, ParseVariables } from './types/parse';
 import { pathJoin } from './utils';
 
 const DEBUG: boolean = false;
 const skipCharacters: string[] = [' ', '\t', '\r', '\n'];
 const endCharacters: string[] = ['>', '\r', '\n'];
 const variables: any = {};
-let fileReadString: any;
+let fileReadStringMethod = fileReadString;
 
 function parseDirective(input: string) {
   return input.match(/(?<=")[^#"]+(?=")|[^# \r\n"]+/g) || [];
@@ -38,7 +32,7 @@ async function parseLoad(includePath: string, prefix: string) {
   const pathJoined: string = pathJoin(prefix, includePath);
   let file: string = '';
   if (pathJoined.startsWith('http')) file = await apiText(pathJoined);
-  else file = fileReadString(pathJoined);
+  else file = fileReadStringMethod(pathJoined);
   return await parseSfz(file, prefix);
 }
 
@@ -56,52 +50,26 @@ function parseOpcode(input: string) {
   return output;
 }
 
-function parseOpcodeObject(opcodes: ParseOpcode[]) {
+function parseOpcodeObject(input: string) {
+  const attributes: ParseAttribute[] = parseOpcode(input);
   const properties: ParseOpcodeObj = {};
-  opcodes.forEach((opcode: ParseOpcode) => {
-    if (!isNaN(opcode.attributes.value as any)) {
-      properties[opcode.attributes.name] = Number(opcode.attributes.value);
+  attributes.forEach((attribute: ParseAttribute) => {
+    if (!isNaN(attribute.value as any)) {
+      properties[attribute.name] = Number(attribute.value);
     } else {
-      properties[opcode.attributes.name] = opcode.attributes.value;
+      properties[attribute.name] = attribute.value;
     }
   });
   return properties;
 }
 
-function parseRegions(headers: ParseHeader[]) {
-  const regions: any = [];
-  let globalObj: ParseOpcodeObj = {};
-  let masterObj: ParseOpcodeObj = {};
-  let controlObj: ParseOpcodeObj = {};
-  let groupObj: ParseOpcodeObj = {};
-  headers.forEach((header: ParseHeader) => {
-    if (header.name === ParseHeaderNames.global) {
-      globalObj = parseOpcodeObject(header.elements);
-    }
-    if (header.name === ParseHeaderNames.master) {
-      masterObj = parseOpcodeObject(header.elements);
-    }
-    if (header.name === ParseHeaderNames.control) {
-      controlObj = parseOpcodeObject(header.elements);
-    }
-    if (header.name === ParseHeaderNames.group) {
-      groupObj = parseOpcodeObject(header.elements);
-    } else if (header.name === ParseHeaderNames.region) {
-      const regionObj: ParseOpcodeObj = parseOpcodeObject(header.elements);
-      const mergedObj: ParseOpcodeObj = Object.assign({}, globalObj, masterObj, controlObj, groupObj, regionObj);
-      regions.push(mergedObj);
-    }
-  });
-  return regions;
-}
-
 function parseSetLoader(func: any) {
-  fileReadString = func;
+  fileReadStringMethod = func;
 }
 
 async function parseSfz(contents: string, prefix = '') {
-  let elements: any[] = [];
-  let element: any = {};
+  let definition: ParseDefinition = {};
+  let header: ParseHeader = { opcode: [] };
   for (let i: number = 0; i < contents.length; i++) {
     const char: string = contents.charAt(i);
     if (skipCharacters.includes(char)) continue; // skip character
@@ -115,10 +83,10 @@ async function parseSfz(contents: string, prefix = '') {
         let includePath: string = matches[1];
         if (includePath.includes('$')) includePath = parseVariables(includePath, variables);
         const includeVal: any = await parseLoad(includePath, prefix);
-        if (element.elements && includeVal.elements) {
-          element.elements = element.elements.concat(includeVal.elements);
+        if (header.opcode && includeVal.opcode) {
+          header.opcode = header.opcode.concat(includeVal.opcode);
         } else {
-          elements = elements.concat(includeVal);
+          definition = Object.assign(definition, includeVal);
         }
         if (DEBUG) console.log('include', includePath, JSON.stringify(includeVal));
       } else if (matches[0] === 'define') {
@@ -127,32 +95,25 @@ async function parseSfz(contents: string, prefix = '') {
       }
     } else if (char === '<') {
       const matches: string[] = parseHeader(line);
-      element = {
-        type: 'element',
-        name: matches[0],
-        elements: [],
-      };
-      elements.push(element);
-      if (DEBUG) console.log(`<${element.name}>`);
+      header = { opcode: [] };
+      if (!definition[matches[0]]) definition[matches[0]] = [];
+      definition[matches[0]].push(header);
+      if (DEBUG) console.log(`<${matches[0]}>`);
     } else {
       if (line.includes('$')) line = parseVariables(line, variables);
-      if (!element.elements) {
-        element.elements = [];
+      if (!header.opcode) {
+        header.opcode = [];
       }
       const attributes: ParseAttribute[] = parseOpcode(line);
       attributes.forEach((attribute: ParseAttribute) => {
-        element.elements.push({
-          type: 'element',
-          name: 'opcode',
-          attributes: attribute,
-        });
+        header.opcode.push({ _attributes: attribute });
       });
       if (DEBUG) console.log(line, attributes);
     }
     i = iEnd;
   }
-  if (elements.length > 0) return elements;
-  return element;
+  if (Object.keys(definition).length > 0) return definition;
+  return header;
 }
 
 function parseVariables(input: string, vars: ParseVariables) {
@@ -172,7 +133,6 @@ export {
   parseLoad,
   parseOpcode,
   parseOpcodeObject,
-  parseRegions,
   parseSetLoader,
   parseSfz,
   parseVariables,

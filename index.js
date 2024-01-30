@@ -15,18 +15,18 @@ async function run() {
 
   // File for testing
   const sfzDir = './test/syntax/';
-  const sfzJs = file.fileReadJson(`${sfzDir}basic.json`);
-  const sfzText = file.fileReadString(`${sfzDir}basic.sfz`);
-  const sfzXml = file.fileReadString(`${sfzDir}basic.xml`);
+  const sfzJs = file.fileReadJson(`${sfzDir}modules/env.json`);
+  const sfzText = file.fileReadString(`${sfzDir}modules/env.sfz`);
+  const sfzXml = file.fileReadString(`${sfzDir}modules/env.xml`);
 
-  // const parseSfz = await parse.parseSfz(sfzText);
-  // console.log('parseSfz', parseSfz);
+  const parseSfz = await parse.parseSfz(sfzText, sfzDir);
+  console.log('parseSfz', JSON.stringify(parseSfz, null, 2));
   
   // const parseRegions = await parse.parseRegions(parseSfz);
   // console.log('parseRegions', parseRegions);
 
-  const convertJsToSfz = await convert.convertJsToSfz(sfzJs);
-  console.log('convertJsToSfz', convertJsToSfz);
+  // const convertJsToSfz = await convert.convertJsToSfz(sfzJs);
+  // console.log('convertJsToSfz', convertJsToSfz);
 
   // const convertJsToXml = await convert.convertJsToXml(sfzJs);
   // console.log('convertJsToXml', convertJsToXml);

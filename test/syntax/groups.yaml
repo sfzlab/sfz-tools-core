@@ -1,105 +1,60 @@
-elements:
-  - type: element
-    name: group
-    elements:
-      - type: element
-        name: opcode
-        attributes:
+group:
+  - opcode:
+      - _attributes:
           name: key
           value: '36'
-      - type: element
-        name: opcode
-        attributes:
+      - _attributes:
           name: volume
           value: '6'
-  - type: element
-    name: region
-    elements:
-      - type: element
-        name: opcode
-        attributes:
+region:
+  - opcode:
+      - _attributes:
           name: lovel
           value: '1'
-      - type: element
-        name: opcode
-        attributes:
+      - _attributes:
           name: hivel
           value: '26'
-      - type: element
-        name: opcode
-        attributes:
+      - _attributes:
           name: sample
           value: 36-CajonCenter-1.wav
-  - type: element
-    name: region
-    elements:
-      - type: element
-        name: opcode
-        attributes:
+  - opcode:
+      - _attributes:
           name: lovel
           value: '27'
-      - type: element
-        name: opcode
-        attributes:
+      - _attributes:
           name: hivel
           value: '52'
-      - type: element
-        name: opcode
-        attributes:
+      - _attributes:
           name: sample
           value: 36-CajonCenter-2.wav
-  - type: element
-    name: region
-    elements:
-      - type: element
-        name: opcode
-        attributes:
+  - opcode:
+      - _attributes:
           name: lovel
           value: '53'
-      - type: element
-        name: opcode
-        attributes:
+      - _attributes:
           name: hivel
           value: '77'
-      - type: element
-        name: opcode
-        attributes:
+      - _attributes:
           name: sample
           value: 36-CajonCenter-3.wav
-  - type: element
-    name: region
-    elements:
-      - type: element
-        name: opcode
-        attributes:
+  - opcode:
+      - _attributes:
           name: lovel
           value: '78'
-      - type: element
-        name: opcode
-        attributes:
+      - _attributes:
           name: hivel
           value: '102'
-      - type: element
-        name: opcode
-        attributes:
+      - _attributes:
           name: sample
           value: 36-CajonCenter-4.wav
-  - type: element
-    name: region
-    elements:
-      - type: element
-        name: opcode
-        attributes:
+  - opcode:
+      - _attributes:
           name: lovel
           value: '103'
-      - type: element
-        name: opcode
-        attributes:
+      - _attributes:
           name: hivel
           value: '127'
-      - type: element
-        name: opcode
-        attributes:
+      - _attributes:
           name: sample
           value: 36-CajonCenter-5.wav
 

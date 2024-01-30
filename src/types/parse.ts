@@ -4,36 +4,15 @@ interface ParseAttribute {
 }
 
 interface ParseDefinition {
-  declaration?: {
-    attributes: {
-      version: string;
-    };
-  };
-  elements: ParseHeader[];
+  [header: string]: ParseHeader[];
 }
 
 interface ParseHeader {
-  elements: ParseOpcode[];
-  name: ParseHeaderNames;
-  type: 'element';
-}
-
-enum ParseHeaderNames {
-  region = 'region',
-  group = 'group',
-  control = 'control',
-  global = 'global',
-  curve = 'curve',
-  effect = 'effect',
-  master = 'master',
-  midi = 'midi',
-  sample = 'sample',
+  opcode: ParseOpcode[];
 }
 
 interface ParseOpcode {
-  attributes: ParseAttribute;
-  name: 'opcode';
-  type: 'element';
+  _attributes: ParseAttribute;
 }
 
 interface ParseOpcodeObj {
@@ -44,4 +23,4 @@ interface ParseVariables {
   [name: string]: string;
 }
 
-export { ParseAttribute, ParseDefinition, ParseHeader, ParseHeaderNames, ParseOpcode, ParseOpcodeObj, ParseVariables };
+export { ParseAttribute, ParseDefinition, ParseHeader, ParseOpcode, ParseOpcodeObj, ParseVariables };
