@@ -2,6 +2,10 @@ const IS_WIN: boolean = typeof process !== 'undefined' && process.platform === '
 const LINE_END: string = IS_WIN ? '\r\n' : '\n';
 let LOGGING_ENABLED: boolean = false;
 
+function encodeHashes(item: string) {
+  return item.replace(/#/g, encodeURIComponent('#'));
+}
+
 function findCaseInsentive(items: string[], match: string) {
   return items.findIndex((item) => {
     return item.toLowerCase() === match.toLowerCase();
@@ -145,6 +149,7 @@ function pitchToMidi(pitch: number) {
 export {
   IS_WIN,
   LINE_END,
+  encodeHashes,
   findCaseInsentive,
   findNumber,
   log,

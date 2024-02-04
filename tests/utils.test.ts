@@ -1,10 +1,19 @@
 import path from 'path';
-import { pathGetDirectory, pathGetExt, pathGetFilename, pathJoin } from '../src/utils';
+import { midiNameToNum, pathGetDirectory, pathGetExt, pathGetFilename, pathJoin } from '../src/utils';
 
 const FILE_EXT: string = 'txt';
 const FILE_NAME: string = 'filename';
 const FILE_NAME_EXT: string = `${FILE_NAME}.${FILE_EXT}`;
 const FILE_PATH = path.join('foldera', 'folderb', FILE_NAME_EXT);
+
+test('midiNameToNum', async () => {
+  expect(midiNameToNum('c1')).toEqual(24);
+  expect(midiNameToNum('C#1')).toEqual(25);
+  expect(midiNameToNum('Db1')).toEqual(25);
+  expect(midiNameToNum('c4')).toEqual(60);
+  expect(midiNameToNum('C#5')).toEqual(73);
+  expect(midiNameToNum('Db5')).toEqual(73);
+});
 
 test('Path get directory', () => {
   expect(pathGetDirectory(FILE_PATH, path.sep)).toEqual(path.join('foldera', 'folderb'));
