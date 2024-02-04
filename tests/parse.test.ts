@@ -61,6 +61,14 @@ test('parseSfz 01-green_keyswitch.sfz', async () => {
   expect(convertToXml(await parseSfz(sfzText, sfzPath))).toEqual(normalizeLineEnds(sfzXml));
 });
 
+// Test second hand-coded instrument
+test('parseSfz Hang-D-minor-20220330.sfz', async () => {
+  const sfzPath: string = 'https://raw.githubusercontent.com/kmturley/hang-D-minor/main/';
+  const sfzText: string = await apiText(`${sfzPath}Hang-D-minor-20220330.sfz`);
+  const sfzXml: string = await apiText(`${sfzPath}Hang-D-minor-20220330.xml`);
+  expect(convertToXml(await parseSfz(sfzText, sfzPath))).toEqual(normalizeLineEnds(sfzXml));
+});
+
 test('parseDirective', () => {
   expect(parseDirective('#include "green/stac_tp.sfz"')).toEqual(['include', 'green/stac_tp.sfz']);
   expect(parseDirective('#include "Individual Patchs/In.sfz"')).toEqual(['include', 'Individual Patchs/In.sfz']);
