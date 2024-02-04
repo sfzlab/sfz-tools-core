@@ -1,6 +1,11 @@
 import fetch from 'node-fetch';
 import { log } from './utils';
 
+async function apiArrayBuffer(url: string): Promise<ArrayBuffer> {
+  log('⤓', url);
+  return fetch(url).then((res: any) => res.arrayBuffer());
+}
+
 async function apiBuffer(url: string): Promise<Buffer> {
   log('⤓', url);
   return fetch(url).then((res: any) => res.buffer());
@@ -16,4 +21,4 @@ async function apiText(url: string): Promise<string> {
   return fetch(url).then((res: any) => res.text());
 }
 
-export { apiBuffer, apiJson, apiText };
+export { apiArrayBuffer, apiBuffer, apiJson, apiText };
