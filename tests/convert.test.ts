@@ -3,6 +3,7 @@ import {
   convertJsToSfz,
   convertJsToXml,
   convertJsToYaml,
+  convertSetLoader,
   convertSfzToJs,
   convertSfzToXml,
   convertSfzToYaml,
@@ -22,6 +23,10 @@ const fileSfz: string = fileReadString(path.join(syntaxDir, 'basic.sfz'));
 const fileYaml: string = fileReadString(path.join(syntaxDir, 'basic.yaml'));
 const fileXml: string = fileReadString(path.join(syntaxDir, 'basic.xml'));
 
+beforeAll(() => {
+  convertSetLoader(fileReadString);
+});
+
 test('Convert Js to Sfz', async () => {
   expect(await convertJsToSfz(fileJs)).toEqual(fileSfz);
 });
@@ -35,7 +40,7 @@ test('Convert Js to Xml', async () => {
 });
 
 test('Convert Sfz to Js', async () => {
-  expect(await convertSfzToJs(fileSfz, syntaxDir, fileReadString)).toEqual(fileJs);
+  expect(await convertSfzToJs(fileSfz, syntaxDir)).toEqual(fileJs);
 });
 
 test('Convert Sfz to Yaml', async () => {

@@ -38,7 +38,8 @@ async function parseLoad(includePath: string, prefix: string) {
   const pathJoined: string = pathJoin(prefix, includePath);
   let file: string = '';
   if (pathJoined.startsWith('http')) file = await apiText(pathJoined);
-  else file = fileReadString(pathJoined);
+  else if (fileReadString) file = fileReadString(pathJoined);
+  else file = await apiText(pathJoined);
   return await parseSfz(file, prefix);
 }
 

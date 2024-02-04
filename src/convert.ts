@@ -67,8 +67,11 @@ function convertJsToXml(fileJs: ParseDefinition) {
   return normalizeXml(fileXml);
 }
 
-async function convertSfzToJs(fileSfz: string, prefix = '', localFileFunc?: any) {
-  if (localFileFunc) parseSetLoader(localFileFunc);
+function convertSetLoader(func: any) {
+  parseSetLoader(func);
+}
+
+async function convertSfzToJs(fileSfz: string, prefix = '') {
   const fileJs: ParseDefinition = {
     elements: await parseSfz(fileSfz, prefix),
   };
@@ -118,6 +121,7 @@ export {
   convertJsToSfz,
   convertJsToYaml,
   convertJsToXml,
+  convertSetLoader,
   convertSfzToJs,
   convertSfzToYaml,
   convertSfzToXml,
