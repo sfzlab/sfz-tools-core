@@ -34,6 +34,35 @@ function parseHeader(input: string) {
   return input.match(/[^< >]+/g) || [];
 }
 
+function parseHeaders(headers: ParseHeader[], prefix?: string) {
+  const regions: ParseOpcodeObj[] = [];
+  let defaultPath: string = '';
+  let globalObj: ParseOpcodeObj = {};
+  let masterObj: ParseOpcodeObj = {};
+  let controlObj: ParseOpcodeObj = {};
+  let groupObj: ParseOpcodeObj = {};
+  headers.forEach((header: ParseHeader) => {
+    if (header.name === ParseHeaderNames.global) {
+      globalObj = parseOpcodeObject(header.elements);
+    } else if (header.name === ParseHeaderNames.master) {
+      masterObj = parseOpcodeObject(header.elements);
+    } else if (header.name === ParseHeaderNames.control) {
+      controlObj = parseOpcodeObject(header.elements);
+      if (controlObj.default_path) defaultPath = controlObj.default_path;
+    } else if (header.name === ParseHeaderNames.group) {
+      groupObj = parseOpcodeObject(header.elements);
+    } else if (header.name === ParseHeaderNames.region) {
+      const regionObj: ParseOpcodeObj = parseOpcodeObject(header.elements);
+      const mergedObj: ParseOpcodeObj = Object.assign({}, globalObj, masterObj, controlObj, groupObj, regionObj);
+      if (prefix && mergedObj.sample && !mergedObj.sample.startsWith('http') && !mergedObj.sample.startsWith(prefix)) {
+        mergedObj.sample = pathJoin(prefix, defaultPath, mergedObj.sample);
+      }
+      regions.push(mergedObj);
+    }
+  });
+  return regions;
+}
+
 async function parseLoad(includePath: string, prefix: string) {
   const pathJoined: string = pathJoin(prefix, includePath);
   let file: string = '';
@@ -67,33 +96,6 @@ function parseOpcodeObject(opcodes: ParseOpcode[]) {
     }
   });
   return properties;
-}
-
-function parseRegions(headers: ParseHeader[]) {
-  const regions: any = [];
-  let globalObj: ParseOpcodeObj = {};
-  let masterObj: ParseOpcodeObj = {};
-  let controlObj: ParseOpcodeObj = {};
-  let groupObj: ParseOpcodeObj = {};
-  headers.forEach((header: ParseHeader) => {
-    if (header.name === ParseHeaderNames.global) {
-      globalObj = parseOpcodeObject(header.elements);
-    }
-    if (header.name === ParseHeaderNames.master) {
-      masterObj = parseOpcodeObject(header.elements);
-    }
-    if (header.name === ParseHeaderNames.control) {
-      controlObj = parseOpcodeObject(header.elements);
-    }
-    if (header.name === ParseHeaderNames.group) {
-      groupObj = parseOpcodeObject(header.elements);
-    } else if (header.name === ParseHeaderNames.region) {
-      const regionObj: ParseOpcodeObj = parseOpcodeObject(header.elements);
-      const mergedObj: ParseOpcodeObj = Object.assign({}, globalObj, masterObj, controlObj, groupObj, regionObj);
-      regions.push(mergedObj);
-    }
-  });
-  return regions;
 }
 
 function parseSetLoader(func: any) {
@@ -170,10 +172,10 @@ export {
   parseDirective,
   parseEnd,
   parseHeader,
+  parseHeaders,
   parseLoad,
   parseOpcode,
   parseOpcodeObject,
-  parseRegions,
   parseSetLoader,
   parseSfz,
   parseVariables,

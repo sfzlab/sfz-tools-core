@@ -38,6 +38,8 @@ test('pathJoin', async () => {
   expect(pathJoin('https://domain.com/apple', '../banana')).toEqual('https://domain.com/banana');
   expect(pathJoin('https://domain.com/apple/', '../banana')).toEqual('https://domain.com/banana');
 
+  expect(pathJoin('http://domain.com/apple', 'banana')).toEqual('http://domain.com/apple/banana');
+
   expect(pathJoin('Programs/', '', '..\\Samples\\Noise\\Slide_Noise\\Slide_Noise1.flac')).toEqual(
     'Samples/Noise/Slide_Noise/Slide_Noise1.flac'
   );

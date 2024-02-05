@@ -2,19 +2,20 @@ import {
   parseDirective,
   parseEnd,
   parseHeader,
+  parseHeaders,
   parseLoad,
   parseOpcode,
   parseOpcodeObject,
-  parseRegions,
   parseSetLoader,
   parseSfz,
   parseVariables,
 } from '../src/parse';
-import { apiText } from '../src/api';
+import { apiJson, apiText } from '../src/api';
 import { js2xml } from 'xml-js';
 import { dirRead, fileReadString } from '../src/file';
 import path from 'path';
 import { normalizeLineEnds, normalizeXml } from '../src/utils';
+import { ParseDefinition, ParseHeader, ParseHeaderNames } from '../src/types/parse';
 
 function convertToXml(elements: any) {
   const xml: string = js2xml(
@@ -85,6 +86,55 @@ test('parseHeader', () => {
   expect(parseHeader('region>')).toEqual(['region']);
 });
 
+test('parseHeaders', async () => {
+  const sfzPath: string = 'https://raw.githubusercontent.com/kmturley/hang-D-minor/main/';
+  const sfzJson: ParseDefinition = await apiJson(`${sfzPath}Hang-D-minor-20220330.json`);
+  const sfzHeaders: ParseHeader[] = [
+    // {
+    //   "type": "element",
+    //   "name": ParseHeaderNames.control,
+    //   "elements": [
+    //     {
+    //       "type": "element",
+    //       "name": "opcode",
+    //       "attributes": {
+    //         "name": "default_path",
+    //         "value": "samples/"
+    //       }
+    //     }
+    //   ]
+    // },
+    {
+      type: 'element',
+      name: ParseHeaderNames.region,
+      elements: [
+        {
+          type: 'element',
+          name: 'opcode',
+          attributes: {
+            name: 'sample',
+            value: 'samples/A3_01.flac',
+          },
+        },
+      ],
+    },
+  ];
+  expect(parseHeaders(sfzJson.elements)[0]).toEqual({
+    ampeg_release: 8,
+    hirand: 0.2,
+    key: 57,
+    lorand: 0,
+    sample: 'samples/A3_01.flac',
+  });
+  expect(parseHeaders(sfzHeaders)[0]).toEqual({ sample: 'samples/A3_01.flac' });
+  expect(parseHeaders(sfzHeaders, 'https://www.test.com')[0]).toEqual({
+    sample: 'https://www.test.com/samples/A3_01.flac',
+  });
+  expect(parseHeaders(sfzHeaders, 'http://www.test.com')[0]).toEqual({
+    sample: 'http://www.test.com/samples/A3_01.flac',
+  });
+});
+
 test('parseOpcode', () => {
   expect(parseOpcode('seq_position=3')).toEqual([{ name: 'seq_position', value: '3' }]);
   expect(parseOpcode('seq_position=3 pitch_keycenter=50')).toEqual([
@@ -110,22 +160,20 @@ test('parseOpcode', () => {
   expect(parseOpcode('ampeg_decay_oncc70=-1.2')).toEqual([{ name: 'ampeg_decay_oncc70', value: '-1.2' }]);
 });
 
-// test('parseOpcodeObject', () => {
-//   expect(parseOpcodeObject('seq_position=3')).toEqual({ seq_position: 3 });
-//   expect(parseOpcodeObject('seq_position=3 pitch_keycenter=50')).toEqual({ seq_position: 3, pitch_keycenter: 50 });
-//   expect(parseOpcodeObject('region_label=01 sample=harmLA0.$EXT')).toEqual({
-//     region_label: 1,
-//     sample: 'harmLA0.$EXT',
-//   });
-//   expect(parseOpcodeObject('label_cc27="Release vol"')).toEqual({ label_cc27: 'Release vol' });
-//   expect(parseOpcodeObject('label_cc27=Release vol')).toEqual({ label_cc27: 'Release vol' });
-//   expect(parseOpcodeObject('apple=An Apple banana=\'A Banana\' carrot="A Carrot"')).toEqual({
-//     apple: 'An Apple',
-//     banana: 'A Banana',
-//     carrot: 'A Carrot',
-//   });
-//   expect(parseOpcodeObject('lokey=c5  hikey=c#5')).toEqual({ lokey: 'c5', hikey: 'c#5' });
-// });
+test('parseOpcodeObject', () => {
+  expect(
+    parseOpcodeObject([
+      {
+        type: 'element',
+        name: 'opcode',
+        attributes: {
+          name: 'ampeg_release',
+          value: '8',
+        },
+      },
+    ])
+  ).toEqual({ ampeg_release: 8 });
+});
 
 test('parseVariables', () => {
   expect(parseVariables('sample=harmLA0.$EXT', { $EXT: 'flac' })).toEqual('sample=harmLA0.flac');
