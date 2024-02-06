@@ -54,8 +54,12 @@ function parseHeaders(headers: ParseHeader[], prefix?: string) {
     } else if (header.name === ParseHeaderNames.region) {
       const regionObj: ParseOpcodeObj = parseOpcodeObject(header.elements);
       const mergedObj: ParseOpcodeObj = Object.assign({}, globalObj, masterObj, controlObj, groupObj, regionObj);
-      if (prefix && mergedObj.sample && !mergedObj.sample.startsWith('http') && !mergedObj.sample.startsWith(prefix)) {
-        mergedObj.sample = pathJoin(prefix, defaultPath, mergedObj.sample);
+      if (mergedObj.sample) {
+        if (prefix && !mergedObj.sample.startsWith(prefix)) {
+          mergedObj.sample = pathJoin(prefix, defaultPath, mergedObj.sample);
+        } else if (!mergedObj.sample.startsWith(defaultPath)) {
+          mergedObj.sample = pathJoin(defaultPath, mergedObj.sample);
+        }
       }
       regions.push(mergedObj);
     }

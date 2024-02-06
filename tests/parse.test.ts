@@ -89,21 +89,15 @@ test('parseHeader', () => {
 test('parseHeaders', async () => {
   const sfzPath: string = 'https://raw.githubusercontent.com/kmturley/hang-D-minor/main/';
   const sfzJson: ParseDefinition = await apiJson(`${sfzPath}Hang-D-minor-20220330.json`);
+  expect(parseHeaders(sfzJson.elements)[0]).toEqual({
+    ampeg_release: 8,
+    hirand: 0.2,
+    key: 57,
+    lorand: 0,
+    sample: 'samples/A3_01.flac',
+  });
+
   const sfzHeaders: ParseHeader[] = [
-    // {
-    //   "type": "element",
-    //   "name": ParseHeaderNames.control,
-    //   "elements": [
-    //     {
-    //       "type": "element",
-    //       "name": "opcode",
-    //       "attributes": {
-    //         "name": "default_path",
-    //         "value": "samples/"
-    //       }
-    //     }
-    //   ]
-    // },
     {
       type: 'element',
       name: ParseHeaderNames.region,
@@ -119,19 +113,55 @@ test('parseHeaders', async () => {
       ],
     },
   ];
-  expect(parseHeaders(sfzJson.elements)[0]).toEqual({
-    ampeg_release: 8,
-    hirand: 0.2,
-    key: 57,
-    lorand: 0,
-    sample: 'samples/A3_01.flac',
-  });
   expect(parseHeaders(sfzHeaders)[0]).toEqual({ sample: 'samples/A3_01.flac' });
+  expect(parseHeaders(sfzHeaders, 'http://www.test.com')[0]).toEqual({
+    sample: 'http://www.test.com/samples/A3_01.flac',
+  });
   expect(parseHeaders(sfzHeaders, 'https://www.test.com')[0]).toEqual({
     sample: 'https://www.test.com/samples/A3_01.flac',
   });
-  expect(parseHeaders(sfzHeaders, 'http://www.test.com')[0]).toEqual({
-    sample: 'http://www.test.com/samples/A3_01.flac',
+
+  const sfzHeadersDefault: ParseHeader[] = [
+    {
+      type: 'element',
+      name: ParseHeaderNames.control,
+      elements: [
+        {
+          type: 'element',
+          name: 'opcode',
+          attributes: {
+            name: 'default_path',
+            value: 'custom-folder/',
+          },
+        },
+      ],
+    },
+    {
+      type: 'element',
+      name: ParseHeaderNames.region,
+      elements: [
+        {
+          type: 'element',
+          name: 'opcode',
+          attributes: {
+            name: 'sample',
+            value: 'samples/A3_01.flac',
+          },
+        },
+      ],
+    },
+  ];
+  expect(parseHeaders(sfzHeadersDefault)[0]).toEqual({
+    default_path: 'custom-folder/',
+    sample: 'custom-folder/samples/A3_01.flac',
+  });
+  expect(parseHeaders(sfzHeadersDefault, 'http://www.test.com')[0]).toEqual({
+    default_path: 'custom-folder/',
+    sample: 'http://www.test.com/custom-folder/samples/A3_01.flac',
+  });
+  expect(parseHeaders(sfzHeadersDefault, 'https://www.test.com')[0]).toEqual({
+    default_path: 'custom-folder/',
+    sample: 'https://www.test.com/custom-folder/samples/A3_01.flac',
   });
 });
 
