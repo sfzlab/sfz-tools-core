@@ -13,7 +13,7 @@ const DEBUG: boolean = false;
 const skipCharacters: string[] = [' ', '\t', '\r', '\n'];
 const endCharacters: string[] = ['>', '\r', '\n'];
 const variables: any = {};
-let fileReadString: any;
+let fileReadString: any = apiText;
 
 function parseDirective(input: string) {
   return input.match(/(?<=")[^#"]+(?=")|[^# \r\n"]+/g) || [];
