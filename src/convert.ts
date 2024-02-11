@@ -53,7 +53,7 @@ function convertJsToSfz(fileJs: ParseDefinition) {
     const headers: ParseHeader[] = fileJs[headerName];
     fileSfz += `<${headerName}>${LINE_END}`;
     headers.forEach((header: ParseHeader) => {
-      header.opcode.forEach((opcode: ParseOpcode) => {
+      header.opcode?.forEach((opcode: ParseOpcode) => {
         fileSfz += `${opcode._attributes.name}=${opcode._attributes.value}${LINE_END}`;
       });
     });

@@ -69,7 +69,7 @@ function parseSetLoader(func: any) {
 
 async function parseSfz(contents: string, prefix = '') {
   let definition: ParseDefinition = {};
-  let header: ParseHeader = { opcode: [] };
+  let header: ParseHeader = {};
   for (let i: number = 0; i < contents.length; i++) {
     const char: string = contents.charAt(i);
     if (skipCharacters.includes(char)) continue; // skip character
@@ -91,21 +91,20 @@ async function parseSfz(contents: string, prefix = '') {
         if (DEBUG) console.log('include', includePath, JSON.stringify(includeVal));
       } else if (matches[0] === 'define') {
         variables[matches[1]] = matches[2];
+        if (!header.opcode) header.opcode = [];
         if (DEBUG) console.log('define', matches[1], variables[matches[1]]);
       }
     } else if (char === '<') {
       const matches: string[] = parseHeader(line);
-      header = { opcode: [] };
+      header = {};
       if (!definition[matches[0]]) definition[matches[0]] = [];
       definition[matches[0]].push(header);
       if (DEBUG) console.log(`<${matches[0]}>`);
     } else {
       if (line.includes('$')) line = parseVariables(line, variables);
-      if (!header.opcode) {
-        header.opcode = [];
-      }
       const attributes: ParseAttribute[] = parseOpcode(line);
       attributes.forEach((attribute: ParseAttribute) => {
+        if (!header.opcode) header.opcode = [];
         header.opcode.push({ _attributes: attribute });
       });
       if (DEBUG) console.log(line, attributes);

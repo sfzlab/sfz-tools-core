@@ -39,22 +39,22 @@ test.each(syntaxTests)('parseSfz %p', async (sfzFile: string) => {
   expect(convertToXml(await parseSfz(sfzText, syntaxDir))).toEqual(sfzXml);
 });
 
-// // Test entire sfz test suite
-// const sfzDir: string = path.join('sfz-tests');
-// const sfzTests: string[] = dirRead(path.join(sfzDir, '**', '*.sfz'));
-// test.each(sfzTests)('parseSfz %p', async (sfzFile: string) => {
-//   const sfzText: string = fileReadString(sfzFile);
-//   const sfzXml: string = fileReadString(sfzFile.replace('.sfz', '.xml'));
-//   expect(convertToXml(await parseSfz(sfzText, sfzDir))).toEqual(sfzXml);
-// });
+// Test entire sfz test suite
+const sfzDir: string = path.join('sfz-tests');
+const sfzTests: string[] = dirRead(path.join(sfzDir, '**', '*.sfz'));
+test.each(sfzTests)('parseSfz %p', async (sfzFile: string) => {
+  const sfzText: string = fileReadString(sfzFile);
+  const sfzXml: string = fileReadString(sfzFile.replace('.sfz', '.xml'));
+  expect(convertToXml(await parseSfz(sfzText, sfzDir))).toEqual(sfzXml);
+});
 
 // Test complex hand-coded instrument
-// test('parseSfz 01-green_keyswitch.sfz', async () => {
-//   const sfzPath: string = 'https://raw.githubusercontent.com/kmturley/karoryfer.black-and-green-guitars/main/Programs/';
-//   const sfzText: string = await apiText(`${sfzPath}01-green_keyswitch.sfz`);
-//   const sfzXml: string = await apiText(`${sfzPath}01-green_keyswitch.xml`);
-//   expect(convertToXml(await parseSfz(sfzText, sfzPath))).toEqual(normalizeLineEnds(sfzXml));
-// });
+test('parseSfz 01-green_keyswitch.sfz', async () => {
+  const sfzPath: string = 'https://raw.githubusercontent.com/kmturley/karoryfer.black-and-green-guitars/main/Programs/';
+  const sfzText: string = await apiText(`${sfzPath}01-green_keyswitch.sfz`);
+  const sfzXml: string = await apiText(`${sfzPath}01-green_keyswitch.xml`);
+  expect(convertToXml(await parseSfz(sfzText, sfzPath))).toEqual(normalizeLineEnds(sfzXml));
+});
 
 test('parseDirective', () => {
   expect(parseDirective('#include "green/stac_tp.sfz"')).toEqual(['include', 'green/stac_tp.sfz']);

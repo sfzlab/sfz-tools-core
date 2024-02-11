@@ -8,7 +8,7 @@ interface ParseDefinition {
 }
 
 interface ParseHeader {
-  opcode: ParseOpcode[];
+  opcode?: ParseOpcode[];
 }
 
 interface ParseOpcode {
