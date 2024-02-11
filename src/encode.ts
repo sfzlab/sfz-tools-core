@@ -51,7 +51,7 @@ function encodeWavToOgg(input: string, output?: string) {
 
 function encodeRun(command: string): string {
   try {
-    log('⎋', `${ffmpeg} "${command}"`);
+    log('⎋', `${ffmpeg} ${command}`);
     const sdout: Buffer = execSync(`${ffmpeg} ${command}`);
     return sdout.toString();
   } catch (error: any) {
