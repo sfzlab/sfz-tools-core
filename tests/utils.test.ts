@@ -44,4 +44,6 @@ test('pathJoin', async () => {
     'Samples/Noise/Slide_Noise/Slide_Noise1.flac'
   );
   expect(pathJoin('Programs/', '', '../Samples/Release4/e6_Rel4_4.flac')).toEqual('Samples/Release4/e6_Rel4_4.flac');
+
+  expect(pathJoin('Programs/mappings', 'mappings/kick_dampen.sfz')).toEqual('Programs/mappings/kick_dampen.sfz');
 });

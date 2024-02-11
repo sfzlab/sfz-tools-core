@@ -109,9 +109,8 @@ function pathJoin(...segments: any) {
   for (let part of parts) {
     if (part === 'https:' || part === 'http:') part += '/';
     if (part === '') continue;
-    if (part === '.') {
-      continue;
-    }
+    if (part === '.') continue;
+    if (part === resultParts[resultParts.length - 1]) continue;
     if (part === '..') {
       const partRemoved: string = resultParts.pop();
       if (partRemoved === '') resultParts.pop();
