@@ -7,31 +7,27 @@ import {
   ParseOpcodeObj,
   ParseVariables,
 } from './types/parse';
-import { pathJoin } from './utils';
+import { log, pathJoin } from './utils';
 
-const DEBUG: boolean = false;
 const skipCharacters: string[] = [' ', '\t', '\r', '\n'];
-const endCharacters: string[] = ['>', '\r', '\n'];
+const endCharacters: string[] = [' ', '\r', '\n'];
 const variables: any = {};
 let fileReadString: any = apiText;
 
 function parseDirective(input: string) {
-  return input.match(/(?<=")[^#"]+(?=")|[^# \r\n"]+/g) || [];
+  return input.match(/(?<=")[^#"]+(?=")|[^ \r\n"]+/g) || [];
 }
 
 function parseEnd(contents: string, startAt: number) {
-  const isComment: boolean = contents.charAt(startAt) === '/' && contents.charAt(startAt + 1) === '/';
   for (let index: number = startAt; index < contents.length; index++) {
     const char: string = contents.charAt(index);
-    if (isComment && char === '>') continue;
     if (endCharacters.includes(char)) return index;
-    if (index > startAt + 1 && char === '/' && contents.charAt(index + 1) === '/') return index;
   }
   return contents.length;
 }
 
 function parseHeader(input: string) {
-  return input.match(/[^< >]+/g) || [];
+  return input.replace(/<|>/g, '');
 }
 
 function parseHeaders(headers: ParseHeader[], prefix?: string) {
@@ -106,57 +102,65 @@ function parseSetLoader(func: any) {
   fileReadString = func;
 }
 
+function parseSanitize(contents: string) {
+  let santized = contents.replace(/(\r?\n|\r)+/g, ' ');
+  return santized.replace(/>(?! )/g, '> ');
+}
+
+function parseSegment(contents: string, start: number) {
+  for (let end: number = start; end < contents.length; end++) {
+    const char: string = contents.charAt(end);
+    if (endCharacters.includes(char)) return contents.slice(start, end);
+  }
+  return contents;
+}
+
 async function parseSfz(contents: string, prefix = '') {
-  let elements: any[] = [];
   let element: any = {};
-  for (let i: number = 0; i < contents.length; i++) {
-    const char: string = contents.charAt(i);
-    if (skipCharacters.includes(char)) continue; // skip character
-    const iEnd: number = parseEnd(contents, i);
-    let line: string = contents.slice(i, iEnd);
-    if (char === '/') {
-      // do nothing
-    } else if (char === '#') {
-      const matches: string[] = parseDirective(line);
-      if (matches[0] === 'include') {
-        let includePath: string = matches[1];
-        if (includePath.includes('$')) includePath = parseVariables(includePath, variables);
-        const includeVal: any = await parseLoad(includePath, prefix);
-        if (element.elements && includeVal.elements) {
-          element.elements = element.elements.concat(includeVal.elements);
-        } else {
-          elements = elements.concat(includeVal);
+  let elements: ParseHeader[] = [];
+  let santized = parseSanitize(contents);
+  log(santized);
+  let start: number = 0;
+  for (let end: number = 0; end < santized.length; end++) {
+    const charEnd: string = santized.charAt(end);
+    if (endCharacters.includes(charEnd)) {
+      const charStart: string = santized.charAt(start);
+      let segment: string = santized.slice(start, end);
+      if (segment.includes('$')) segment = parseVariables(segment, variables);
+      log(start, end, `"${segment}"`);
+      if (charStart === '/') {
+        log('comment', segment);
+      } else if (charStart === '#') {
+        const key: string = parseSegment(santized, end + 1);
+        const val: string = parseSegment(santized, end + key.length + 2);
+        if (segment === '#include') {
+          log('include', key, val);
+        } else if (segment === '#define') {
+          log('define', key, val);
+          variables[key] = val;
+          end += key.length + val.length + 2;
         }
-        if (DEBUG) console.log('include', includePath, JSON.stringify(includeVal));
-      } else if (matches[0] === 'define') {
-        variables[matches[1]] = matches[2];
-        if (DEBUG) console.log('define', matches[1], variables[matches[1]]);
-      }
-    } else if (char === '<') {
-      const matches: string[] = parseHeader(line);
-      element = {
-        type: 'element',
-        name: matches[0],
-        elements: [],
-      };
-      elements.push(element);
-      if (DEBUG) console.log(`<${element.name}>`);
-    } else {
-      if (line.includes('$')) line = parseVariables(line, variables);
-      if (!element.elements) {
-        element.elements = [];
-      }
-      const attributes: ParseAttribute[] = parseOpcode(line);
-      attributes.forEach((attribute: ParseAttribute) => {
-        element.elements.push({
+      } else if (charStart === '<') {
+        element = {
           type: 'element',
-          name: 'opcode',
-          attributes: attribute,
+          name: parseHeader(segment) as ParseHeaderNames,
+        };
+        elements.push(element);
+        log('header', element.name);
+      } else {
+        if (!element.elements) element.elements = [];
+        const attributes: ParseAttribute[] = parseOpcode(segment);
+        attributes.forEach((attribute: ParseAttribute) => {
+          element.elements.push({
+            type: 'element',
+            name: 'opcode',
+            attributes: attribute,
+          });
         });
-      });
-      if (DEBUG) console.log(line, attributes);
+        log('opcode', attributes);
+      }
+      start = end + 1;
     }
-    i = iEnd;
   }
   if (elements.length > 0) return elements;
   return element;

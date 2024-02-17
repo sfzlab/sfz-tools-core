@@ -13,34 +13,46 @@ async function run() {
   // Enable logging to see what is going on
   utils.logEnable();
 
-  // File for testing
-  const sfzDir = './test/syntax/';
-  const sfzJs = file.fileReadJson(`${sfzDir}basic.json`);
-  const sfzText = file.fileReadString(`${sfzDir}basic.sfz`);
-  const sfzXml = file.fileReadString(`${sfzDir}basic.xml`);
+  // load local files
+  parse.parseSetLoader(file.fileReadString);
+  convert.convertSetLoader(file.fileReadString);
 
-  // const parseSfz = await parse.parseSfz(sfzText);
+  // File for testing
+  // const sfzDir = './test/syntax/sal/';
+  // const sfzJs = file.fileReadJson(`${sfzDir}salamander-grand-piano.json`);
+  // const sfzText = file.fileReadString(`${sfzDir}salamander-grand-piano.sfz`);
+  // const sfzXml = file.fileReadString(`${sfzDir}salamander-grand-piano.xml`);
+  // const sfzYaml = file.fileReadString(`${sfzDir}salamander-grand-piano.yaml`);
+
+  const sfzDir = './test/syntax/';
+  const sfzJs = file.fileReadJson(`${sfzDir}defines.json`);
+  const sfzText = file.fileReadString(`${sfzDir}defines.sfz`);
+  const sfzXml = file.fileReadString(`${sfzDir}defines.xml`);
+  const sfzYaml = file.fileReadString(`${sfzDir}defines.yaml`);
+
+  // const parseSfz = await parse.parseSfz(sfzText, sfzDir);
   // console.log('parseSfz', parseSfz);
   
   // const parseRegions = await parse.parseRegions(parseSfz);
   // console.log('parseRegions', parseRegions);
 
-  const convertJsToSfz = await convert.convertJsToSfz(sfzJs);
-  console.log('convertJsToSfz', convertJsToSfz);
+  // const convertJsToSfz = await convert.convertJsToSfz(sfzJs, sfzDir);
+  // console.log('convertJsToSfz', convertJsToSfz);
 
-  // const convertJsToXml = await convert.convertJsToXml(sfzJs);
+  // const convertJsToXml = await convert.convertJsToXml(sfzJs, sfzDir);
   // console.log('convertJsToXml', convertJsToXml);
 
-  // const convertSfzToJs = await convert.convertSfzToJs(sfzText);
+  const convertSfzToJs = await convert.convertSfzToJs(sfzText, sfzDir);
   // console.log('convertSfzToJs', convertSfzToJs);
+  file.fileCreate('./output.json', JSON.stringify(convertSfzToJs, null, 2));
 
-  // const convertSfzToXml = await convert.convertSfzToXml(sfzText);
+  // const convertSfzToXml = await convert.convertSfzToXml(sfzText, sfzDir);
   // console.log('convertSfzToXml', convertSfzToXml);
 
-  // const convertXmlToJs = await convert.convertXmlToJs(sfzXml);
+  // const convertXmlToJs = await convert.convertXmlToJs(sfzXml, sfzDir);
   // console.log('convertXmlToJs', convertXmlToJs);
 
-  // const convertXmlToSfz = await convert.convertXmlToSfz(sfzXml);
+  // const convertXmlToSfz = await convert.convertXmlToSfz(sfzXml, sfzDir);
   // console.log('convertXmlToSfz', convertXmlToSfz);
 
   // const file = analyze.analyzeLoad('./test/audio/velocity-saw.wav');

@@ -14,7 +14,7 @@ import { apiJson, apiText } from '../src/api';
 import { js2xml } from 'xml-js';
 import { dirRead, fileReadString } from '../src/file';
 import path from 'path';
-import { normalizeLineEnds, normalizeXml } from '../src/utils';
+import { normalizeLineEnds, normalizeXml, pathGetDirectory } from '../src/utils';
 import { ParseDefinition, ParseHeader, ParseHeaderNames } from '../src/types/parse';
 
 function convertToXml(elements: any) {
@@ -38,17 +38,19 @@ beforeAll(() => {
 
 // Test specific syntax edge-cases
 const syntaxDir: string = path.join('test', 'syntax');
-const syntaxTests: string[] = dirRead(path.join(syntaxDir, '**', '*.sfz'));
-test.each(syntaxTests)('parseSfz %p', async (sfzFile: string) => {
+const syntaxFiles: string[] = dirRead(path.join(syntaxDir, '**', '*.sfz'));
+test.each(syntaxFiles)('parseSfz %p', async (sfzFile: string) => {
+  const sfzDir: string = pathGetDirectory(sfzFile);
   const sfzText: string = fileReadString(sfzFile);
   const sfzXml: string = fileReadString(sfzFile.replace('.sfz', '.xml'));
-  expect(convertToXml(await parseSfz(sfzText, syntaxDir))).toEqual(sfzXml);
+  expect(convertToXml(await parseSfz(sfzText, sfzDir))).toEqual(sfzXml);
 });
 
 // Test entire sfz test suite
-const sfzDir: string = path.join('sfz-tests');
-const sfzTests: string[] = dirRead(path.join(sfzDir, '**', '*.sfz'));
-test.each(sfzTests)('parseSfz %p', async (sfzFile: string) => {
+const testDir: string = path.join('sfz-tests');
+const testFiles: string[] = dirRead(path.join(testDir, '**', '*.sfz'));
+test.each(testFiles)('parseSfz %p', async (sfzFile: string) => {
+  const sfzDir: string = pathGetDirectory(sfzFile);
   const sfzText: string = fileReadString(sfzFile);
   const sfzXml: string = fileReadString(sfzFile.replace('.sfz', '.xml'));
   expect(convertToXml(await parseSfz(sfzText, sfzDir))).toEqual(sfzXml);
@@ -71,11 +73,12 @@ test('parseSfz Hang-D-minor-20220330.sfz', async () => {
 });
 
 test('parseDirective', () => {
-  expect(parseDirective('#include "green/stac_tp.sfz"')).toEqual(['include', 'green/stac_tp.sfz']);
-  expect(parseDirective('#include "Individual Patchs/In.sfz"')).toEqual(['include', 'Individual Patchs/In.sfz']);
-  expect(parseDirective('#include "$directory/$filename.sfz"')).toEqual(['include', '$directory/$filename.sfz']);
-  expect(parseDirective('#define $KICKKEY 36')).toEqual(['define', '$KICKKEY', '36']);
-  expect(parseDirective('#define $filename region')).toEqual(['define', '$filename', 'region']);
+  expect(parseDirective('#include "green/stac_tp.sfz"')).toEqual(['#include', 'green/stac_tp.sfz']);
+  expect(parseDirective('#include "Individual Patchs/In.sfz"')).toEqual(['#include', 'Individual Patchs/In.sfz']);
+  expect(parseDirective('#include "$directory/$filename.sfz"')).toEqual(['#include', '$directory/$filename.sfz']);
+  expect(parseDirective('#define $KICKKEY 36')).toEqual(['#define', '$KICKKEY', '36']);
+  expect(parseDirective('#define $filename region')).toEqual(['#define', '$filename', 'region']);
+  expect(parseDirective('#define $RETUNED C#0')).toEqual(['#define', '$RETUNED', 'C#0']);
 });
 
 test('parseHeader', () => {
