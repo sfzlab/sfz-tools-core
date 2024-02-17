@@ -103,72 +103,74 @@ function parseSetLoader(func: any) {
 }
 
 function parseSanitize(contents: string) {
-  let santized = contents.replace(/(\r?\n|\r)+/g, ' ');
-  return santized.replace(/>(?! )/g, '> ');
+  // Remove comments.
+  contents = contents.replace(/\/\*[\s\S]*?\*\/|(?<=[^:])\/\/.*|^\/\/.*/g, '');
+  // Remove new lines and returns.
+  contents = contents.replace(/(\r?\n|\r)+/g, ' ');
+  // Ensure there are always spaces after <header>.
+  contents = contents.replace(/>(?! )/g, '> ');
+  // Replace multiple spaces/tabs with single space.
+  contents = contents.replace(/( |\t)+/g, ' ');
+  // Trim whitespace.
+  return contents.trim();
 }
 
-function parseSegment(contents: string, start: number) {
-  for (let end: number = start; end < contents.length; end++) {
-    const char: string = contents.charAt(end);
-    if (endCharacters.includes(char)) return contents.slice(start, end);
-  }
-  return contents;
+function parseSegment(segment: string) {
+  if (segment.includes('"')) segment = segment.replace(/"/g, '');
+  if (segment.includes('$')) segment = parseVariables(segment, variables);
+  return segment;
 }
 
 async function parseSfz(contents: string, prefix = '') {
   let element: any = {};
   let elements: ParseHeader[] = [];
-  let santized = parseSanitize(contents);
+  const santized: string = parseSanitize(contents);
+  const segments: string[] = santized.split(' ');
   log(santized);
-  let start: number = 0;
-  for (let end: number = 0; end <= santized.length; end++) {
-    const charEnd: string = santized.charAt(end);
-    if (endCharacters.includes(charEnd) || end === santized.length) {
-      const charStart: string = santized.charAt(start);
-      let segment: string = santized.slice(start, end);
-      if (segment.includes('$')) segment = parseVariables(segment, variables);
-      log(start, end, `"${segment}"`);
-      if (charStart === '/') {
-        log('comment', segment);
-      } else if (charStart === '#') {
-        let key: string = parseSegment(santized, end + 1);
-        key = key.replace(/"/g, '');
-        if (segment === '#include') {
-          if (key.includes('$')) key = parseVariables(key, variables);
-          const val: any = await parseLoad(key, prefix);
-          if (element.elements && val.elements) {
-            element.elements = element.elements.concat(val.elements);
-          } else {
-            elements = elements.concat(val);
-          }
-          log('include', key, JSON.stringify(val, null, 2));
-          end += key.length + 3;
-        } else if (segment === '#define') {
-          const val: string = parseSegment(santized, end + key.length + 2);
-          variables[key] = val;
-          log('define', key, val);
-          end += key.length + val.length + 2;
-        }
-      } else if (charStart === '<') {
-        element = {
-          type: 'element',
-          name: parseHeader(segment) as ParseHeaderNames,
-        };
-        elements.push(element);
-        log('header', element.name);
+  for (let i: number = 0; i < segments.length; i++) {
+    const segment: string = parseSegment(segments[i]);
+    if (segment.charAt(0) === '/') {
+      log('comment:', segment);
+    } else if (segment === '#include') {
+      const key: string = parseSegment(segments[i + 1]);
+      const val: any = await parseLoad(key, prefix);
+      if (element.elements && val.elements) {
+        element.elements = element.elements.concat(val.elements);
       } else {
-        if (!element.elements) element.elements = [];
-        const attributes: ParseAttribute[] = parseOpcode(segment);
-        attributes.forEach((attribute: ParseAttribute) => {
-          element.elements.push({
-            type: 'element',
-            name: 'opcode',
-            attributes: attribute,
-          });
-        });
-        log('opcode', attributes);
+        elements = elements.concat(val);
       }
-      start = end + 1;
+      log('include:', key);
+      i += 1;
+    } else if (segment === '#define') {
+      const key: string = segments[i + 1];
+      const val: string = segments[i + 2];
+      variables[key] = val;
+      log('define:', key, val);
+      i += 2;
+    } else if (segment.charAt(0) === '<') {
+      element = {
+        type: 'element',
+        name: parseHeader(segment) as ParseHeaderNames,
+      };
+      elements.push(element);
+      log('header:', element.name);
+    } else {
+      if (!element.elements) element.elements = [];
+      const opcode: string[] = segment.split('=');
+      // If orphaned string, add on to previous opcode value.
+      if (opcode.length === 1 && opcode[0] !== '') {
+        element.elements[element.elements.length - 1].attributes.value += ' ' + opcode[0];
+      } else {
+        element.elements.push({
+          type: 'element',
+          name: 'opcode',
+          attributes: {
+            name: opcode[0],
+            value: opcode[1],
+          },
+        });
+      }
+      log('opcode:', opcode);
     }
   }
   if (elements.length > 0) return elements;

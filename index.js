@@ -18,17 +18,12 @@ async function run() {
   convert.convertSetLoader(file.fileReadString);
 
   // File for testing
-  // const sfzDir = './test/syntax/sal/';
-  // const sfzJs = file.fileReadJson(`${sfzDir}salamander-grand-piano.json`);
-  // const sfzText = file.fileReadString(`${sfzDir}salamander-grand-piano.sfz`);
-  // const sfzXml = file.fileReadString(`${sfzDir}salamander-grand-piano.xml`);
-  // const sfzYaml = file.fileReadString(`${sfzDir}salamander-grand-piano.yaml`);
-
   const sfzDir = './test/syntax/';
-  const sfzJs = file.fileReadJson(`${sfzDir}defines.json`);
-  const sfzText = file.fileReadString(`${sfzDir}defines.sfz`);
-  const sfzXml = file.fileReadString(`${sfzDir}defines.xml`);
-  const sfzYaml = file.fileReadString(`${sfzDir}defines.yaml`);
+  const sfzFile = 'defines';
+  const sfzJs = file.fileReadJson(`${sfzDir}${sfzFile}.json`);
+  const sfzText = file.fileReadString(`${sfzDir}${sfzFile}.sfz`);
+  const sfzXml = file.fileReadString(`${sfzDir}${sfzFile}.xml`);
+  const sfzYaml = file.fileReadString(`${sfzDir}${sfzFile}.yaml`);
 
   // const parseSfz = await parse.parseSfz(sfzText, sfzDir);
   // console.log('parseSfz', parseSfz);
