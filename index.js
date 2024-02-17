@@ -3,6 +3,7 @@
 // Debug particular methods quickly without having to run all tests `npm test`
 
 const analyze = require('./dist/analyze.js');
+const api = require('./dist/api.js');
 const convert = require('./dist/convert.js');
 const encode = require('./dist/encode.js');
 const file = require('./dist/file.js');
@@ -17,13 +18,20 @@ async function run() {
   parse.parseSetLoader(file.fileReadString);
   convert.convertSetLoader(file.fileReadString);
 
-  // File for testing
+  // File testing
   const sfzDir = './test/syntax/';
   const sfzFile = 'defines';
   const sfzJs = file.fileReadJson(`${sfzDir}${sfzFile}.json`);
   const sfzText = file.fileReadString(`${sfzDir}${sfzFile}.sfz`);
   const sfzXml = file.fileReadString(`${sfzDir}${sfzFile}.xml`);
   const sfzYaml = file.fileReadString(`${sfzDir}${sfzFile}.yaml`);
+
+  // Api testing
+  // const sfzDir = 'https://raw.githubusercontent.com/kmturley/karoryfer.black-and-green-guitars/main/Programs/';
+  // const sfzFile = '01-green_keyswitch';
+  // const sfzJs = await api.apiJson(`${sfzDir}${sfzFile}.json`);
+  // const sfzText = await api.apiText(`${sfzDir}${sfzFile}.sfz`);
+  // const sfzXml = await api.apiText(`${sfzDir}${sfzFile}.xml`);
 
   // const parseSfz = await parse.parseSfz(sfzText, sfzDir);
   // console.log('parseSfz', parseSfz);

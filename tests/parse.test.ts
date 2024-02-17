@@ -37,16 +37,16 @@ beforeAll(() => {
 });
 
 // Test specific syntax edge-cases
-// const syntaxDir: string = path.join('test', 'syntax');
-// const syntaxFiles: string[] = dirRead(path.join(syntaxDir, '**', '*.sfz'));
-// test.each(syntaxFiles)('parseSfz %p', async (sfzFile: string) => {
-//   const sfzDir: string = pathGetDirectory(sfzFile);
-//   const sfzText: string = fileReadString(sfzFile);
-//   const sfzXml: string = fileReadString(sfzFile.replace('.sfz', '.xml'));
-//   expect(convertToXml(await parseSfz(sfzText, sfzDir))).toEqual(sfzXml);
-// });
+const syntaxDir: string = path.join('test', 'syntax');
+const syntaxFiles: string[] = dirRead(path.join(syntaxDir, '**', '*.sfz'));
+test.each(syntaxFiles)('parseSfz %p', async (sfzFile: string) => {
+  const sfzDir: string = pathGetDirectory(sfzFile);
+  const sfzText: string = fileReadString(sfzFile);
+  const sfzXml: string = fileReadString(sfzFile.replace('.sfz', '.xml'));
+  expect(convertToXml(await parseSfz(sfzText, sfzDir))).toEqual(sfzXml);
+});
 
-// // Test entire sfz test suite
+// Test entire sfz test suite
 const testDir: string = path.join('sfz-tests');
 const testFiles: string[] = dirRead(path.join(testDir, '**', '*.sfz'));
 test.each(testFiles)('parseSfz %p', async (sfzFile: string) => {
@@ -57,12 +57,12 @@ test.each(testFiles)('parseSfz %p', async (sfzFile: string) => {
 });
 
 // Test complex hand-coded instrument
-// test('parseSfz 01-green_keyswitch.sfz', async () => {
-//   const sfzPath: string = 'https://raw.githubusercontent.com/kmturley/karoryfer.black-and-green-guitars/main/Programs/';
-//   const sfzText: string = await apiText(`${sfzPath}01-green_keyswitch.sfz`);
-//   const sfzXml: string = await apiText(`${sfzPath}01-green_keyswitch.xml`);
-//   expect(convertToXml(await parseSfz(sfzText, sfzPath))).toEqual(normalizeLineEnds(sfzXml));
-// });
+test('parseSfz 01-green_keyswitch.sfz', async () => {
+  const sfzPath: string = 'https://raw.githubusercontent.com/kmturley/karoryfer.black-and-green-guitars/main/Programs/';
+  const sfzText: string = await apiText(`${sfzPath}01-green_keyswitch.sfz`);
+  const sfzXml: string = await apiText(`${sfzPath}01-green_keyswitch.xml`);
+  expect(convertToXml(await parseSfz(sfzText, sfzPath))).toEqual(normalizeLineEnds(sfzXml));
+});
 
 // Test second hand-coded instrument
 test('parseSfz Hang-D-minor-20220330.sfz', async () => {

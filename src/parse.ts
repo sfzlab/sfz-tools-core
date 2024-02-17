@@ -151,6 +151,7 @@ async function parseSfz(contents: string, prefix = '') {
       element = {
         type: 'element',
         name: parseHeader(segment) as ParseHeaderNames,
+        elements: [],
       };
       elements.push(element);
       log('header:', element.name);
