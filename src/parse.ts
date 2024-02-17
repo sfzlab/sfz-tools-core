@@ -27,7 +27,7 @@ function parseEnd(contents: string, startAt: number) {
 }
 
 function parseHeader(input: string) {
-  return input.replace(/<|>/g, '');
+  return input.replace(/<| |>/g, '');
 }
 
 function parseHeaders(headers: ParseHeader[], prefix?: string) {
@@ -121,9 +121,9 @@ async function parseSfz(contents: string, prefix = '') {
   let santized = parseSanitize(contents);
   log(santized);
   let start: number = 0;
-  for (let end: number = 0; end < santized.length; end++) {
+  for (let end: number = 0; end <= santized.length; end++) {
     const charEnd: string = santized.charAt(end);
-    if (endCharacters.includes(charEnd)) {
+    if (endCharacters.includes(charEnd) || end === santized.length) {
       const charStart: string = santized.charAt(start);
       let segment: string = santized.slice(start, end);
       if (segment.includes('$')) segment = parseVariables(segment, variables);
@@ -131,13 +131,22 @@ async function parseSfz(contents: string, prefix = '') {
       if (charStart === '/') {
         log('comment', segment);
       } else if (charStart === '#') {
-        const key: string = parseSegment(santized, end + 1);
-        const val: string = parseSegment(santized, end + key.length + 2);
+        let key: string = parseSegment(santized, end + 1);
+        key = key.replace(/"/g, '');
         if (segment === '#include') {
-          log('include', key, val);
+          if (key.includes('$')) key = parseVariables(key, variables);
+          const val: any = await parseLoad(key, prefix);
+          if (element.elements && val.elements) {
+            element.elements = element.elements.concat(val.elements);
+          } else {
+            elements = elements.concat(val);
+          }
+          log('include', key, JSON.stringify(val, null, 2));
+          end += key.length + 3;
         } else if (segment === '#define') {
-          log('define', key, val);
+          const val: string = parseSegment(santized, end + key.length + 2);
           variables[key] = val;
+          log('define', key, val);
           end += key.length + val.length + 2;
         }
       } else if (charStart === '<') {
