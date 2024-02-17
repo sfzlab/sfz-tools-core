@@ -159,7 +159,7 @@ async function parseSfz(contents: string, prefix = '') {
       if (!element.elements) element.elements = [];
       const opcode: string[] = segment.split('=');
       // If orphaned string, add on to previous opcode value.
-      if (opcode.length === 1 && opcode[0] !== '') {
+      if (opcode.length === 1 && element.elements.length && opcode[0] !== '') {
         element.elements[element.elements.length - 1].attributes.value += ' ' + opcode[0];
       } else {
         element.elements.push({

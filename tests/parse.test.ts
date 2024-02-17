@@ -32,6 +32,10 @@ function convertToXml(elements: any) {
   return normalizeXml(xml);
 }
 
+function replaceFileExts(contents: string) {
+  return contents.replace(/.flac/g, '.ogg');
+}
+
 beforeAll(() => {
   parseSetLoader(fileReadString);
 });
@@ -40,7 +44,7 @@ beforeAll(() => {
 const syntaxDir: string = path.join('test', 'syntax');
 const syntaxFiles: string[] = dirRead(path.join(syntaxDir, '**', '*.sfz'));
 test.each(syntaxFiles)('parseSfz %p', async (sfzFile: string) => {
-  const sfzDir: string = pathGetDirectory(sfzFile);
+  const sfzDir: string = pathGetDirectory(sfzFile, path.sep);
   const sfzText: string = fileReadString(sfzFile);
   const sfzXml: string = fileReadString(sfzFile.replace('.sfz', '.xml'));
   expect(convertToXml(await parseSfz(sfzText, sfzDir))).toEqual(sfzXml);
@@ -50,7 +54,7 @@ test.each(syntaxFiles)('parseSfz %p', async (sfzFile: string) => {
 const testDir: string = path.join('sfz-tests');
 const testFiles: string[] = dirRead(path.join(testDir, '**', '*.sfz'));
 test.each(testFiles)('parseSfz %p', async (sfzFile: string) => {
-  const sfzDir: string = pathGetDirectory(sfzFile);
+  const sfzDir: string = pathGetDirectory(sfzFile, path.sep);
   const sfzText: string = fileReadString(sfzFile);
   const sfzXml: string = fileReadString(sfzFile.replace('.sfz', '.xml'));
   expect(convertToXml(await parseSfz(sfzText, sfzDir))).toEqual(sfzXml);
@@ -58,11 +62,19 @@ test.each(testFiles)('parseSfz %p', async (sfzFile: string) => {
 
 // Test complex hand-coded instrument
 test('parseSfz 01-green_keyswitch.sfz', async () => {
-  const sfzPath: string = 'https://raw.githubusercontent.com/kmturley/karoryfer.black-and-green-guitars/main/Programs/';
+  const sfzPath: string = 'https://raw.githubusercontent.com/studiorack/black-and-green-guitars/compact/Programs/';
   const sfzText: string = await apiText(`${sfzPath}01-green_keyswitch.sfz`);
-  const sfzXml: string = await apiText(`${sfzPath}01-green_keyswitch.xml`);
-  expect(convertToXml(await parseSfz(sfzText, sfzPath))).toEqual(normalizeLineEnds(sfzXml));
+  const sfzXml: string = await apiText(`${sfzPath}01-green_keyswitch.sfz.xml`);
+  expect(replaceFileExts(convertToXml(await parseSfz(sfzText, sfzPath)))).toEqual(normalizeLineEnds(sfzXml));
 });
+
+// Test complex instrument
+// test('parseSfz salamander-grand-piano.sfz', async () => {
+//   const sfzPath: string = 'https://raw.githubusercontent.com/studiorack/salamander-grand-piano/compact/';
+//   const sfzText: string = await apiText(`${sfzPath}salamander-grand-piano.sfz`);
+//   const sfzXml: string = await apiText(`${sfzPath}salamander-grand-piano.sfz.xml`);
+//   expect(replaceFileExts(convertToXml(await parseSfz(sfzText, sfzPath)))).toEqual(normalizeLineEnds(sfzXml));
+// });
 
 // Test second hand-coded instrument
 test('parseSfz Hang-D-minor-20220330.sfz', async () => {
