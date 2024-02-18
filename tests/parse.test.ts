@@ -1,11 +1,12 @@
 import {
-  parseDirective,
-  parseEnd,
+  parseDefines,
   parseHeader,
   parseHeaders,
+  parseIncludes,
   parseLoad,
-  parseOpcode,
   parseOpcodeObject,
+  parseSanitize,
+  parseSegment,
   parseSetLoader,
   parseSfz,
   parseVariables,
@@ -82,15 +83,6 @@ test('parseSfz Hang-D-minor-20220330.sfz', async () => {
   const sfzText: string = await apiText(`${sfzPath}Hang-D-minor-20220330.sfz`);
   const sfzXml: string = await apiText(`${sfzPath}Hang-D-minor-20220330.xml`);
   expect(convertToXml(await parseSfz(sfzText, sfzPath))).toEqual(normalizeLineEnds(sfzXml));
-});
-
-test('parseDirective', () => {
-  expect(parseDirective('#include "green/stac_tp.sfz"')).toEqual(['#include', 'green/stac_tp.sfz']);
-  expect(parseDirective('#include "Individual Patchs/In.sfz"')).toEqual(['#include', 'Individual Patchs/In.sfz']);
-  expect(parseDirective('#include "$directory/$filename.sfz"')).toEqual(['#include', '$directory/$filename.sfz']);
-  expect(parseDirective('#define $KICKKEY 36')).toEqual(['#define', '$KICKKEY', '36']);
-  expect(parseDirective('#define $filename region')).toEqual(['#define', '$filename', 'region']);
-  expect(parseDirective('#define $RETUNED C#0')).toEqual(['#define', '$RETUNED', 'C#0']);
 });
 
 test('parseHeader', () => {
@@ -180,31 +172,6 @@ test('parseHeaders', async () => {
   });
 });
 
-test('parseOpcode', () => {
-  expect(parseOpcode('seq_position=3')).toEqual([{ name: 'seq_position', value: '3' }]);
-  expect(parseOpcode('seq_position=3 pitch_keycenter=50')).toEqual([
-    { name: 'seq_position', value: '3' },
-    { name: 'pitch_keycenter', value: '50' },
-  ]);
-  expect(parseOpcode('region_label=01 sample=harmLA0.$EXT')).toEqual([
-    { name: 'region_label', value: '01' },
-    { name: 'sample', value: 'harmLA0.$EXT' },
-  ]);
-  expect(parseOpcode('label_cc27="Release vol"')).toEqual([{ name: 'label_cc27', value: 'Release vol' }]);
-  expect(parseOpcode('label_cc27=Release vol')).toEqual([{ name: 'label_cc27', value: 'Release vol' }]);
-  expect(parseOpcode('apple=An Apple banana=\'A Banana\' carrot="A Carrot"')).toEqual([
-    { name: 'apple', value: 'An Apple' },
-    { name: 'banana', value: 'A Banana' },
-    { name: 'carrot', value: 'A Carrot' },
-  ]);
-  expect(parseOpcode('lokey=c5  hikey=c#5')).toEqual([
-    { name: 'lokey', value: 'c5' },
-    { name: 'hikey', value: 'c#5' },
-  ]);
-  expect(parseOpcode('ampeg_hold=0.3')).toEqual([{ name: 'ampeg_hold', value: '0.3' }]);
-  expect(parseOpcode('ampeg_decay_oncc70=-1.2')).toEqual([{ name: 'ampeg_decay_oncc70', value: '-1.2' }]);
-});
-
 test('parseOpcodeObject', () => {
   expect(
     parseOpcodeObject([
@@ -226,15 +193,3 @@ test('parseVariables', () => {
   expect(parseVariables('sample=harmLA0.$EXT', { $OTHER: 'other' })).toEqual('sample=harmLA0.$EXT');
   expect(parseVariables('sample=harmLA0.$EXT', { $EXT: 'flac', $OTHER: 'other' })).toEqual('sample=harmLA0.flac');
 });
-
-// test('parseEnd', () => {
-//   const sfzHeader: string = `//----
-//   //
-//   // The <group> header
-//   //`;
-//   expect(parseEnd(sfzHeader, 0)).toEqual(6);
-//   expect(parseEnd(sfzHeader, 9)).toEqual(11);
-//   expect(parseEnd(sfzHeader, 14)).toEqual(35);
-//   expect(parseEnd('sample=example.wav key=c4 // will play', 0)).toEqual(26);
-//   expect(parseEnd('/// long release group, cc1 < 64', 0)).toEqual(32);
-// });

@@ -27,11 +27,11 @@ async function run() {
   const sfzYaml = file.fileReadString(`${sfzDir}${sfzFile}.yaml`);
 
   // Api testing
-  // const sfzDir = 'https://raw.githubusercontent.com/kmturley/karoryfer.black-and-green-guitars/main/Programs/';
-  // const sfzFile = '01-green_keyswitch';
-  // const sfzJs = await api.apiJson(`${sfzDir}${sfzFile}.json`);
+  // const sfzDir = 'https://raw.githubusercontent.com/studiorack/salamander-grand-piano/compact/';
+  // const sfzFile = 'salamander-grand-piano';
+  // const sfzJs = await api.apiJson(`${sfzDir}${sfzFile}.sfz.json`);
   // const sfzText = await api.apiText(`${sfzDir}${sfzFile}.sfz`);
-  // const sfzXml = await api.apiText(`${sfzDir}${sfzFile}.xml`);
+  // const sfzXml = await api.apiText(`${sfzDir}${sfzFile}.sfz.xml`);
 
   // const parseSfz = await parse.parseSfz(sfzText, sfzDir);
   // console.log('parseSfz', parseSfz);

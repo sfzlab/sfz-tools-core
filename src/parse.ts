@@ -1,6 +1,5 @@
 import { apiText } from './api';
 import {
-  ParseAttribute,
   ParseHeader,
   ParseHeaderNames,
   ParseOpcode,
@@ -9,21 +8,18 @@ import {
 } from './types/parse';
 import { log, pathJoin } from './utils';
 
-const skipCharacters: string[] = [' ', '\t', '\r', '\n'];
-const endCharacters: string[] = [' ', '\r', '\n'];
 const variables: any = {};
 let fileReadString: any = apiText;
 
-function parseDirective(input: string) {
-  return input.match(/(?<=")[^#"]+(?=")|[^ \r\n"]+/g) || [];
-}
-
-function parseEnd(contents: string, startAt: number) {
-  for (let index: number = startAt; index < contents.length; index++) {
-    const char: string = contents.charAt(index);
-    if (endCharacters.includes(char)) return index;
+function parseDefines(contents: string) {
+  const defines: string[] | null = contents.match(/(?<=#define ).+(?=\r|\n)/g);
+  if (!defines) return contents;
+  for (const define of defines) {
+    log(define);
+    const val: string[] = define.split(' ');
+    variables[val[0]] = val[1];
   }
-  return contents.length;
+  return contents;
 }
 
 function parseHeader(input: string) {
@@ -63,27 +59,28 @@ function parseHeaders(headers: ParseHeader[], prefix?: string) {
   return regions;
 }
 
+async function parseIncludes(contents: string, prefix = '') {
+  contents = parseDefines(contents);
+  const includes: string[] | null = contents.match(/#include "(.+?)"/g);
+  if (!includes) return contents;
+  for (const include of includes) {
+    const includePaths: string[] | null = include.match(/(?<=")(.*?)(?=")/g);
+    if (!includePaths) continue;
+    if (includePaths[0].includes('$')) includePaths[0] = parseVariables(includePaths[0], variables);
+    const subcontent: any = await parseLoad(includePaths[0], prefix);
+    const subcontentFlat: string = await parseIncludes(subcontent, prefix);
+    contents = contents.replace(include, subcontentFlat);
+  }
+  return contents;
+}
+
 async function parseLoad(includePath: string, prefix: string) {
   const pathJoined: string = pathJoin(prefix, includePath);
   let file: string = '';
   if (pathJoined.startsWith('http')) file = await apiText(pathJoined);
   else if (fileReadString) file = fileReadString(pathJoined);
   else file = await apiText(pathJoined);
-  return await parseSfz(file, prefix);
-}
-
-function parseOpcode(input: string) {
-  const output: ParseAttribute[] = [];
-  const labels: string[] = input.match(/\w+(?==)/g) || [];
-  const values: string[] = input.split(/\w+(?==)/g) || [];
-  values.forEach((val: string) => {
-    if (!val.length) return;
-    output.push({
-      name: labels[output.length],
-      value: val.trim().replace(/[='"]/g, ''),
-    });
-  });
-  return output;
+  return file;
 }
 
 function parseOpcodeObject(opcodes: ParseOpcode[]) {
@@ -96,10 +93,6 @@ function parseOpcodeObject(opcodes: ParseOpcode[]) {
     }
   });
   return properties;
-}
-
-function parseSetLoader(func: any) {
-  fileReadString = func;
 }
 
 function parseSanitize(contents: string) {
@@ -117,30 +110,25 @@ function parseSanitize(contents: string) {
 
 function parseSegment(segment: string) {
   if (segment.includes('"')) segment = segment.replace(/"/g, '');
-  if (segment.includes('$')) segment = parseVariables(segment, variables);
+  if (segment.includes('$')) console.log(segment);
+  segment = parseVariables(segment, variables);
   return segment;
+}
+
+function parseSetLoader(func: any) {
+  fileReadString = func;
 }
 
 async function parseSfz(contents: string, prefix = '') {
   let element: any = {};
-  let elements: ParseHeader[] = [];
-  const santized: string = parseSanitize(contents);
+  const elements: ParseHeader[] = [];
+  const contentsFlat: string = await parseIncludes(contents, prefix);
+  const santized: string = parseSanitize(contentsFlat);
   const segments: string[] = santized.split(' ');
-  log(santized);
   for (let i: number = 0; i < segments.length; i++) {
     const segment: string = parseSegment(segments[i]);
     if (segment.charAt(0) === '/') {
       log('comment:', segment);
-    } else if (segment === '#include') {
-      const key: string = parseSegment(segments[i + 1]);
-      log('include:', key);
-      const val: any = await parseLoad(key, prefix);
-      if (element.elements && val.elements) {
-        element.elements = element.elements.concat(val.elements);
-      } else {
-        elements = elements.concat(val);
-      }
-      i += 1;
     } else if (segment === '#define') {
       const key: string = segments[i + 1];
       const val: string = segments[i + 2];
@@ -178,22 +166,23 @@ async function parseSfz(contents: string, prefix = '') {
   return element;
 }
 
-function parseVariables(input: string, variables: ParseVariables) {
-  for (let key in variables) {
+function parseVariables(input: string, vars: ParseVariables) {
+  for (const key in vars) {
     const regEx: RegExp = new RegExp('\\' + key, 'g');
-    input = input.replace(regEx, variables[key]);
+    input = input.replace(regEx, vars[key]);
   }
   return input;
 }
 
 export {
-  parseDirective,
-  parseEnd,
+  parseDefines,
   parseHeader,
   parseHeaders,
+  parseIncludes,
   parseLoad,
-  parseOpcode,
   parseOpcodeObject,
+  parseSanitize,
+  parseSegment,
   parseSetLoader,
   parseSfz,
   parseVariables,
