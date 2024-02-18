@@ -70,4 +70,17 @@ elements:
         attributes:
           name: sample
           value: dummy.wav
+      - type: element
+        name: opcode
+        attributes:
+          name: ampeg_hold
+          value: '0.9'
+  - type: element
+    name: region
+    elements:
+      - type: element
+        name: opcode
+        attributes:
+          name: sample
+          value: here.wav
 

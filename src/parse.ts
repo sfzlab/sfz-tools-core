@@ -133,19 +133,19 @@ async function parseSfz(contents: string, prefix = '') {
       log('comment:', segment);
     } else if (segment === '#include') {
       const key: string = parseSegment(segments[i + 1]);
+      log('include:', key);
       const val: any = await parseLoad(key, prefix);
       if (element.elements && val.elements) {
         element.elements = element.elements.concat(val.elements);
       } else {
         elements = elements.concat(val);
       }
-      log('include:', key);
       i += 1;
     } else if (segment === '#define') {
       const key: string = segments[i + 1];
       const val: string = segments[i + 2];
-      variables[key] = val;
       log('define:', key, val);
+      variables[key] = val;
       i += 2;
     } else if (segment.charAt(0) === '<') {
       element = {
@@ -153,11 +153,12 @@ async function parseSfz(contents: string, prefix = '') {
         name: parseHeader(segment) as ParseHeaderNames,
         elements: [],
       };
-      elements.push(element);
       log('header:', element.name);
+      elements.push(element);
     } else {
       if (!element.elements) element.elements = [];
       const opcode: string[] = segment.split('=');
+      log('opcode:', opcode);
       // If orphaned string, add on to previous opcode value.
       if (opcode.length === 1 && element.elements.length && opcode[0] !== '') {
         element.elements[element.elements.length - 1].attributes.value += ' ' + opcode[0];
@@ -171,21 +172,18 @@ async function parseSfz(contents: string, prefix = '') {
           },
         });
       }
-      log('opcode:', opcode);
     }
   }
   if (elements.length > 0) return elements;
   return element;
 }
 
-function parseVariables(input: string, vars: ParseVariables) {
-  const list: string = Object.keys(vars)
-    .map((key) => '\\' + key)
-    .join('|');
-  const regEx: RegExp = new RegExp(list, 'g');
-  return input.replace(regEx, (matched: string) => {
-    return vars[matched];
-  });
+function parseVariables(input: string, variables: ParseVariables) {
+  for (let key in variables) {
+    const regEx: RegExp = new RegExp('\\' + key, 'g');
+    input = input.replace(regEx, variables[key]);
+  }
+  return input;
 }
 
 export {

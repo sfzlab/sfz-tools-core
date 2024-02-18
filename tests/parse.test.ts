@@ -221,7 +221,10 @@ test('parseOpcodeObject', () => {
 });
 
 test('parseVariables', () => {
+  expect(parseVariables('sample=harmLA0.$EXT', {})).toEqual('sample=harmLA0.$EXT');
   expect(parseVariables('sample=harmLA0.$EXT', { $EXT: 'flac' })).toEqual('sample=harmLA0.flac');
+  expect(parseVariables('sample=harmLA0.$EXT', { $OTHER: 'other' })).toEqual('sample=harmLA0.$EXT');
+  expect(parseVariables('sample=harmLA0.$EXT', { $EXT: 'flac', $OTHER: 'other' })).toEqual('sample=harmLA0.flac');
 });
 
 // test('parseEnd', () => {
