@@ -5,3 +5,5 @@ hicc118=63
 #include "modules/env.sfz"
 
 #include "modules/region.sfz"
+
+#include "modules/env-and-region.sfz"

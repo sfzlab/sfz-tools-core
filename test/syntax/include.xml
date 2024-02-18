@@ -15,4 +15,8 @@
 </master>
 <region>
 	<opcode name="sample" value="dummy.wav" />
+	<opcode name="ampeg_hold" value="0.9" />
+</region>
+<region>
+	<opcode name="sample" value="here.wav" />
 </region>
