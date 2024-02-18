@@ -1,13 +1,8 @@
 import { apiText } from './api';
-import {
-  ParseHeader,
-  ParseHeaderNames,
-  ParseOpcode,
-  ParseOpcodeObj,
-  ParseVariables,
-} from './types/parse';
-import { log, pathJoin } from './utils';
+import { ParseHeader, ParseHeaderNames, ParseOpcode, ParseOpcodeObj, ParseVariables } from './types/parse';
+import { pathJoin } from './utils';
 
+const DEBUG = false;
 const variables: any = {};
 let fileReadString: any = apiText;
 
@@ -15,7 +10,7 @@ function parseDefines(contents: string) {
   const defines: string[] | null = contents.match(/(?<=#define ).+(?=\r|\n)/g);
   if (!defines) return contents;
   for (const define of defines) {
-    log(define);
+    if (DEBUG) console.log(define);
     const val: string[] = define.split(' ');
     variables[val[0]] = val[1];
   }
@@ -110,8 +105,7 @@ function parseSanitize(contents: string) {
 
 function parseSegment(segment: string) {
   if (segment.includes('"')) segment = segment.replace(/"/g, '');
-  if (segment.includes('$')) console.log(segment);
-  segment = parseVariables(segment, variables);
+  if (segment.includes('$')) segment = parseVariables(segment, variables);
   return segment;
 }
 
@@ -128,11 +122,11 @@ async function parseSfz(contents: string, prefix = '') {
   for (let i: number = 0; i < segments.length; i++) {
     const segment: string = parseSegment(segments[i]);
     if (segment.charAt(0) === '/') {
-      log('comment:', segment);
+      if (DEBUG) console.log('comment:', segment);
     } else if (segment === '#define') {
       const key: string = segments[i + 1];
       const val: string = segments[i + 2];
-      log('define:', key, val);
+      if (DEBUG) console.log('define:', key, val);
       variables[key] = val;
       i += 2;
     } else if (segment.charAt(0) === '<') {
@@ -141,12 +135,12 @@ async function parseSfz(contents: string, prefix = '') {
         name: parseHeader(segment) as ParseHeaderNames,
         elements: [],
       };
-      log('header:', element.name);
+      if (DEBUG) console.log('header:', element.name);
       elements.push(element);
     } else {
       if (!element.elements) element.elements = [];
       const opcode: string[] = segment.split('=');
-      log('opcode:', opcode);
+      if (DEBUG) console.log('opcode:', opcode);
       // If orphaned string, add on to previous opcode value.
       if (opcode.length === 1 && element.elements.length && opcode[0] !== '') {
         element.elements[element.elements.length - 1].attributes.value += ' ' + opcode[0];
