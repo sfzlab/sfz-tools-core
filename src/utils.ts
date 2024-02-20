@@ -31,30 +31,42 @@ function logDisable(...args: any) {
   LOGGING_ENABLED = false;
 }
 
-function midiNameToNum(name: string | number) {
-  if (!name) return 0;
-  if (typeof name === 'number') return name;
-  const mapPitches: any = {
+function midiNameToNum(name: string) {
+  const regex: RegExp = /^([A-Ga-g])(#|b|)(-?\d+)$/;
+  const match: string[] | null = name.match(regex);
+  if (!match) return console.error('Invalid MIDI note name format');
+  const noteNames: { [key: string]: number } = {
     C: 0,
+    'C#': 1,
+    Db: 1,
     D: 2,
+    'D#': 3,
+    Eb: 3,
     E: 4,
     F: 5,
+    'F#': 6,
+    Gb: 6,
     G: 7,
+    'G#': 8,
+    Ab: 8,
     A: 9,
+    'A#': 10,
+    Bb: 10,
     B: 11,
   };
-  const letter = name[0];
-  let pc = mapPitches[letter.toUpperCase()];
-  const mapMods: any = { b: -1, '#': 1 };
-  const mod = name[1];
-  const trans = mapMods[mod] || 0;
-  pc += trans;
-  const octave = parseInt(name.slice(name.length - 1), 10);
-  if (octave) {
-    return pc + 12 * (octave + 1);
-  } else {
-    return ((pc % 12) + 12) % 12;
-  }
+  const note: string = match[1].toUpperCase();
+  const accidental: string = match[2];
+  const octave: number = parseInt(match[3], 10);
+  return noteNames[note] + (accidental === '#' ? 1 : accidental === 'b' ? -1 : 0) + (octave + 1) * 12;
+}
+
+function midiNumToName(num: number) {
+  if (num < 0 || num > 127) return console.error('Invalid MIDI note number');
+  const noteNames: string[] = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
+  const octave: number = Math.floor(num / 12) - 1;
+  const noteIndex: number = num % 12;
+  const noteName: string = noteNames[noteIndex];
+  return noteName + octave.toString();
 }
 
 function normalizeLineEnds(input: string) {
@@ -155,6 +167,7 @@ export {
   logEnable,
   logDisable,
   midiNameToNum,
+  midiNumToName,
   normalizeLineEnds,
   normalizeXml,
   pathGetDirectory,
