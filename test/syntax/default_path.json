@@ -1,0 +1,92 @@
+{
+  "elements": [
+    {
+      "type": "element",
+      "name": "region",
+      "elements": [
+        {
+          "type": "element",
+          "name": "opcode",
+          "attributes": {
+            "name": "sample",
+            "value": "DefaultPath/SubPath1/sample1.wav"
+          }
+        }
+      ]
+    },
+    {
+      "type": "element",
+      "name": "control",
+      "elements": [
+        {
+          "type": "element",
+          "name": "opcode",
+          "attributes": {
+            "name": "default_path",
+            "value": "DefaultPath\\SubPath2\\"
+          }
+        }
+      ]
+    },
+    {
+      "type": "element",
+      "name": "region",
+      "elements": [
+        {
+          "type": "element",
+          "name": "opcode",
+          "attributes": {
+            "name": "sample",
+            "value": "sample2.wav"
+          }
+        }
+      ]
+    },
+    {
+      "type": "element",
+      "name": "control",
+      "elements": [
+        {
+          "type": "element",
+          "name": "opcode",
+          "attributes": {
+            "name": "default_path",
+            "value": "DefaultPath/SubPath1/sample"
+          }
+        }
+      ]
+    },
+    {
+      "type": "element",
+      "name": "region",
+      "elements": [
+        {
+          "type": "element",
+          "name": "opcode",
+          "attributes": {
+            "name": "sample",
+            "value": "1.wav"
+          }
+        }
+      ]
+    },
+    {
+      "type": "element",
+      "name": "control"
+    },
+    {
+      "type": "element",
+      "name": "region",
+      "elements": [
+        {
+          "type": "element",
+          "name": "opcode",
+          "attributes": {
+            "name": "sample",
+            "value": "DefaultPath/SubPath2/sample2.wav"
+          }
+        }
+      ]
+    }
+  ]
+}

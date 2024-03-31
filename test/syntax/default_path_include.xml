@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<control />
+<master>
+	<opcode name="ampeg_release" value="1" />
+</master>
+<control>
+	<opcode name="default_path" value="../../test/syntax//path-a" />
+</control>
+<region>
+	<opcode name="sample" value="piano.wav" />
+	<opcode name="pitch_keycenter" value="60" />
+	<opcode name="lokey" value="58" />
+	<opcode name="hikey" value="62" />
+	<opcode name="lovel" value="1" />
+	<opcode name="hivel" value="20" />
+	<opcode name="locc64" value="64" />
+	<opcode name="hicc64" value="127" />
+</region>
+<master>
+	<opcode name="ampeg_release" value="3" />
+</master>
+<control>
+	<opcode name="default_path" value="../../test/syntax//path-b" />
+</control>
+<region>
+	<opcode name="sample" value="piano.wav" />
+	<opcode name="pitch_keycenter" value="60" />
+	<opcode name="lokey" value="58" />
+	<opcode name="hikey" value="62" />
+	<opcode name="lovel" value="1" />
+	<opcode name="hivel" value="20" />
+	<opcode name="locc64" value="64" />
+	<opcode name="hicc64" value="127" />
+</region>

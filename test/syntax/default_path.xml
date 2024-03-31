@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<region>
+	<opcode name="sample" value="DefaultPath/SubPath1/sample1.wav" />
+</region>
+<control>
+	<opcode name="default_path" value="DefaultPath\SubPath2\" />
+</control>
+<region>
+	<opcode name="sample" value="sample2.wav" />
+</region>
+<control>
+	<opcode name="default_path" value="DefaultPath/SubPath1/sample" />
+</control>
+<region>
+	<opcode name="sample" value="1.wav" />
+</region>
+<control />
+<region>
+	<opcode name="sample" value="DefaultPath/SubPath2/sample2.wav" />
+</region>

@@ -1,0 +1,32 @@
+{
+  "elements": [
+    {
+      "type": "element",
+      "name": "control",
+      "elements": [
+        {
+          "type": "element",
+          "name": "opcode",
+          "attributes": {
+            "name": "default_path",
+            "value": "DefaultPath/SubPath1"
+          }
+        }
+      ]
+    },
+    {
+      "type": "element",
+      "name": "region",
+      "elements": [
+        {
+          "type": "element",
+          "name": "opcode",
+          "attributes": {
+            "name": "sample",
+            "value": "*sine"
+          }
+        }
+      ]
+    }
+  ]
+}

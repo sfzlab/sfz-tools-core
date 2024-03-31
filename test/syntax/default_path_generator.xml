@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<control>
+	<opcode name="default_path" value="DefaultPath/SubPath1" />
+</control>
+<region>
+	<opcode name="sample" value="*sine" />
+</region>
