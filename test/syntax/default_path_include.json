@@ -27,7 +27,7 @@
           "name": "opcode",
           "attributes": {
             "name": "default_path",
-            "value": "../../test/syntax//path-a"
+            "value": "../../test/syntax/path-a/"
           }
         }
       ]
@@ -125,7 +125,7 @@
           "name": "opcode",
           "attributes": {
             "name": "default_path",
-            "value": "../../test/syntax//path-b"
+            "value": "../../test/syntax/path-b/"
           }
         }
       ]

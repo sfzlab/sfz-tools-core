@@ -16,7 +16,7 @@ elements:
         name: opcode
         attributes:
           name: default_path
-          value: ../../test/syntax//path-a
+          value: ../../test/syntax/path-a/
   - type: element
     name: region
     elements:
@@ -75,7 +75,7 @@ elements:
         name: opcode
         attributes:
           name: default_path
-          value: ../../test/syntax//path-b
+          value: ../../test/syntax/path-b/
   - type: element
     name: region
     elements:

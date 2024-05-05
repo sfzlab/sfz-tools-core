@@ -1,16 +1,16 @@
 <control>
-#define $USERPATH ../../test/syntax/
+#define $USERPATH ../../test/syntax
 
 <master>
 ampeg_release=1
 
 <control>
-default_path=$USERPATH/path-a
+default_path=$USERPATH/path-a/
 #include "$USERPATH/basic.sfz"
 
 <master>
 ampeg_release=3
 
 <control>
-default_path=$USERPATH/path-b
+default_path=$USERPATH/path-b/
 #include "$USERPATH/basic.sfz"

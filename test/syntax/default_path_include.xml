@@ -4,7 +4,7 @@
 	<opcode name="ampeg_release" value="1" />
 </master>
 <control>
-	<opcode name="default_path" value="../../test/syntax//path-a" />
+	<opcode name="default_path" value="../../test/syntax/path-a/" />
 </control>
 <region>
 	<opcode name="sample" value="piano.wav" />
@@ -20,7 +20,7 @@
 	<opcode name="ampeg_release" value="3" />
 </master>
 <control>
-	<opcode name="default_path" value="../../test/syntax//path-b" />
+	<opcode name="default_path" value="../../test/syntax/path-b/" />
 </control>
 <region>
 	<opcode name="sample" value="piano.wav" />
