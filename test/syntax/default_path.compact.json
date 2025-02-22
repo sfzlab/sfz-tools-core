@@ -1,0 +1,67 @@
+{
+  "region": [
+    {
+      "opcode": [
+        {
+          "_attributes": {
+            "name": "sample",
+            "value": "DefaultPath/SubPath1/sample1.wav"
+          }
+        }
+      ]
+    },
+    {
+      "opcode": [
+        {
+          "_attributes": {
+            "name": "sample",
+            "value": "sample2.wav"
+          }
+        }
+      ]
+    },
+    {
+      "opcode": [
+        {
+          "_attributes": {
+            "name": "sample",
+            "value": "1.wav"
+          }
+        }
+      ]
+    },
+    {
+      "opcode": [
+        {
+          "_attributes": {
+            "name": "sample",
+            "value": "DefaultPath/SubPath2/sample2.wav"
+          }
+        }
+      ]
+    }
+  ],
+  "control": [
+    {
+      "opcode": [
+        {
+          "_attributes": {
+            "name": "default_path",
+            "value": "DefaultPath\\SubPath2\\"
+          }
+        }
+      ]
+    },
+    {
+      "opcode": [
+        {
+          "_attributes": {
+            "name": "default_path",
+            "value": "DefaultPath/SubPath1/sample"
+          }
+        }
+      ]
+    },
+    {}
+  ]
+}

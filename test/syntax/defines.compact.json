@@ -1,0 +1,71 @@
+{
+  "control": [
+    {}
+  ],
+  "region": [
+    {
+      "opcode": [
+        {
+          "_attributes": {
+            "name": "key",
+            "value": "36"
+          }
+        },
+        {
+          "_attributes": {
+            "name": "sample",
+            "value": "kick.wav"
+          }
+        }
+      ]
+    },
+    {
+      "opcode": [
+        {
+          "_attributes": {
+            "name": "key",
+            "value": "38"
+          }
+        },
+        {
+          "_attributes": {
+            "name": "sample",
+            "value": "snare.wav"
+          }
+        }
+      ]
+    },
+    {
+      "opcode": [
+        {
+          "_attributes": {
+            "name": "key",
+            "value": "42"
+          }
+        },
+        {
+          "_attributes": {
+            "name": "sample",
+            "value": "closedhat.wav"
+          }
+        }
+      ]
+    },
+    {
+      "opcode": [
+        {
+          "_attributes": {
+            "name": "volume",
+            "value": "-12"
+          }
+        },
+        {
+          "_attributes": {
+            "name": "sample",
+            "value": "*sine"
+          }
+        }
+      ]
+    }
+  ]
+}

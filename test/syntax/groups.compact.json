@@ -1,0 +1,132 @@
+{
+  "group": [
+    {
+      "opcode": [
+        {
+          "_attributes": {
+            "name": "key",
+            "value": "36"
+          }
+        },
+        {
+          "_attributes": {
+            "name": "volume",
+            "value": "6"
+          }
+        }
+      ]
+    }
+  ],
+  "region": [
+    {
+      "opcode": [
+        {
+          "_attributes": {
+            "name": "lovel",
+            "value": "1"
+          }
+        },
+        {
+          "_attributes": {
+            "name": "hivel",
+            "value": "26"
+          }
+        },
+        {
+          "_attributes": {
+            "name": "sample",
+            "value": "36-CajonCenter-1.wav"
+          }
+        }
+      ]
+    },
+    {
+      "opcode": [
+        {
+          "_attributes": {
+            "name": "lovel",
+            "value": "27"
+          }
+        },
+        {
+          "_attributes": {
+            "name": "hivel",
+            "value": "52"
+          }
+        },
+        {
+          "_attributes": {
+            "name": "sample",
+            "value": "36-CajonCenter-2.wav"
+          }
+        }
+      ]
+    },
+    {
+      "opcode": [
+        {
+          "_attributes": {
+            "name": "lovel",
+            "value": "53"
+          }
+        },
+        {
+          "_attributes": {
+            "name": "hivel",
+            "value": "77"
+          }
+        },
+        {
+          "_attributes": {
+            "name": "sample",
+            "value": "36-CajonCenter-3.wav"
+          }
+        }
+      ]
+    },
+    {
+      "opcode": [
+        {
+          "_attributes": {
+            "name": "lovel",
+            "value": "78"
+          }
+        },
+        {
+          "_attributes": {
+            "name": "hivel",
+            "value": "102"
+          }
+        },
+        {
+          "_attributes": {
+            "name": "sample",
+            "value": "36-CajonCenter-4.wav"
+          }
+        }
+      ]
+    },
+    {
+      "opcode": [
+        {
+          "_attributes": {
+            "name": "lovel",
+            "value": "103"
+          }
+        },
+        {
+          "_attributes": {
+            "name": "hivel",
+            "value": "127"
+          }
+        },
+        {
+          "_attributes": {
+            "name": "sample",
+            "value": "36-CajonCenter-5.wav"
+          }
+        }
+      ]
+    }
+  ]
+}

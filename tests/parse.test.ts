@@ -13,10 +13,12 @@ import {
 } from '../src/parse';
 import { apiJson, apiText } from '../src/api';
 import { js2xml } from 'xml-js';
-import { dirRead, fileReadString } from '../src/file';
+import { dirRead, fileReadJson, fileReadString } from '../src/file';
 import path from 'path';
 import { normalizeLineEnds, normalizeXml, pathGetDirectory } from '../src/utils';
 import { ParseDefinition, ParseHeader, ParseHeaderNames } from '../src/types/parse';
+import { CompactParseDefinition } from '../src/types/parse-compact';
+import { convertToCompactJson } from '../src/convert';
 
 function convertToXml(elements: any) {
   const xml: string = js2xml(
@@ -44,11 +46,13 @@ beforeAll(() => {
 // Test specific syntax edge-cases
 const syntaxDir: string = path.join('test', 'syntax');
 const syntaxFiles: string[] = dirRead(path.join(syntaxDir, '**', '*.sfz'));
-test.each(syntaxFiles)('parseSfz %p', async (sfzFile: string) => {
-  const sfzDir: string = pathGetDirectory(sfzFile, path.sep);
-  const sfzText: string = fileReadString(sfzFile);
-  const sfzXml: string = fileReadString(sfzFile.replace('.sfz', '.xml'));
-  expect(convertToXml(await parseSfz(sfzText, sfzDir))).toEqual(sfzXml);
+test.each(syntaxFiles)('parseSfz %p', async (sfzPath: string) => {
+  const sfzDir: string = pathGetDirectory(sfzPath, path.sep);
+  const fileSfz: string = fileReadString(sfzPath);
+  const fileXml: string = fileReadString(sfzPath.replace('.sfz', '.xml'));
+  const fileJsCompact: CompactParseDefinition = fileReadJson(sfzPath.replace('.sfz', '.compact.json'));
+  expect(convertToXml(await parseSfz(fileSfz, sfzDir))).toEqual(fileXml);
+  expect(convertToCompactJson(await parseSfz(fileSfz, sfzDir))).toEqual(fileJsCompact);
 });
 
 // Test entire sfz test suite

@@ -1,0 +1,153 @@
+{
+  "control": [
+    {},
+    {
+      "opcode": [
+        {
+          "_attributes": {
+            "name": "default_path",
+            "value": "../../test/syntax/path-a/"
+          }
+        }
+      ]
+    },
+    {
+      "opcode": [
+        {
+          "_attributes": {
+            "name": "default_path",
+            "value": "../../test/syntax/path-b/"
+          }
+        }
+      ]
+    }
+  ],
+  "master": [
+    {
+      "opcode": [
+        {
+          "_attributes": {
+            "name": "ampeg_release",
+            "value": "1"
+          }
+        }
+      ]
+    },
+    {
+      "opcode": [
+        {
+          "_attributes": {
+            "name": "ampeg_release",
+            "value": "3"
+          }
+        }
+      ]
+    }
+  ],
+  "region": [
+    {
+      "opcode": [
+        {
+          "_attributes": {
+            "name": "sample",
+            "value": "piano.wav"
+          }
+        },
+        {
+          "_attributes": {
+            "name": "pitch_keycenter",
+            "value": "60"
+          }
+        },
+        {
+          "_attributes": {
+            "name": "lokey",
+            "value": "58"
+          }
+        },
+        {
+          "_attributes": {
+            "name": "hikey",
+            "value": "62"
+          }
+        },
+        {
+          "_attributes": {
+            "name": "lovel",
+            "value": "1"
+          }
+        },
+        {
+          "_attributes": {
+            "name": "hivel",
+            "value": "20"
+          }
+        },
+        {
+          "_attributes": {
+            "name": "locc64",
+            "value": "64"
+          }
+        },
+        {
+          "_attributes": {
+            "name": "hicc64",
+            "value": "127"
+          }
+        }
+      ]
+    },
+    {
+      "opcode": [
+        {
+          "_attributes": {
+            "name": "sample",
+            "value": "piano.wav"
+          }
+        },
+        {
+          "_attributes": {
+            "name": "pitch_keycenter",
+            "value": "60"
+          }
+        },
+        {
+          "_attributes": {
+            "name": "lokey",
+            "value": "58"
+          }
+        },
+        {
+          "_attributes": {
+            "name": "hikey",
+            "value": "62"
+          }
+        },
+        {
+          "_attributes": {
+            "name": "lovel",
+            "value": "1"
+          }
+        },
+        {
+          "_attributes": {
+            "name": "hivel",
+            "value": "20"
+          }
+        },
+        {
+          "_attributes": {
+            "name": "locc64",
+            "value": "64"
+          }
+        },
+        {
+          "_attributes": {
+            "name": "hicc64",
+            "value": "127"
+          }
+        }
+      ]
+    }
+  ]
+}

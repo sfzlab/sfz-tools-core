@@ -1,0 +1,14 @@
+{
+  "region": [
+    {
+      "opcode": [
+        {
+          "_attributes": {
+            "name": "sample",
+            "value": "DefaultPath/SubPath2/sample2.wav"
+          }
+        }
+      ]
+    }
+  ]
+}

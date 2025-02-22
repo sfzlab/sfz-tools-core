@@ -1,9 +1,10 @@
 import { js2xml, xml2js } from 'xml-js';
 import { parseSetLoader, parseSfz } from './parse';
 import { load, dump } from 'js-yaml';
-import { ParseDefinition, ParseHeader, ParseOpcode } from './types/parse';
+import { ParseDefinition, ParseHeader, ParseHeaderNames, ParseOpcode } from './types/parse';
 import { LINE_END, normalizeLineEnds, normalizeXml, pathGetDirectory, pathGetExt } from './utils';
 import { ConvertOptions } from './types/convert';
+import { CompactParseDefinition, CompactParseHeader, CompactParseOpcode } from './types/parse-compact';
 
 const declaration: any = {
   attributes: {
@@ -88,6 +89,41 @@ async function convertSfzToXml(fileSfz: string, prefix = '') {
   return normalizeXml(js2xml({ declaration, elements: fileJs.elements }, OPTIONS_XML));
 }
 
+function convertToCompactJson(fileJs: ParseDefinition) {
+  if (!fileJs.elements) return {};
+  const compactJson: CompactParseDefinition = {};
+  fileJs.elements.forEach((element) => {
+    const name = element.name;
+    if (!compactJson[name]) {
+      compactJson[name] = [];
+    }
+    const entry: CompactParseHeader = { opcode: [] };
+    element.elements.forEach((op) => {
+      entry.opcode.push({ _attributes: op.attributes });
+    });
+    compactJson[name].push(entry);
+  });
+  return compactJson;
+}
+
+function convertFromCompactJson(compactJson: CompactParseDefinition) {
+  const verboseJson: ParseDefinition = { elements: [] };
+  Object.keys(compactJson).forEach((name) => {
+    compactJson[name].forEach((entry) => {
+      const regionElement: ParseHeader = { type: 'element', name: name as ParseHeaderNames, elements: [] };
+      entry.opcode.forEach((op) => {
+        regionElement.elements.push({
+          type: 'element',
+          name: 'opcode',
+          attributes: op._attributes,
+        });
+      });
+      verboseJson.elements.push(regionElement);
+    });
+  });
+  return verboseJson;
+}
+
 function convertYamlToJs(fileYaml: string) {
   return load(fileYaml) as ParseDefinition;
 }
@@ -125,6 +161,8 @@ export {
   convertSfzToJs,
   convertSfzToYaml,
   convertSfzToXml,
+  convertToCompactJson,
+  convertFromCompactJson,
   convertYamlToJs,
   convertYamlToSfz,
   convertYamlToXml,
