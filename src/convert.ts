@@ -4,6 +4,7 @@ import { load, dump } from 'js-yaml';
 import { ParseDefinition, ParseHeader, ParseOpcode } from './types/parse';
 import { LINE_END, normalizeLineEnds, normalizeXml, pathGetDirectory, pathGetExt } from './utils';
 import { ConvertOptions } from './types/convert';
+import { convertJsToCompact, convertCompactToJs } from './compact';
 
 const declaration: any = {
   attributes: {
@@ -30,10 +31,12 @@ async function convert(filepath: string, file: any, options: ConvertOptions, sep
     if (options.sfz) return convertJsToSfz(file);
     if (options.yaml) return convertJsToYaml(file);
     if (options.xml) return convertJsToXml(file);
+    if (options.compact) return convertJsToCompact(file);
   } else if (fileExt === 'sfz') {
     if (options.js) return await convertSfzToJs(file, fileDir);
     if (options.yaml) return convertSfzToYaml(file, fileDir);
     if (options.xml) return await convertSfzToXml(file, fileDir);
+    if (options.compact) return await convertSfzToCompact(file, fileDir);
   } else if (fileExt === 'yaml') {
     if (options.js) return convertYamlToJs(file);
     if (options.sfz) return convertYamlToSfz(file);
@@ -116,6 +119,16 @@ function convertXmlToYaml(fileXml: string) {
   return convertJsToYaml(fileJs);
 }
 
+function convertCompactToSfz(compact: any) {
+  const fileJs: ParseDefinition = convertCompactToJs(compact);
+  return convertJsToSfz(fileJs);
+}
+
+async function convertSfzToCompact(fileSfz: string, prefix = '') {
+  const fileJs: ParseDefinition = await convertSfzToJs(fileSfz, prefix);
+  return convertJsToCompact(fileJs);
+}
+
 export {
   convert,
   convertJsToSfz,
@@ -131,4 +144,8 @@ export {
   convertXmlToJs,
   convertXmlToSfz,
   convertXmlToYaml,
+  convertCompactToSfz,
+  convertSfzToCompact,
 };
+
+export { convertJsToCompact, convertCompactToJs } from './compact';

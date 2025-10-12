@@ -13,6 +13,10 @@ import {
   convertYamlToJs,
   convertYamlToSfz,
   convertYamlToXml,
+  convertJsToCompact,
+  convertCompactToJs,
+  convertSfzToCompact,
+  convertCompactToSfz,
 } from '../src/convert';
 import { fileReadJson, fileReadString } from '../src/file';
 import { ParseDefinition } from '../src/types/parse';
@@ -22,6 +26,7 @@ const fileJs: ParseDefinition = fileReadJson(path.join(syntaxDir, 'basic.json'))
 const fileSfz: string = fileReadString(path.join(syntaxDir, 'basic.sfz'));
 const fileYaml: string = fileReadString(path.join(syntaxDir, 'basic.yaml'));
 const fileXml: string = fileReadString(path.join(syntaxDir, 'basic.xml'));
+const fileCompact = fileReadJson(path.join(syntaxDir, 'basic.compact.json'));
 
 beforeAll(() => {
   convertSetLoader(fileReadString);
@@ -73,4 +78,20 @@ test('Convert Xml to Yaml', async () => {
 
 test('Convert Xml to Sfz', async () => {
   expect(await convertXmlToSfz(fileXml)).toEqual(fileSfz);
+});
+
+test('Convert Js to Compact', async () => {
+  expect(await convertJsToCompact(fileJs)).toEqual(fileCompact);
+});
+
+test('Convert Compact to Js', async () => {
+  expect(await convertCompactToJs(fileCompact)).toEqual(fileJs);
+});
+
+test('Convert Sfz to Compact', async () => {
+  expect(await convertSfzToCompact(fileSfz, syntaxDir)).toEqual(fileCompact);
+});
+
+test('Convert Compact to Sfz', async () => {
+  expect(await convertCompactToSfz(fileCompact)).toEqual(fileSfz);
 });

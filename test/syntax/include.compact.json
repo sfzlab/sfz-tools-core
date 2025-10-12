@@ -1,0 +1,23 @@
+[
+  ["master", [
+    ["sw_last", 36],
+    ["sw_label", "Twang"],
+    ["hicc118", 63],
+    ["ampeg_hold", 0.3],
+    ["ampeg_hold_oncc70", -0.3],
+    ["ampeg_hold_curvecc70", 8],
+    ["ampeg_decay", 1.5],
+    ["ampeg_decay_oncc70", -1.2],
+    ["ampeg_decay_curvecc70", 8],
+    ["ampeg_sustain", 100],
+    ["ampeg_sustain_oncc70", -100],
+    ["ampeg_sustain_curvecc70", 7]
+  ]],
+  ["region", [
+    ["sample", "dummy.wav"],
+    ["ampeg_hold", 0.9]
+  ]],
+  ["region", [
+    ["sample", "here.wav"]
+  ]]
+]

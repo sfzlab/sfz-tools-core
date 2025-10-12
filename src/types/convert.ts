@@ -3,6 +3,7 @@ interface ConvertOptions {
   sfz?: boolean;
   yaml?: boolean;
   xml?: boolean;
+  compact?: boolean;
 }
 
 export { ConvertOptions };
