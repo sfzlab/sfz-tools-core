@@ -47,7 +47,7 @@ const syntaxFiles: string[] = dirRead(path.join(syntaxDir, '**', '*.sfz'));
 test.each(syntaxFiles)('parseSfz %p', async (sfzFile: string) => {
   const sfzDir: string = pathGetDirectory(sfzFile, path.sep);
   const sfzText: string = fileReadString(sfzFile);
-  const sfzXml: string = fileReadString(sfzFile.replace('.sfz', '.xml'));
+  const sfzXml: string = fileReadString(`${sfzFile}.xml`);
   expect(convertToXml(await parseSfz(sfzText, sfzDir))).toEqual(sfzXml);
 });
 
@@ -57,7 +57,7 @@ const testFiles: string[] = dirRead(path.join(testDir, '**', '*.sfz'));
 test.each(testFiles)('parseSfz %p', async (sfzFile: string) => {
   const sfzDir: string = pathGetDirectory(sfzFile, path.sep);
   const sfzText: string = fileReadString(sfzFile);
-  const sfzXml: string = fileReadString(sfzFile.replace('.sfz', '.xml'));
+  const sfzXml: string = fileReadString(`${sfzFile}.xml`);
   expect(convertToXml(await parseSfz(sfzText, sfzDir))).toEqual(sfzXml);
 });
 

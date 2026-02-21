@@ -1,7 +1,7 @@
 import { js2xml, xml2js } from 'xml-js';
 import { parseDefinitionToHeaders, parseHeadersToDefinition, parseSetLoader, parseSfz } from './parse';
 import { load, dump } from 'js-yaml';
-import { ParseDefinition, ParseHeader, ParseOpcode } from './types/parse';
+import { ParseCompactHeader, ParseDefinition, ParseHeader, ParseOpcode } from './types/parse';
 import { LINE_END, normalizeLineEnds, normalizeXml, pathGetDirectory, pathGetExt } from './utils';
 import { ConvertOptions } from './types/convert';
 
@@ -23,27 +23,35 @@ const OPTIONS_XML: any = {
   spaces: '\t',
 };
 
+function getFormatFromPath(filepath: string): string {
+  if (filepath.endsWith('.sfz.json') || filepath.endsWith('.json')) return 'json';
+  if (filepath.endsWith('.sfz.yaml') || filepath.endsWith('.yaml')) return 'yaml';
+  if (filepath.endsWith('.sfz.xml') || filepath.endsWith('.xml')) return 'xml';
+  if (pathGetExt(filepath) === 'sfz') return 'sfz';
+  return '';
+}
+
 async function convert(filepath: string, file: any, options: ConvertOptions, sep?: string) {
   const fileDir: string = pathGetDirectory(filepath, sep);
-  const fileExt: string = pathGetExt(filepath);
-  if (fileExt === 'json') {
+  const fileFormat: string = getFormatFromPath(filepath);
+  if (fileFormat === 'json') {
     if (options.sfz) return convertJsToSfz(file);
     if (options.yaml) return convertJsToYaml(file);
     if (options.xml) return convertJsToXml(file);
-  } else if (fileExt === 'sfz') {
+  } else if (fileFormat === 'sfz') {
     if (options.js) return await convertSfzToJs(file, fileDir);
     if (options.yaml) return convertSfzToYaml(file, fileDir);
     if (options.xml) return await convertSfzToXml(file, fileDir);
-  } else if (fileExt === 'yaml') {
+  } else if (fileFormat === 'yaml') {
     if (options.js) return convertYamlToJs(file);
     if (options.sfz) return convertYamlToSfz(file);
     if (options.xml) return convertYamlToXml(file);
-  } else if (fileExt === 'xml') {
+  } else if (fileFormat === 'xml') {
     if (options.js) return convertXmlToJs(file);
     if (options.sfz) return convertXmlToSfz(file);
     if (options.yaml) return convertXmlToYaml(file);
   } else {
-    console.log(`Unsupported file extension ${fileExt}`);
+    console.log(`Unsupported file extension ${pathGetExt(filepath)}`);
   }
 }
 
@@ -61,7 +69,7 @@ function convertJsToSfz(fileJs: ParseDefinition) {
 
 function convertJsToYaml(fileJs: ParseDefinition) {
   const compactFile: ParseDefinition = parseHeadersToDefinition(parseDefinitionToHeaders(fileJs));
-  return normalizeLineEnds(dump(compactFile, OPTIONS_YAML)) + LINE_END;
+  return normalizeLineEnds(dump(compactFile.sfz as ParseCompactHeader[], OPTIONS_YAML)) + LINE_END;
 }
 
 function convertJsToXml(fileJs: ParseDefinition) {
