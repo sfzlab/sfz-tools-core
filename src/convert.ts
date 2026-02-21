@@ -1,5 +1,5 @@
 import { js2xml, xml2js } from 'xml-js';
-import { parseSetLoader, parseSfz } from './parse';
+import { parseDefinitionToHeaders, parseHeadersToDefinition, parseSetLoader, parseSfz } from './parse';
 import { load, dump } from 'js-yaml';
 import { ParseDefinition, ParseHeader, ParseOpcode } from './types/parse';
 import { LINE_END, normalizeLineEnds, normalizeXml, pathGetDirectory, pathGetExt } from './utils';
@@ -48,8 +48,9 @@ async function convert(filepath: string, file: any, options: ConvertOptions, sep
 }
 
 function convertJsToSfz(fileJs: ParseDefinition) {
+  const headers: ParseHeader[] = parseDefinitionToHeaders(fileJs);
   let fileSfz: string = '';
-  fileJs.elements.forEach((header: ParseHeader) => {
+  headers.forEach((header: ParseHeader) => {
     fileSfz += `<${header.name}>${LINE_END}`;
     header.elements.forEach((opcode: ParseOpcode) => {
       fileSfz += `${opcode.attributes.name}=${opcode.attributes.value}${LINE_END}`;
@@ -59,11 +60,13 @@ function convertJsToSfz(fileJs: ParseDefinition) {
 }
 
 function convertJsToYaml(fileJs: ParseDefinition) {
-  return normalizeLineEnds(dump(fileJs, OPTIONS_YAML)) + LINE_END;
+  const compactFile: ParseDefinition = parseHeadersToDefinition(parseDefinitionToHeaders(fileJs));
+  return normalizeLineEnds(dump(compactFile, OPTIONS_YAML)) + LINE_END;
 }
 
 function convertJsToXml(fileJs: ParseDefinition) {
-  const fileXml: string = js2xml({ declaration, elements: fileJs.elements }, OPTIONS_XML);
+  const headers: ParseHeader[] = parseDefinitionToHeaders(fileJs);
+  const fileXml: string = js2xml({ declaration, elements: headers }, OPTIONS_XML);
   return normalizeXml(fileXml);
 }
 
@@ -72,10 +75,8 @@ function convertSetLoader(func: any) {
 }
 
 async function convertSfzToJs(fileSfz: string, prefix = '') {
-  const fileJs: ParseDefinition = {
-    elements: await parseSfz(fileSfz, prefix),
-  };
-  return fileJs;
+  const headers: ParseHeader[] = await parseSfz(fileSfz, prefix);
+  return parseHeadersToDefinition(headers);
 }
 
 async function convertSfzToYaml(fileSfz: string, prefix = '') {
@@ -84,12 +85,13 @@ async function convertSfzToYaml(fileSfz: string, prefix = '') {
 }
 
 async function convertSfzToXml(fileSfz: string, prefix = '') {
-  const fileJs: ParseDefinition = await convertSfzToJs(fileSfz, prefix);
-  return normalizeXml(js2xml({ declaration, elements: fileJs.elements }, OPTIONS_XML));
+  const headers: ParseHeader[] = await parseSfz(fileSfz, prefix);
+  return normalizeXml(js2xml({ declaration, elements: headers }, OPTIONS_XML));
 }
 
 function convertYamlToJs(fileYaml: string) {
-  return load(fileYaml) as ParseDefinition;
+  const fileJs: ParseDefinition = load(fileYaml) as ParseDefinition;
+  return parseHeadersToDefinition(parseDefinitionToHeaders(fileJs));
 }
 
 function convertYamlToSfz(fileYaml: string) {
@@ -103,7 +105,9 @@ function convertYamlToXml(fileYaml: string) {
 }
 
 function convertXmlToJs(fileXml: string) {
-  return xml2js(fileXml, OPTIONS_JS) as ParseDefinition;
+  const fileJs: ParseDefinition = xml2js(fileXml, OPTIONS_JS) as ParseDefinition;
+  const headers: ParseHeader[] = parseDefinitionToHeaders(fileJs);
+  return parseHeadersToDefinition(headers);
 }
 
 function convertXmlToSfz(fileXml: string) {

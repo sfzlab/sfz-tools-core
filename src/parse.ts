@@ -1,5 +1,13 @@
 import { apiText } from './api';
-import { ParseHeader, ParseHeaderNames, ParseOpcode, ParseOpcodeObj, ParseVariables } from './types/parse';
+import {
+  ParseCompactHeader,
+  ParseDefinition,
+  ParseHeader,
+  ParseHeaderNames,
+  ParseOpcode,
+  ParseOpcodeObj,
+  ParseVariables,
+} from './types/parse';
 import { pathJoin } from './utils';
 
 const DEBUG = false;
@@ -21,7 +29,73 @@ function parseHeader(input: string) {
   return input.replace(/<| |>/g, '');
 }
 
-function parseHeaders(headers: ParseHeader[], prefix?: string) {
+function parseCompactValue(input: any): string | number {
+  if (typeof input === 'number') return input;
+  if (typeof input === 'string') {
+    if (input !== '' && !isNaN(input as any)) return Number(input);
+    return input;
+  }
+  if (input === undefined || input === null) return '';
+  return String(input);
+}
+
+function parseDefinitionToHeaders(input: ParseDefinition | ParseHeader[] | ParseCompactHeader[] | undefined): ParseHeader[] {
+  if (!input) return [];
+  if (Array.isArray(input)) {
+    if (input.length === 0) return [];
+    const header0: any = input[0];
+    if (header0.type === 'element' && header0.name) {
+      return input as ParseHeader[];
+    }
+    return parseCompactHeaders(input as ParseCompactHeader[]);
+  }
+  if (input.elements && Array.isArray(input.elements)) return input.elements;
+  if (input.sfz && Array.isArray(input.sfz)) return parseCompactHeaders(input.sfz);
+  return [];
+}
+
+function parseCompactHeaders(headers: ParseCompactHeader[]) {
+  const elements: ParseHeader[] = [];
+  headers.forEach((header: ParseCompactHeader) => {
+    if (!header || typeof header !== 'object') return;
+    Object.keys(header).forEach((headerName: string) => {
+      const opcodesInput: any[] = Array.isArray(header[headerName]) ? header[headerName] : [];
+      const opcodes: ParseOpcode[] = [];
+      opcodesInput.forEach((opcodeObj: any) => {
+        if (!opcodeObj || typeof opcodeObj !== 'object') return;
+        Object.keys(opcodeObj).forEach((opcodeName: string) => {
+          opcodes.push({
+            type: 'element',
+            name: 'opcode',
+            attributes: {
+              name: opcodeName,
+              value: String(parseCompactValue(opcodeObj[opcodeName])),
+            },
+          });
+        });
+      });
+      elements.push({
+        type: 'element',
+        name: headerName as ParseHeaderNames,
+        elements: opcodes,
+      });
+    });
+  });
+  return elements;
+}
+
+function parseHeadersToDefinition(headers: ParseHeader[]): ParseDefinition {
+  return {
+    sfz: headers.map((header: ParseHeader) => ({
+      [header.name]: header.elements.map((opcode: ParseOpcode) => ({
+        [opcode.attributes.name]: parseCompactValue(opcode.attributes.value),
+      })),
+    })),
+  };
+}
+
+function parseHeaders(headersInput: ParseHeader[] | ParseDefinition | ParseCompactHeader[] | undefined, prefix?: string) {
+  const headers: ParseHeader[] = parseDefinitionToHeaders(headersInput);
   const regions: ParseOpcodeObj[] = [];
   let defaultPath: string = '';
   let globalObj: ParseOpcodeObj = {};
@@ -169,9 +243,12 @@ function parseVariables(input: string, vars: ParseVariables) {
 }
 
 export {
+  parseCompactHeaders,
   parseDefines,
+  parseDefinitionToHeaders,
   parseHeader,
   parseHeaders,
+  parseHeadersToDefinition,
   parseIncludes,
   parseLoad,
   parseOpcodeObject,

@@ -1,86 +1,20 @@
-elements:
-  - type: element
-    name: master
-    elements:
-      - type: element
-        name: opcode
-        attributes:
-          name: sw_last
-          value: '36'
-      - type: element
-        name: opcode
-        attributes:
-          name: sw_label
-          value: Twang
-      - type: element
-        name: opcode
-        attributes:
-          name: hicc118
-          value: '63'
-      - type: element
-        name: opcode
-        attributes:
-          name: ampeg_hold
-          value: '0.3'
-      - type: element
-        name: opcode
-        attributes:
-          name: ampeg_hold_oncc70
-          value: '-0.3'
-      - type: element
-        name: opcode
-        attributes:
-          name: ampeg_hold_curvecc70
-          value: '8'
-      - type: element
-        name: opcode
-        attributes:
-          name: ampeg_decay
-          value: '1.5'
-      - type: element
-        name: opcode
-        attributes:
-          name: ampeg_decay_oncc70
-          value: '-1.2'
-      - type: element
-        name: opcode
-        attributes:
-          name: ampeg_decay_curvecc70
-          value: '8'
-      - type: element
-        name: opcode
-        attributes:
-          name: ampeg_sustain
-          value: '100'
-      - type: element
-        name: opcode
-        attributes:
-          name: ampeg_sustain_oncc70
-          value: '-100'
-      - type: element
-        name: opcode
-        attributes:
-          name: ampeg_sustain_curvecc70
-          value: '7'
-  - type: element
-    name: region
-    elements:
-      - type: element
-        name: opcode
-        attributes:
-          name: sample
-          value: dummy.wav
-      - type: element
-        name: opcode
-        attributes:
-          name: ampeg_hold
-          value: '0.9'
-  - type: element
-    name: region
-    elements:
-      - type: element
-        name: opcode
-        attributes:
-          name: sample
-          value: here.wav
+sfz:
+  - master:
+      - sw_last: 36
+      - sw_label: Twang
+      - hicc118: 63
+      - ampeg_hold: 0.3
+      - ampeg_hold_oncc70: -0.3
+      - ampeg_hold_curvecc70: 8
+      - ampeg_decay: 1.5
+      - ampeg_decay_oncc70: -1.2
+      - ampeg_decay_curvecc70: 8
+      - ampeg_sustain: 100
+      - ampeg_sustain_oncc70: -100
+      - ampeg_sustain_curvecc70: 7
+  - region:
+      - sample: dummy.wav
+      - ampeg_hold: 0.9
+  - region:
+      - sample: here.wav
 

@@ -1,10 +1,4 @@
-elements:
-  - type: element
-    name: region
-    elements:
-      - type: element
-        name: opcode
-        attributes:
-          name: sample
-          value: DefaultPath/SubPath2/sample2.wav
+sfz:
+  - region:
+      - sample: DefaultPath/SubPath2/sample2.wav
 

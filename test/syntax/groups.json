@@ -1,176 +1,33 @@
 {
-  "elements": [
-    {
-      "type": "element",
-      "name": "group",
-      "elements": [
-        {
-          "type": "element",
-          "name": "opcode",
-          "attributes": {
-            "name": "key",
-            "value": "36"
-          }
-        },
-        {
-          "type": "element",
-          "name": "opcode",
-          "attributes": {
-            "name": "volume",
-            "value": "6"
-          }
-        }
-      ]
-    },
-    {
-      "type": "element",
-      "name": "region",
-      "elements": [
-        {
-          "type": "element",
-          "name": "opcode",
-          "attributes": {
-            "name": "lovel",
-            "value": "1"
-          }
-        },
-        {
-          "type": "element",
-          "name": "opcode",
-          "attributes": {
-            "name": "hivel",
-            "value": "26"
-          }
-        },
-        {
-          "type": "element",
-          "name": "opcode",
-          "attributes": {
-            "name": "sample",
-            "value": "36-CajonCenter-1.wav"
-          }
-        }
-      ]
-    },
-    {
-      "type": "element",
-      "name": "region",
-      "elements": [
-        {
-          "type": "element",
-          "name": "opcode",
-          "attributes": {
-            "name": "lovel",
-            "value": "27"
-          }
-        },
-        {
-          "type": "element",
-          "name": "opcode",
-          "attributes": {
-            "name": "hivel",
-            "value": "52"
-          }
-        },
-        {
-          "type": "element",
-          "name": "opcode",
-          "attributes": {
-            "name": "sample",
-            "value": "36-CajonCenter-2.wav"
-          }
-        }
-      ]
-    },
-    {
-      "type": "element",
-      "name": "region",
-      "elements": [
-        {
-          "type": "element",
-          "name": "opcode",
-          "attributes": {
-            "name": "lovel",
-            "value": "53"
-          }
-        },
-        {
-          "type": "element",
-          "name": "opcode",
-          "attributes": {
-            "name": "hivel",
-            "value": "77"
-          }
-        },
-        {
-          "type": "element",
-          "name": "opcode",
-          "attributes": {
-            "name": "sample",
-            "value": "36-CajonCenter-3.wav"
-          }
-        }
-      ]
-    },
-    {
-      "type": "element",
-      "name": "region",
-      "elements": [
-        {
-          "type": "element",
-          "name": "opcode",
-          "attributes": {
-            "name": "lovel",
-            "value": "78"
-          }
-        },
-        {
-          "type": "element",
-          "name": "opcode",
-          "attributes": {
-            "name": "hivel",
-            "value": "102"
-          }
-        },
-        {
-          "type": "element",
-          "name": "opcode",
-          "attributes": {
-            "name": "sample",
-            "value": "36-CajonCenter-4.wav"
-          }
-        }
-      ]
-    },
-    {
-      "type": "element",
-      "name": "region",
-      "elements": [
-        {
-          "type": "element",
-          "name": "opcode",
-          "attributes": {
-            "name": "lovel",
-            "value": "103"
-          }
-        },
-        {
-          "type": "element",
-          "name": "opcode",
-          "attributes": {
-            "name": "hivel",
-            "value": "127"
-          }
-        },
-        {
-          "type": "element",
-          "name": "opcode",
-          "attributes": {
-            "name": "sample",
-            "value": "36-CajonCenter-5.wav"
-          }
-        }
-      ]
-    }
+  "sfz": [
+    {"group": [
+      {"key": 36},
+      {"volume": 6}
+    ]},
+    {"region": [
+      {"lovel": 1},
+      {"hivel": 26},
+      {"sample": "36-CajonCenter-1.wav"}
+    ]},
+    {"region": [
+      {"lovel": 27},
+      {"hivel": 52},
+      {"sample": "36-CajonCenter-2.wav"}
+    ]},
+    {"region": [
+      {"lovel": 53},
+      {"hivel": 77},
+      {"sample": "36-CajonCenter-3.wav"}
+    ]},
+    {"region": [
+      {"lovel": 78},
+      {"hivel": 102},
+      {"sample": "36-CajonCenter-4.wav"}
+    ]},
+    {"region": [
+      {"lovel": 103},
+      {"hivel": 127},
+      {"sample": "36-CajonCenter-5.wav"}
+    ]}
   ]
 }

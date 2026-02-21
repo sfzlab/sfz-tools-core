@@ -9,7 +9,16 @@ interface ParseDefinition {
       version: string;
     };
   };
-  elements: ParseHeader[];
+  elements?: ParseHeader[];
+  sfz?: ParseCompactHeader[];
+}
+
+interface ParseCompactOpcode {
+  [name: string]: string | number;
+}
+
+interface ParseCompactHeader {
+  [name: string]: ParseCompactOpcode[];
 }
 
 interface ParseHeader {
@@ -44,4 +53,14 @@ interface ParseVariables {
   [name: string]: string;
 }
 
-export { ParseAttribute, ParseDefinition, ParseHeader, ParseHeaderNames, ParseOpcode, ParseOpcodeObj, ParseVariables };
+export {
+  ParseAttribute,
+  ParseCompactHeader,
+  ParseCompactOpcode,
+  ParseDefinition,
+  ParseHeader,
+  ParseHeaderNames,
+  ParseOpcode,
+  ParseOpcodeObj,
+  ParseVariables,
+};
