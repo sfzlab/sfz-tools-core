@@ -1,0 +1,28 @@
+- control: []
+- master:
+    - ampeg_release: 1
+- control:
+    - default_path: ../../test/syntax/path-a/
+- region:
+    - sample: piano.wav
+    - pitch_keycenter: 60
+    - lokey: 58
+    - hikey: 62
+    - lovel: 1
+    - hivel: 20
+    - locc64: 64
+    - hicc64: 127
+- master:
+    - ampeg_release: 3
+- control:
+    - default_path: ../../test/syntax/path-b/
+- region:
+    - sample: piano.wav
+    - pitch_keycenter: 60
+    - lokey: 58
+    - hikey: 62
+    - lovel: 1
+    - hivel: 20
+    - locc64: 64
+    - hicc64: 127
+
