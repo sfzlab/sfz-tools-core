@@ -1,7 +1,5 @@
-{
-  "sfz": [
-    {"region": [
-      {"sample": "here.wav"}
-    ]}
-  ]
-}
+[
+  {"region": [
+    {"sample": "here.wav"}
+  ]}
+]

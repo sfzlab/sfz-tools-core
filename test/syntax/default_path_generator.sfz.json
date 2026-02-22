@@ -1,10 +1,8 @@
-{
-  "sfz": [
-    {"control": [
-      {"default_path": "DefaultPath/SubPath1"}
-    ]},
-    {"region": [
-      {"sample": "*sine"}
-    ]}
-  ]
-}
+[
+  {"control": [
+    {"default_path": "DefaultPath/SubPath1"}
+  ]},
+  {"region": [
+    {"sample": "*sine"}
+  ]}
+]

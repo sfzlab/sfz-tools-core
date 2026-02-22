@@ -96,7 +96,7 @@ test('parseHeader', () => {
 test('parseHeaders', async () => {
   const sfzPath: string = 'https://raw.githubusercontent.com/kmturley/hang-D-minor/main/';
   const sfzJson: ParseDefinition = await apiJson(`${sfzPath}Hang-D-minor-20220330.json`);
-  expect(parseHeaders(sfzJson.elements)[0]).toEqual({
+  expect(parseHeaders(sfzJson)[0]).toEqual({
     ampeg_release: 8,
     hirand: 0.2,
     key: 57,

@@ -39,7 +39,9 @@ function parseCompactValue(input: any): string | number {
   return String(input);
 }
 
-function parseDefinitionToHeaders(input: ParseDefinition | ParseHeader[] | ParseCompactHeader[] | undefined): ParseHeader[] {
+function parseDefinitionToHeaders(
+  input: ParseDefinition | ParseHeader[] | ParseCompactHeader[] | undefined
+): ParseHeader[] {
   if (!input) return [];
   if (Array.isArray(input)) {
     if (input.length === 0) return [];
@@ -50,7 +52,6 @@ function parseDefinitionToHeaders(input: ParseDefinition | ParseHeader[] | Parse
     return parseCompactHeaders(input as ParseCompactHeader[]);
   }
   if (input.elements && Array.isArray(input.elements)) return input.elements;
-  if (input.sfz && Array.isArray(input.sfz)) return parseCompactHeaders(input.sfz);
   return [];
 }
 
@@ -84,17 +85,18 @@ function parseCompactHeaders(headers: ParseCompactHeader[]) {
   return elements;
 }
 
-function parseHeadersToDefinition(headers: ParseHeader[]): ParseDefinition {
-  return {
-    sfz: headers.map((header: ParseHeader) => ({
-      [header.name]: header.elements.map((opcode: ParseOpcode) => ({
-        [opcode.attributes.name]: parseCompactValue(opcode.attributes.value),
-      })),
+function parseHeadersToDefinition(headers: ParseHeader[]): ParseCompactHeader[] {
+  return headers.map((header: ParseHeader) => ({
+    [header.name]: header.elements.map((opcode: ParseOpcode) => ({
+      [opcode.attributes.name]: parseCompactValue(opcode.attributes.value),
     })),
-  };
+  }));
 }
 
-function parseHeaders(headersInput: ParseHeader[] | ParseDefinition | ParseCompactHeader[] | undefined, prefix?: string) {
+function parseHeaders(
+  headersInput: ParseHeader[] | ParseDefinition | ParseCompactHeader[] | undefined,
+  prefix?: string
+) {
   const headers: ParseHeader[] = parseDefinitionToHeaders(headersInput);
   const regions: ParseOpcodeObj[] = [];
   let defaultPath: string = '';

@@ -3,15 +3,16 @@ interface ParseAttribute {
   value: string;
 }
 
-interface ParseDefinition {
+interface ParseXmlDefinition {
   declaration?: {
     attributes: {
       version: string;
     };
   };
   elements?: ParseHeader[];
-  sfz?: ParseCompactHeader[];
 }
+
+type ParseDefinition = ParseXmlDefinition | ParseCompactHeader[];
 
 interface ParseCompactOpcode {
   [name: string]: string | number;
@@ -58,6 +59,7 @@ export {
   ParseCompactHeader,
   ParseCompactOpcode,
   ParseDefinition,
+  ParseXmlDefinition,
   ParseHeader,
   ParseHeaderNames,
   ParseOpcode,

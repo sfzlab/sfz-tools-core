@@ -68,8 +68,8 @@ function convertJsToSfz(fileJs: ParseDefinition) {
 }
 
 function convertJsToYaml(fileJs: ParseDefinition) {
-  const compactFile: ParseDefinition = parseHeadersToDefinition(parseDefinitionToHeaders(fileJs));
-  return normalizeLineEnds(dump(compactFile.sfz as ParseCompactHeader[], OPTIONS_YAML)) + LINE_END;
+  const compactFile: ParseCompactHeader[] = parseHeadersToDefinition(parseDefinitionToHeaders(fileJs));
+  return normalizeLineEnds(dump(compactFile, OPTIONS_YAML)) + LINE_END;
 }
 
 function convertJsToXml(fileJs: ParseDefinition) {
@@ -88,7 +88,7 @@ async function convertSfzToJs(fileSfz: string, prefix = '') {
 }
 
 async function convertSfzToYaml(fileSfz: string, prefix = '') {
-  const fileJs: ParseDefinition = await convertSfzToJs(fileSfz, prefix);
+  const fileJs: ParseCompactHeader[] = await convertSfzToJs(fileSfz, prefix);
   return convertJsToYaml(fileJs);
 }
 
@@ -98,17 +98,17 @@ async function convertSfzToXml(fileSfz: string, prefix = '') {
 }
 
 function convertYamlToJs(fileYaml: string) {
-  const fileJs: ParseDefinition = load(fileYaml) as ParseDefinition;
+  const fileJs: ParseDefinition | ParseCompactHeader[] = load(fileYaml) as ParseDefinition | ParseCompactHeader[];
   return parseHeadersToDefinition(parseDefinitionToHeaders(fileJs));
 }
 
 function convertYamlToSfz(fileYaml: string) {
-  const fileJs: ParseDefinition = convertYamlToJs(fileYaml);
+  const fileJs: ParseCompactHeader[] = convertYamlToJs(fileYaml);
   return convertJsToSfz(fileJs);
 }
 
 function convertYamlToXml(fileYaml: string) {
-  const fileJs: ParseDefinition = convertYamlToJs(fileYaml);
+  const fileJs: ParseCompactHeader[] = convertYamlToJs(fileYaml);
   return convertJsToXml(fileJs);
 }
 
@@ -119,12 +119,12 @@ function convertXmlToJs(fileXml: string) {
 }
 
 function convertXmlToSfz(fileXml: string) {
-  const fileJs: ParseDefinition = convertXmlToJs(fileXml);
+  const fileJs: ParseCompactHeader[] = convertXmlToJs(fileXml);
   return convertJsToSfz(fileJs);
 }
 
 function convertXmlToYaml(fileXml: string) {
-  const fileJs: ParseDefinition = convertXmlToJs(fileXml);
+  const fileJs: ParseCompactHeader[] = convertXmlToJs(fileXml);
   return convertJsToYaml(fileJs);
 }
 

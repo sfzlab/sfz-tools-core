@@ -1,7 +1,5 @@
-{
-  "sfz": [
-    {"region": [
-      {"sample": "dummy.wav"}
-    ]}
-  ]
-}
+[
+  {"region": [
+    {"sample": "dummy.wav"}
+  ]}
+]
