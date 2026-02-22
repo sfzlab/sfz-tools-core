@@ -23,11 +23,11 @@ function log(...args: any) {
   }
 }
 
-function logEnable(...args: any) {
+function logEnable() {
   LOGGING_ENABLED = true;
 }
 
-function logDisable(...args: any) {
+function logDisable() {
   LOGGING_ENABLED = false;
 }
 

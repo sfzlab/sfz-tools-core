@@ -2,10 +2,10 @@
 // Use the `npm run dev` command to build and run the file
 // Debug particular methods quickly without having to run all tests `npm test`
 
-const analyze = require('./dist/analyze.js');
-const api = require('./dist/api.js');
+// const analyze = require('./dist/analyze.js');
+// const api = require('./dist/api.js');
 const convert = require('./dist/convert.js');
-const encode = require('./dist/encode.js');
+// const encode = require('./dist/encode.js');
 const file = require('./dist/file.js');
 const parse = require('./dist/parse.js');
 const utils = require('./dist/utils.js');
@@ -21,10 +21,10 @@ async function run() {
   // File testing
   const sfzDir = './test/syntax/';
   const sfzFile = 'defines';
-  const sfzJs = file.fileReadJson(`${sfzDir}${sfzFile}.json`);
+  // const sfzJs = file.fileReadJson(`${sfzDir}${sfzFile}.json`);
   const sfzText = file.fileReadString(`${sfzDir}${sfzFile}.sfz`);
-  const sfzXml = file.fileReadString(`${sfzDir}${sfzFile}.xml`);
-  const sfzYaml = file.fileReadString(`${sfzDir}${sfzFile}.yaml`);
+  // const sfzXml = file.fileReadString(`${sfzDir}${sfzFile}.xml`);
+  // const sfzYaml = file.fileReadString(`${sfzDir}${sfzFile}.yaml`);
 
   // Api testing
   // const sfzDir = 'https://raw.githubusercontent.com/studiorack/salamander-grand-piano/compact/';

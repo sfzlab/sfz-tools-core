@@ -50,7 +50,6 @@ interface AnalyzePitch {
   octave: number;
 }
 
-// tslint:disable-next-line
 interface AnalyzeVector {}
 
 export {

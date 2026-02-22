@@ -10,16 +10,15 @@ import {
   dirRead,
   dirRename,
   fileCreate,
-  fileDate,
-  fileDelete,
-  fileExec,
-  fileExists,
+  // fileDate,
+  // fileDelete,
+  // fileExec,
+  // fileExists,
   filenameParse,
-  fileMove,
-  fileOpen,
-  fileSize,
+  // fileMove,
+  // fileOpen,
+  // fileSize,
 } from '../src/file';
-import os from 'os';
 import path from 'path';
 
 const DIR_PATH: string = path.join('test', 'new-directory');

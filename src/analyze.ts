@@ -1,11 +1,8 @@
-// @ts-ignore
 import { Essentia, EssentiaWASM } from 'essentia.js';
 import * as wav from 'node-wav';
 import { readFileSync } from 'fs';
 import { AnalyzeBuffer, AnalyzeFile, AnalyzeNote, AnalyzeOptions, AnalyzePitch, AnalyzeVector } from './types/analyze';
-// @ts-ignore
 import PolarFFTWASM from './lib/polarFFT.module.js';
-// @ts-ignore
 import OnsetsWASM from './lib/onsets.module.js';
 import { pathGetExt, pitchToMidi } from './utils';
 
