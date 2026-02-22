@@ -40,7 +40,7 @@ function parseCompactValue(input: any): string | number {
 }
 
 function parseDefinitionToHeaders(
-  input: ParseDefinition | ParseHeader[] | ParseCompactHeader[] | undefined
+  input: ParseDefinition | ParseHeader[] | ParseCompactHeader[] | undefined,
 ): ParseHeader[] {
   if (!input) return [];
   if (Array.isArray(input)) {
@@ -95,7 +95,7 @@ function parseHeadersToDefinition(headers: ParseHeader[]): ParseCompactHeader[] 
 
 function parseHeaders(
   headersInput: ParseHeader[] | ParseDefinition | ParseCompactHeader[] | undefined,
-  prefix?: string
+  prefix?: string,
 ) {
   const headers: ParseHeader[] = parseDefinitionToHeaders(headersInput);
   const regions: ParseOpcodeObj[] = [];
@@ -147,10 +147,11 @@ async function parseIncludes(contents: string, prefix = '') {
 
 async function parseLoad(includePath: string, prefix: string) {
   const pathJoined: string = pathJoin(prefix, includePath);
-  let file: string = '';
-  if (pathJoined.startsWith('http')) file = await apiText(pathJoined);
-  else if (fileReadString) file = fileReadString(pathJoined);
-  else file = await apiText(pathJoined);
+  const file: string = pathJoined.startsWith('http')
+    ? await apiText(pathJoined)
+    : fileReadString
+      ? fileReadString(pathJoined)
+      : await apiText(pathJoined);
   return file;
 }
 

@@ -167,7 +167,7 @@ function analyzeOnsets(file: AnalyzeFile) {
         essentia.arrayToVector(essentia.vectorToArray(frame.magnitude)),
         essentia.arrayToVector(essentia.vectorToArray(frame.phase)),
         func,
-        file.buffer.sampleRate
+        file.buffer.sampleRate,
       ).onsetDetection;
     });
     odfMatrix.push(Float32Array.from(odfArray));

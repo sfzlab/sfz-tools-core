@@ -28,7 +28,7 @@ function convertToXml(elements: any) {
       },
       elements,
     },
-    { spaces: '\t' }
+    { spaces: '\t' },
   );
   return normalizeXml(xml);
 }
@@ -183,7 +183,7 @@ test('parseOpcodeObject', () => {
           value: '8',
         },
       },
-    ])
+    ]),
   ).toEqual({ ampeg_release: 8 });
 });
 

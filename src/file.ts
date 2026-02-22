@@ -57,18 +57,8 @@ function dirMove(dirPath: string, newPath: string): void {
 
 function dirOpen(dirPath: string): Buffer {
   if (process.env.CI) return new Buffer('');
-  let command: string = '';
-  switch (process.platform) {
-    case 'darwin':
-      command = 'open';
-      break;
-    case 'win32':
-      command = 'start ""';
-      break;
-    default:
-      command = 'xdg-open';
-      break;
-  }
+  const command: string =
+    process.platform === 'darwin' ? 'open' : process.platform === 'win32' ? 'start ""' : 'xdg-open';
   log('⎋', `${command} "${dirPath}"`);
   return execSync(`${command} "${dirPath}"`);
 }
@@ -135,18 +125,7 @@ function filenameParse(filename: string, separator = '_') {
 }
 
 function fileOpen(filePath: string): Buffer {
-  let command: string = '';
-  switch (process.platform) {
-    case 'darwin':
-      command = 'open';
-      break;
-    case 'win32':
-      command = 'start';
-      break;
-    default:
-      command = 'xdg-open';
-      break;
-  }
+  const command: string = process.platform === 'darwin' ? 'open' : process.platform === 'win32' ? 'start' : 'xdg-open';
   log('⎋', `${command} "${filePath}"`);
   return execSync(`${command} "${filePath}"`);
 }
